@@ -1,0 +1,65 @@
+from unittest import TestCase
+from medium import btree_level_order_traversal_2
+
+
+class TestSolution(TestCase):
+    def test_level_order_with_2_child_nodes(self):
+        level1_child1 = btree_level_order_traversal_2.TreeNode(2, None, None)
+        level1_child2 = btree_level_order_traversal_2.TreeNode(3, None, None)
+        root_node = btree_level_order_traversal_2.TreeNode(1, level1_child1, level1_child2)
+
+        s1 = btree_level_order_traversal_2.Solution()
+        result = s1.levelOrderBottom(root_node)
+        self.assertEqual([ [2, 3], [1]], result, "Traversal does not match")
+
+    def test_level_order_with_0_child_nodes(self):
+        root_node = btree_level_order_traversal_2.TreeNode(1)
+
+        s1 = btree_level_order_traversal_2.Solution()
+        result = s1.levelOrderBottom(root_node)
+        self.assertEqual([[1]], result, "Traversal does not match")
+
+    def test_level_order_with_empty_root(self):
+        s1 = btree_level_order_traversal_2.Solution()
+        # noinspection PyTypeChecker
+        result = s1.levelOrderBottom(None)
+        self.assertEqual([], result, "Traversal does not match")
+
+    def test_level_order_with_mix_of_child_nodes(self):
+        level1_child1 = btree_level_order_traversal_2.TreeNode(2, None, None)
+        level1_child2 = btree_level_order_traversal_2.TreeNode(3, None, None)
+        level2_child2 = btree_level_order_traversal_2.TreeNode(5, None, None)
+        level1_child1.right = level2_child2
+        root_node = btree_level_order_traversal_2.TreeNode(1, level1_child1, level1_child2)
+
+        s1 = btree_level_order_traversal_2.Solution()
+        result = s1.levelOrderBottom(root_node)
+        self.assertEqual([[5],[2, 3], [1] ], result, "Traversal does not match")
+
+    def test_should_create_linked_list(self):
+        linked_list = btree_level_order_traversal_2.LinkedList()
+        linked_list.add(1)
+        linked_list.add(2)
+        linked_list.add(3)
+        linked_list.add(4)
+
+        self.assertEqual(4, linked_list._length, "not added")
+        self.assertEqual(1, linked_list.pop(), "Head not retrieved")
+        self.assertEqual(3, linked_list._length, "after pop length not adjusted")
+        self.assertEqual(2, linked_list.pop(), "Head not retrieved")
+        self.assertEqual(3, linked_list.pop(), "Head not retrieved")
+        self.assertEqual(1, linked_list._length, "after pop length not adjusted")
+        linked_list.add(5)
+        linked_list.add(6)
+        linked_list.add(7)
+        self.assertEqual(4, linked_list._length, "after add length not adjusted")
+        self.assertEqual(4, linked_list.pop(), "Head not retrieved")
+        self.assertEqual(5, linked_list.pop(), "Head not retrieved")
+        self.assertEqual(6, linked_list.pop(), "Head not retrieved")
+        self.assertEqual(7, linked_list.pop(), "Head not retrieved")
+        self.assertEqual(0, linked_list._length, "after pop length not adjusted")
+        self.assertIsNone(linked_list.pop(), "non empty value returned when pop called on empty list")
+        linked_list.add(8)
+        linked_list.add(9)
+        linked_list.add(10)
+        self.assertEqual(3, linked_list._length, "cannot re-initialise an empty list")
