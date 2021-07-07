@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.populate_next_right_pointers_each_node import LinkedList, Node, Solution
+from medium.populate_next_right_pointers_each_node import Node, Solution
 
 
 class TestSolution(TestCase):
@@ -50,18 +50,4 @@ class TestSolution(TestCase):
       #  self.assertEqual(level2_child3.next.val, level2_child4.val, "wrong assignment of next")
 
 
-class TestLinkedList(TestCase):
-    def test_should_create_and_peek_linked_list(self):
-        list = LinkedList()
-        list.add(1)
-        list.add(2)
-        list.add(3)
-        list.add(4)
 
-        self.assertEqual(1, list.peek(), "Peek function not working")
-        self.assertEqual(1, list.pop(), "Pop did not work")
-        self.assertEqual(2, list.pop(), "Pop did not work")
-        self.assertEqual(3, list.peek(), "Peek function not working")
-        self.assertEqual(3, list.pop(), "Pop did not work")
-        self.assertEqual(4, list.peek(), "Peek function not working")
-        self.assertEqual(4, list.pop(), "Pop did not work")
