@@ -7,30 +7,38 @@ class Node:
 
 
 class Solution:
+
     def connect(self, root: 'Node') -> 'Node':
+
         if root is None:
             return None
-        layers_present = True
-        present_layer = LinkedList()
-        next_layer = LinkedList()
-        present_layer.add(root)
-        while layers_present:
-            while present_layer.has_next():
-                node = present_layer.pop()
-                if present_layer.peek() is not None:
-                    node.next=present_layer.peek()
-                if node.left is not None:
-                    next_layer.add(node.left)
-                if node.right is not None:
-                    next_layer.add(node.right)
-                if present_layer.length == 0:
-                    if next_layer.length==0:
-                        layers_present=False
-                    else:
-                        present_layer = next_layer
-                        next_layer = LinkedList()
-        return root
 
+        if root.left is None and root.right is None:
+            return root
+        list = LinkedList()
+        list.add(root)
+        last_child = None
+        while list.has_next():
+            node = list.pop()
+            if node.left is not None:
+                list.add(node.left)
+                if last_child is not None:
+                    last_child.next = node.left
+                last_child = node.left
+                if node.right is not None:
+                    node.left.next = node.right
+                    list.add(node.right)
+                    last_child = node.right
+            else:
+                if node.right is not None:
+                    list.add(node.right)
+                    if last_child is not None:
+                        last_child.next = node.right
+                    last_child = node.right
+            if node.next is None:
+                last_child = None
+
+        return root
 
 class LinkNode:
     def __init__(self, val):

@@ -4,6 +4,22 @@ from medium.populate_next_right_pointers_each_node import LinkedList, Node, Solu
 
 
 class TestSolution(TestCase):
+
+    def test_should_handle_none(self):
+        solution = Solution()
+        solution.connect(None)
+
+    def test_should_handle_single_child(self):
+        rootNode = Node(val=1)
+        level1_child1 = Node(val=2)
+        rootNode.left = level1_child1
+
+        solution = Solution()
+        solution.connect(rootNode)
+
+        self.assertIsNone(rootNode.next)
+        self.assertIsNone(rootNode.left.next)
+
     def test_should_connect_to_right(self):
         rootNode = Node(val=1)
         level1_child1 = Node(val=2)
