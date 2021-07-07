@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.flatten_btree_linked_list import StackLinkedList, TreeNode, Solution
+from medium.btree_flatten_linked_list import StackLinkedList, TreeNode, Solution
 
 
 class TestStackLinkedList(TestCase):
@@ -68,4 +68,5 @@ class TestSolution(TestCase):
 
     def test_should_handle_none_root(self):
         solution = Solution()
+        # noinspection PyTypeChecker
         solution.flatten(root=None)
