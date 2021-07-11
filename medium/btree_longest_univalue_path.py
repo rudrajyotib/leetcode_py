@@ -21,13 +21,13 @@ class Solution:
             left_uni_value_depth = 0
             right_uni_value_depth = 0
             if node.left:
-                left_result = find_through_dfs(node.left)
-                if node.left.val == node.val:
-                    left_uni_value_depth = left_result
+                left_uni_value_depth = find_through_dfs(node.left)
+                if node.left.val != node.val:
+                    left_uni_value_depth = 0
             if node.right:
-                right_result = find_through_dfs(node.right)
-                if node.right.val == node.val:
-                    right_uni_value_depth = right_result
+                right_uni_value_depth = find_through_dfs(node.right)
+                if node.right.val != node.val:
+                    right_uni_value_depth = 0
             uni_value_depth = 1
             if left_uni_value_depth > right_uni_value_depth:
                 uni_value_depth += left_uni_value_depth
