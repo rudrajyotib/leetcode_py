@@ -1,6 +1,3 @@
-from typing import List
-
-
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -11,28 +8,42 @@ class TreeNode:
 class Solution:
     elements_found: bool = False
     element_to_search: int = 0
+    searching_first_element: bool = False
+    result: TreeNode = None
 
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
 
         Solution.elements_found = False
         Solution.element_to_search = 0
+        Solution.searching_first_element = True
+        Solution.result = None
 
-        def find_nodes_recursive(node: TreeNode, path_to_node: List[TreeNode]):
+        def find_nodes_recursive(node: TreeNode):
+            if Solution.result:
+                return
             if not Solution.elements_found and node.left:
-                find_nodes_recursive(node.left, path_to_node=path_to_node)
+                find_nodes_recursive(node.left)
             if not Solution.elements_found and node.right:
-                find_nodes_recursive(node.right, path_to_node=path_to_node)
-            if node.val == Solution.element_to_search:
-                Solution.elements_found = True
-            if Solution.elements_found:
-                path_to_node.append(node)
+                find_nodes_recursive(node.right)
+            if Solution.searching_first_element:
+                if node.val == Solution.element_to_search:
+                    Solution.elements_found = True
+                if Solution.elements_found:
+                    node.visited = True
+            else:
+                if Solution.result:
+                    return
+                if node.val == Solution.element_to_search:
+                    Solution.elements_found = True
+                if Solution.elements_found:
+                    if hasattr(node, 'visited'):
+                        Solution.result = node
 
-        path_to_first_element: List[TreeNode] = []
-        path_to_second_element: List[TreeNode] = []
         Solution.element_to_search = p.val
-        find_nodes_recursive(node=root, path_to_node=path_to_first_element)
+        find_nodes_recursive(node=root)
         Solution.element_to_search = q.val
         Solution.elements_found = False
-        find_nodes_recursive(node=root, path_to_node=path_to_second_element)
-        first_element_path = list(map(lambda n: n.val, path_to_first_element))
-        return list(filter(lambda node: node.val in first_element_path, path_to_second_element))[0]
+        Solution.searching_first_element = False
+        find_nodes_recursive(node=root)
+        # noinspection PyTypeChecker
+        return Solution.result
