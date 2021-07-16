@@ -4,26 +4,27 @@ public class LeetCode331
 {
     public boolean verify(String[] input)
     {
-        boolean childFound = false;
-        int currentParentIndex = 0;
-        for (int i = 0; i < input.length; i++)
+        int countOpenNodes = 0;
+        boolean first = true;
+        for (String node : input)
         {
-            if (input[i].equals("#"))
+            if (node.equals("#"))
             {
-                if (input[currentParentIndex].equals("#") || !childFound)
-                {
-                    return false;
-                }
+                countOpenNodes -= 1;
             }
             else
             {
-                currentParentIndex = i;
-                if (i > 0)
+                if (first)
                 {
-                    childFound = true;
+                    countOpenNodes += 2;
+                    first = false;
+                }
+                else
+                {
+                    countOpenNodes += 1;
                 }
             }
         }
-        return true;
+        return countOpenNodes == 0;
     }
 }

@@ -10,6 +10,8 @@ public class LeetCode331Test
     @Test
     public void shouldCreateBinaryTreeFromArray()
     {
+        assertTrue(new LeetCode331().verify(new String[]{"1","2","4","#","#","5","#","#","3","6","#","#","7","#","#"}));
+        assertFalse(new LeetCode331().verify(new String[]{"1","2","3","#","#","#"}));
         assertFalse(new LeetCode331().verify(new String[]{"1", "#"}));
         assertFalse(new LeetCode331().verify(new String[]{"9", "#", "#", "1"}));
         assertTrue(new LeetCode331().verify(new String[]{"9", "3", "4", "#", "#", "1", "#", "#", "2", "#", "6", "#", "#"}));
