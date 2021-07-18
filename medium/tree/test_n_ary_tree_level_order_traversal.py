@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.n_ary_tree_level_order_traversal import Node, Solution
+from medium.tree.n_ary_tree_level_order_traversal import Node, Solution
 
 
 class TestSolution(TestCase):

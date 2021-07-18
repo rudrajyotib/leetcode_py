@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_find_bottom_left_node import TreeNode, Solution
+from medium.tree.btree_find_bottom_left_node import TreeNode, Solution
 
 
 class TestSolution(TestCase):

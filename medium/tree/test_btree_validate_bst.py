@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_validate_bst import TreeNode, Solution
+from medium.tree.btree_validate_bst import TreeNode, Solution
 
 
 class TestSolution(TestCase):

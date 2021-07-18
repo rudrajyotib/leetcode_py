@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_serialise_deserialise_bst import TreeNode, Codec
+from medium.tree.btree_serialise_deserialise_bst import TreeNode, Codec
 
 
 class TestCodec(TestCase):

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_convert_sorted_list_to_balanced_bst import ListNode, Solution
+from medium.tree.btree_convert_sorted_list_to_balanced_bst import ListNode, Solution
 
 
 class TestSolution(TestCase):

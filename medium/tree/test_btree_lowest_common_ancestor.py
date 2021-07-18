@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_lowest_common_ancestor import TreeNode, Solution
+from medium.tree.btree_lowest_common_ancestor import TreeNode, Solution
 
 
 class TestSolution(TestCase):

@@ -1,5 +1,5 @@
 from unittest import TestCase
-from medium import btree_zigzag_level_order_traversal
+from medium.tree import btree_zigzag_level_order_traversal
 
 
 class TestSolution(TestCase):

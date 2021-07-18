@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_bst_search_iterator import TreeNode, BSTIterator
+from medium.tree.btree_bst_search_iterator import TreeNode, BSTIterator
 
 
 class Test(TestCase):

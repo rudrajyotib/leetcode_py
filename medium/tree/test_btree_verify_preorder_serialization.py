@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_verify_preorder_serialization import Solution
+from medium.tree.btree_verify_preorder_serialization import Solution
 
 
 class TestSolution(TestCase):

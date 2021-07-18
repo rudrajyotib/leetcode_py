@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_house_robber_3 import TreeNode, Solution
+from medium.tree.btree_house_robber_3 import TreeNode, Solution
 
 
 class TestSolution(TestCase):

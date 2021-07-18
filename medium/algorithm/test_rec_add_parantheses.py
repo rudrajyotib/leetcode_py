@@ -1,7 +1,7 @@
 from typing import List
 from unittest import TestCase
 
-from medium.rec_add_parantheses import Solution
+from medium.algorithm.rec_add_parantheses import Solution
 
 
 class TestSolution(TestCase):

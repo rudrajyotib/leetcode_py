@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_smallest_string_starting_from_leaf import TreeNode, Solution
+from medium.tree.btree_smallest_string_starting_from_leaf import TreeNode, Solution
 
 
 class TestSolution(TestCase):

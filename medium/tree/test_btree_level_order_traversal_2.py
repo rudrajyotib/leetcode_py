@@ -1,43 +1,43 @@
 from unittest import TestCase
-from medium import btree_level_order_traversal
+from medium.tree import btree_level_order_traversal_2
 
 
 class TestSolution(TestCase):
     def test_level_order_with_2_child_nodes(self):
-        level1_child1 = btree_level_order_traversal.TreeNode(2, None, None)
-        level1_child2 = btree_level_order_traversal.TreeNode(3, None, None)
-        root_node = btree_level_order_traversal.TreeNode(1, level1_child1, level1_child2)
+        level1_child1 = btree_level_order_traversal_2.TreeNode(2, None, None)
+        level1_child2 = btree_level_order_traversal_2.TreeNode(3, None, None)
+        root_node = btree_level_order_traversal_2.TreeNode(1, level1_child1, level1_child2)
 
-        s1 = btree_level_order_traversal.Solution()
-        result = s1.levelOrder(root_node)
-        self.assertEqual([[1], [2, 3]], result, "Traversal does not match")
+        s1 = btree_level_order_traversal_2.Solution()
+        result = s1.levelOrderBottom(root_node)
+        self.assertEqual([ [2, 3], [1]], result, "Traversal does not match")
 
     def test_level_order_with_0_child_nodes(self):
-        root_node = btree_level_order_traversal.TreeNode(1)
+        root_node = btree_level_order_traversal_2.TreeNode(1)
 
-        s1 = btree_level_order_traversal.Solution()
-        result = s1.levelOrder(root_node)
+        s1 = btree_level_order_traversal_2.Solution()
+        result = s1.levelOrderBottom(root_node)
         self.assertEqual([[1]], result, "Traversal does not match")
 
     def test_level_order_with_empty_root(self):
-        s1 = btree_level_order_traversal.Solution()
+        s1 = btree_level_order_traversal_2.Solution()
         # noinspection PyTypeChecker
-        result = s1.levelOrder(None)
+        result = s1.levelOrderBottom(None)
         self.assertEqual([], result, "Traversal does not match")
 
     def test_level_order_with_mix_of_child_nodes(self):
-        level1_child1 = btree_level_order_traversal.TreeNode(2, None, None)
-        level1_child2 = btree_level_order_traversal.TreeNode(3, None, None)
-        level2_child2 = btree_level_order_traversal.TreeNode(5, None, None)
+        level1_child1 = btree_level_order_traversal_2.TreeNode(2, None, None)
+        level1_child2 = btree_level_order_traversal_2.TreeNode(3, None, None)
+        level2_child2 = btree_level_order_traversal_2.TreeNode(5, None, None)
         level1_child1.right = level2_child2
-        root_node = btree_level_order_traversal.TreeNode(1, level1_child1, level1_child2)
+        root_node = btree_level_order_traversal_2.TreeNode(1, level1_child1, level1_child2)
 
-        s1 = btree_level_order_traversal.Solution()
-        result = s1.levelOrder(root_node)
-        self.assertEqual([[1], [2, 3], [5]], result, "Traversal does not match")
+        s1 = btree_level_order_traversal_2.Solution()
+        result = s1.levelOrderBottom(root_node)
+        self.assertEqual([[5],[2, 3], [1] ], result, "Traversal does not match")
 
     def test_should_create_linked_list(self):
-        linked_list = btree_level_order_traversal.LinkedList()
+        linked_list = btree_level_order_traversal_2.LinkedList()
         linked_list.add(1)
         linked_list.add(2)
         linked_list.add(3)

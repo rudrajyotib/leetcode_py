@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_sum_root_to_leaf_numbers import TreeNode, Solution
+from medium.tree.btree_sum_root_to_leaf_numbers import TreeNode, Solution
 
 
 class TestTreeNode(TestCase):

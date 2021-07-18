@@ -1,5 +1,6 @@
 from unittest import TestCase
-from medium import btree_right_view
+from medium.tree import btree_right_view
+
 
 class TreeRightViewTest(TestCase):
 

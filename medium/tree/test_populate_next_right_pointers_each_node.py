@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.populate_next_right_pointers_each_node import Node, Solution
+from medium.tree.populate_next_right_pointers_each_node import Node, Solution
 
 
 class TestSolution(TestCase):

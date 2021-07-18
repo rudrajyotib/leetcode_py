@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_construct_from_inorder_preorder import Solution
+from medium.tree.btree_construct_from_inorder_preorder import Solution
 
 
 class TestSolution(TestCase):

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.btree_flatten_linked_list import StackLinkedList, TreeNode, Solution
+from medium.tree.btree_flatten_linked_list import StackLinkedList, TreeNode, Solution
 
 
 class TestStackLinkedList(TestCase):
