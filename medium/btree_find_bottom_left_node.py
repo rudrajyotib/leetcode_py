@@ -1,6 +1,3 @@
-import collections
-
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -9,19 +6,22 @@ class TreeNode:
 
 
 class Solution:
+    max_level: int = 0
+    left_most_node: TreeNode
+
+    # noinspection PyMethodMayBeStatic
     def findBottomLeftValue(self, root: TreeNode) -> int:
-        left_most_node: TreeNode = root
-        level_count: int = 1
-        queue = collections.deque()
-        queue.append(root)
-        while len(queue) > 0:
-            node: TreeNode = queue.pop()
-            if node.right:
-                queue.appendleft(node.right)
+        Solution.left_most_node = root
+        Solution.max_level = 0
+
+        def find_bottom_left_recursive(node: TreeNode, level: int):
+            if level > Solution.max_level:
+                Solution.left_most_node = node
+                Solution.max_level = level
             if node.left:
-                queue.appendleft(node.left)
-            level_count -= 1
-            if level_count == 0:
-                left_most_node = node
-                level_count = len(queue)
-        return left_most_node.val
+                find_bottom_left_recursive(node=node.left, level=level + 1)
+            if node.right:
+                find_bottom_left_recursive(node=node.right, level=level + 1)
+
+        find_bottom_left_recursive(node=root, level=1)
+        return Solution.left_most_node.val
