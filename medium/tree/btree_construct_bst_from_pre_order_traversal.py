@@ -8,19 +8,17 @@ class TreeNode:
         self.right = right
 
 
-def insert_node_recursive(root_node: TreeNode, to_insert: int) -> TreeNode:
+def insert_node_recursive(root_node: TreeNode, to_insert: int):
     if root_node.val < to_insert:
         if root_node.right is None:
             root_node.right = TreeNode(val=to_insert)
-            return root_node.right
         else:
-            return insert_node_recursive(root_node=root_node.right, to_insert=to_insert)
+            insert_node_recursive(root_node=root_node.right, to_insert=to_insert)
     else:
         if root_node.left is None:
             root_node.left = TreeNode(val=to_insert)
-            return root_node.left
         else:
-            return insert_node_recursive(root_node.left, to_insert=to_insert)
+            insert_node_recursive(root_node.left, to_insert=to_insert)
 
 
 class Solution:
