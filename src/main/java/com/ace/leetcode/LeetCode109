@@ -1,0 +1,53 @@
+package com.ace.leetcode;
+
+public class LeetCode109
+{
+    public static class BinaryTree
+    {
+        private final int value;
+        private final BinaryTree left;
+        private final BinaryTree right;
+
+        private BinaryTree(int value, BinaryTree left, LeetCode109.BinaryTree right)
+        {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+
+        public int getValue()
+        {
+            return value;
+        }
+
+        public BinaryTree getLeft()
+        {
+            return left;
+        }
+
+        public BinaryTree getRight()
+        {
+            return right;
+        }
+
+        public static BinaryTree create(int[] numbers)
+        {
+            return createSortedTree(numbers, 0, numbers.length - 1);
+        }
+
+        private static BinaryTree createSortedTree(int[] numbers, int left, int right)
+        {
+            if (left > right)
+            {
+                return null;
+            }
+
+            int midpoint = (left + right) >>> 1;
+
+            BinaryTree leftNode = createSortedTree(numbers, left, midpoint - 1);
+            BinaryTree rightNode = createSortedTree(numbers, midpoint + 1, right);
+
+            return new BinaryTree(numbers[midpoint], leftNode, rightNode);
+        }
+    }
+}
