@@ -29,6 +29,9 @@ public class LeetCode105Test
 		assertNull(root.getLeft().getRight());
 		assertEquals(root.getRight().getLeft().getValue(), 15);
 		assertEquals(root.getRight().getRight().getValue(), 7);
+		
+		assertEquals(BinaryTree.toInorder(root), new Integer[]{9, 3, 15, 20, 7});
+		assertEquals(BinaryTree.toPreorder(root), new Integer[]{3, 9, 20, 15, 7});
 	}
 	
 	@Test
