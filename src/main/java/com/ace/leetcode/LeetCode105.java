@@ -28,9 +28,13 @@ public class LeetCode105
 			indexOfCurrentRootValueInInorderArray++;
 		}
 		
-		int tnel = indexOfCurrentRootValueInInorderArray - inorderStartIndex;
-		BinaryTree left = buildTree(preorder, preorderStartIndex + 1, preorderStartIndex + tnel, inorder, inorderStartIndex);
-		BinaryTree right = buildTree(preorder, preorderStartIndex + tnel + 1, preorderEndIndex, inorder, indexOfCurrentRootValueInInorderArray + 1);
+		// Location of the root in inorder array + preorderStartIndex - inorderStartIndex
+		// How many spaces do you have to the left of the current root and last root which tell you where to get the current right node from
+		int tnel = indexOfCurrentRootValueInInorderArray + preorderStartIndex - inorderStartIndex;
+		
+		BinaryTree left = buildTree(preorder, preorderStartIndex + 1, tnel, inorder, inorderStartIndex);
+		BinaryTree right = buildTree(preorder, tnel + 1, preorderEndIndex, inorder, indexOfCurrentRootValueInInorderArray + 1);
+		
 		return new BinaryTree(preorder[preorderStartIndex], left, right);
 	}
 	
