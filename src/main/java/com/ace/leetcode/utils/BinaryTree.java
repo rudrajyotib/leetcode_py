@@ -6,13 +6,28 @@ import java.util.List;
 public class BinaryTree
 {
 	private final int value;
-	private final BinaryTree left;
-	private final BinaryTree right;
+	private BinaryTree left;
+	private BinaryTree right;
 	
 	public BinaryTree(int value, BinaryTree left, BinaryTree right)
 	{
 		this.value = value;
 		this.left = left;
+		this.right = right;
+	}
+	
+	public BinaryTree(char value)
+	{
+		this.value = Integer.parseInt("" + value);
+	}
+	
+	public void setLeft(BinaryTree left)
+	{
+		this.left = left;
+	}
+	
+	public void setRight(BinaryTree right)
+	{
 		this.right = right;
 	}
 	
