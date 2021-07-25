@@ -26,17 +26,17 @@ class TestSolution(TestCase):
         cloned_root.right = cloned_level1_child2
 
         solution = Solution()
-        target_set1 = solution.getTargetCopy(original= orig_root,
-                                       cloned= cloned_root,
-                                       target=orig_level1_child1)
+        target_set1 = solution.getTargetCopy(original=orig_root,
+                                             cloned=cloned_root,
+                                             target=orig_level1_child1)
 
         self.assertEqual(cloned_level1_child1.val, target_set1.val, "cloned node not found")
         self.assertTrue(cloned_level1_child1 is target_set1, "cloned node not found")
         self.assertFalse(orig_level1_child1 is target_set1, "original node found")
 
-        target_set2 = solution.getTargetCopy(original= orig_root,
-                                       cloned= cloned_root,
-                                       target=orig_root)
+        target_set2 = solution.getTargetCopy(original=orig_root,
+                                             cloned=cloned_root,
+                                             target=orig_root)
 
         self.assertEqual(cloned_root.val, target_set2.val, "cloned node not found")
         self.assertTrue(cloned_root is target_set2, "cloned node not found")

@@ -7,7 +7,9 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 class Solution:
+    # noinspection PyMethodMayBeStatic,PyUnusedLocal
     def getTargetCopy(self, original: TreeNode, cloned: TreeNode, target: TreeNode) -> TreeNode:
         if cloned.left is None and cloned.right is None:
             return cloned
@@ -21,4 +23,3 @@ class Solution:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-
