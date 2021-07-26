@@ -1,6 +1,11 @@
 from typing import List
 
 
+def merge_array(array1: [int], array2: [int]):
+    for index in range(0, len(array1)):
+        array1[index] += array2[index]
+
+
 class Solution:
     result: [int]
 
@@ -17,15 +22,16 @@ class Solution:
 
         def update_frequencies(node: int, parent_node: int) -> [int]:
             relation: [int] = tree_structure[node]
+            result_at_node = [0] * 26
             if len(relation) == 1 and relation[0] == parent_node:
-                return labels[node]
+                result_at_node[ord(labels[node]) - 97] += 1
+                return result_at_node
             else:
-                result_at_node = ''
                 for index in range(0, len(relation), 1):
                     if relation[index] != parent_node:
-                        result_at_node += update_frequencies(node=relation[index], parent_node=node)
-                Solution.result[node] += result_at_node.count(labels[node])
-                result_at_node += (labels[node])
+                        merge_array(result_at_node, update_frequencies(node=relation[index], parent_node=node))
+                Solution.result[node] += result_at_node[ord(labels[node]) - 97]
+                result_at_node[ord(labels[node]) - 97] += 1
                 return result_at_node
 
         update_frequencies(node=0, parent_node=-1)
