@@ -95,56 +95,56 @@ public class BinaryTree
 	
 	public static Integer[] toInorder(BinaryTree root)
 	{
-		List<Integer> inorder = new ArrayList<>();
-		toInorderList(root, inorder);
-		return inorder.toArray(new Integer[0]);
+		List<Integer> values = new ArrayList<>();
+		toInorderList(root, values);
+		return values.toArray(new Integer[0]);
 	}
 	
 	public static Integer[] toPostorder(BinaryTree root)
 	{
-		List<Integer> inorder = new ArrayList<>();
-		toPostorderList(root, inorder);
-		return inorder.toArray(new Integer[0]);
+		List<Integer> values = new ArrayList<>();
+		toPostorderList(root, values);
+		return values.toArray(new Integer[0]);
 	}
 	
 	public static Integer[] toPreorder(BinaryTree root)
 	{
-		List<Integer> preorder = new ArrayList<>();
-		toPreorderList(root, preorder);
-		return preorder.toArray(new Integer[0]);
+		List<Integer> values = new ArrayList<>();
+		toPreorderList(root, values);
+		return values.toArray(new Integer[0]);
 	}
 	
-	private static void toPreorderList(BinaryTree node, List<Integer> preorder)
+	private static void toPreorderList(BinaryTree node, List<Integer> values)
 	{
 		if (node == null)
 		{
 			return;
 		}
 		
-		preorder.add(node.value);
-		toPreorderList(node.left, preorder);
-		toPreorderList(node.right, preorder);
+		values.add(node.value);
+		toPreorderList(node.left, values);
+		toPreorderList(node.right, values);
 	}
 	
-	private static void toInorderList(BinaryTree node, List<Integer> inorder)
+	private static void toInorderList(BinaryTree node, List<Integer> values)
 	{
 		if (node == null)
 		{
 			return;
 		}
-		toInorderList(node.left, inorder);
-		inorder.add(node.value);
-		toInorderList(node.right, inorder);
+		toInorderList(node.left, values);
+		values.add(node.value);
+		toInorderList(node.right, values);
 	}
 	
-	private static void toPostorderList(BinaryTree node, List<Integer> inorder)
+	private static void toPostorderList(BinaryTree node, List<Integer> values)
 	{
 		if (node == null)
 		{
 			return;
 		}
-		toInorderList(node.left, inorder);
-		toInorderList(node.right, inorder);
-		inorder.add(node.value);
+		toPostorderList(node.left, values);
+		toPostorderList(node.right, values);
+		values.add(node.value);
 	}
 }
