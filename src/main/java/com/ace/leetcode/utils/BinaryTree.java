@@ -21,6 +21,53 @@ public class BinaryTree
 		this.value = Integer.parseInt("" + value);
 	}
 	
+	public static BinaryTree create(String s)
+	{
+		if (s == null)
+		{
+			return null;
+		}
+		//	"4(2(3)(1))(6(5))"
+		BinaryTree root = new BinaryTree(s.charAt(0));
+		build(root, root, 1, s, s.length() - 2);
+		return root;
+	}
+	
+	private static void build(BinaryTree parent, BinaryTree currentNode, int i, String s, int lastIndex)
+	{
+		if (i > lastIndex)
+		{
+			return;
+		}
+		
+		if (s.charAt(i) == '(') // found left node
+		{
+			currentNode.left = new BinaryTree(s.charAt(i + 1));
+			if (s.charAt(i + 2) == ')' && lastIndex > i + 3) // found right so go back up a level by returning parent
+			{
+				currentNode.right = new BinaryTree(s.charAt(i + 4));
+				build(parent, parent, i + 5, s, lastIndex);
+			}
+			else // find next child
+			{
+				build(currentNode, currentNode.left, i + 2, s, lastIndex);
+			}
+		}
+		else
+		{
+			if (s.charAt(i) == ')' && s.charAt(i + 1) == ')' && lastIndex > i + 2) // found right node for parent
+			{
+				parent.right = new BinaryTree(s.charAt(i + 3));
+				build(parent, parent.right, i + 4, s, lastIndex); // add to right node
+			}
+			else
+			{
+				build(parent, parent, i + 1, s, lastIndex);
+			}
+		}
+	}
+	
+	
 	public void setLeft(BinaryTree left)
 	{
 		this.left = left;
@@ -53,6 +100,12 @@ public class BinaryTree
 		return inorder.toArray(new Integer[0]);
 	}
 	
+	public static Integer[] toPostorder(BinaryTree root)
+	{
+		List<Integer> inorder = new ArrayList<>();
+		toPostorderList(root, inorder);
+		return inorder.toArray(new Integer[0]);
+	}
 	
 	public static Integer[] toPreorder(BinaryTree root)
 	{
@@ -61,26 +114,37 @@ public class BinaryTree
 		return preorder.toArray(new Integer[0]);
 	}
 	
-	private static void toPreorderList(BinaryTree root, List<Integer> preorder)
+	private static void toPreorderList(BinaryTree node, List<Integer> preorder)
 	{
-		if (root == null)
+		if (node == null)
 		{
 			return;
 		}
 		
-		preorder.add(root.value);
-		toPreorderList(root.left, preorder);
-		toPreorderList(root.right, preorder);
+		preorder.add(node.value);
+		toPreorderList(node.left, preorder);
+		toPreorderList(node.right, preorder);
 	}
 	
-	private static void toInorderList(BinaryTree root, List<Integer> inorder)
+	private static void toInorderList(BinaryTree node, List<Integer> inorder)
 	{
-		if (root == null)
+		if (node == null)
 		{
 			return;
 		}
-		toInorderList(root.left, inorder);
-		inorder.add(root.value);
-		toInorderList(root.right, inorder);
+		toInorderList(node.left, inorder);
+		inorder.add(node.value);
+		toInorderList(node.right, inorder);
+	}
+	
+	private static void toPostorderList(BinaryTree node, List<Integer> inorder)
+	{
+		if (node == null)
+		{
+			return;
+		}
+		toInorderList(node.left, inorder);
+		toInorderList(node.right, inorder);
+		inorder.add(node.value);
 	}
 }

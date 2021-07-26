@@ -7,36 +7,40 @@ public class LeetCode536
 	public static BinaryTree create(String input)
 	{
 		BinaryTree root = new BinaryTree(input.charAt(0));
-		buildTree(root, root, 1, input, input.length() - 1);
+		build(root, root, 1, input, input.length() - 2);
 		return root;
 	}
 	
-	private static void buildTree(BinaryTree parent, BinaryTree currentNode, int i, String input, int lastIndex)
+	private static void build(BinaryTree parent, BinaryTree currentNode, int i, String s, int lastIndex)
 	{
 		if (i > lastIndex)
 		{
 			return;
 		}
 		
-		if (input.charAt(i) == '(')
+		if (s.charAt(i) == '(') // found left node
 		{
-			BinaryTree left = new BinaryTree(input.charAt(i + 1));
-			currentNode.setLeft(left);
-			if (input.charAt(i + 2) == ')' && i < input.length() - 4)
+			currentNode.setLeft(new BinaryTree(s.charAt(i + 1)));
+			if (s.charAt(i + 2) == ')' && lastIndex > i + 3) // found right so go back up a level by returning parent
 			{
-				currentNode.setLeft(left);
-				currentNode.setRight(new BinaryTree(input.charAt(i + 4)));
-				buildTree(parent, currentNode, i + 5, input, lastIndex);
+				currentNode.setRight(new BinaryTree(s.charAt(i + 4)));
+				build(parent, parent, i + 5, s, lastIndex);
 			}
-			buildTree(currentNode, left, i + 2, input, lastIndex);
+			else // find next child
+			{
+				build(currentNode, currentNode.getLeft(), i + 2, s, lastIndex);
+			}
 		}
 		else
 		{
-			if (i + 3 < input.length() && input.charAt(i + 3) != ')')
+			if (s.charAt(i) == ')' && s.charAt(i + 1) == ')' && lastIndex > i + 2) // found right node for parent
 			{
-				BinaryTree right = new BinaryTree(input.charAt(i + 3));
-				parent.setRight(right);
-				buildTree(parent, right, i + 4, input, lastIndex);
+				parent.setRight(new BinaryTree(s.charAt(i + 3)));
+				build(parent, parent.getRight(), i + 4, s, lastIndex); // add to right node
+			}
+			else
+			{
+				build(parent, parent, i + 1, s, lastIndex);
 			}
 		}
 	}
