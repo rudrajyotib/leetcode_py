@@ -1,94 +1,45 @@
 package com.ace.leetcode.utils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Stack;
 
-public class BinaryTree
+public class BinaryTree extends Node<Integer, BinaryTree>
 {
-	private final int value;
-	private BinaryTree left;
-	private BinaryTree right;
+	public BinaryTree(String value)
+	{
+		this(Integer.parseInt(value));
+	}
+	
+	public BinaryTree(int value)
+	{
+		super(value);
+	}
 	
 	public BinaryTree(int value, BinaryTree left, BinaryTree right)
 	{
-		this.value = value;
+		this(value);
 		this.left = left;
 		this.right = right;
 	}
 	
-	public BinaryTree(String value)
+	@Override
+	protected BinaryTree create(String value)
 	{
-		this.value = Integer.parseInt(value);
+		return new BinaryTree(value);
 	}
 	
-	public static BinaryTree create(String input)
+	public static BinaryTree build(String s)
 	{
-		if (input == null || input.equals(""))
+		if (s == null || s.equals(""))
 		{
 			return null;
 		}
-		
-		String value = getValue(0, input);
+		Stack<Node<Integer, BinaryTree>> descendants = new Stack<>();
+		String value = getValue(0, s);
 		BinaryTree root = new BinaryTree(value);
-		build(root, value.length(), input, input.length() - 2, new HashMap<>());
+		root.add(root, value.length(), s, s.length() - 2, descendants);
 		return root;
-	}
-	
-	private static void build(BinaryTree currentNode, int i, String s, int lastIndex, Map<Integer, BinaryTree> parents)
-	{
-		if (i > lastIndex)
-		{
-			return;
-		}
-	
-		int start = i + 1;
-		
-		if (s.charAt(i) == '(') // found left node
-		{
-			int end = i + 3;
-			String left = getValue(start, s);
-			currentNode.setLeft(left);
-			parents.put(currentNode.getLeft().getValue(), currentNode);
-			if (s.charAt(start + left.length()) == ')' && lastIndex > end) // found right so go back up a level by returning parent
-			{
-				int rightEnd = setRight(end + left.length(), s, currentNode, parents);
-				build(currentNode, rightEnd, s, lastIndex, parents);
-			}
-			else // find next child
-			{
-				build(currentNode.getLeft(), start + left.length(), s, lastIndex, parents);
-			}
-		}
-		else
-		{
-			if (s.charAt(i) == ')' && s.charAt(start) == '(') // found right node for parent
-			{
-				int rightEnd = setRight(i + 2, s, currentNode, parents);
-				build(currentNode.getRight(), rightEnd, s, lastIndex, parents); // add to right node
-			}
-			else
-			{
-				build(parents.get(currentNode.getValue()), start, s, lastIndex, parents);
-			}
-		}
-	}
-	
-	private static int setRight(int i, String s, BinaryTree node, Map<Integer, BinaryTree> ancestors)
-	{
-		String right = getValue(i, s);
-		node.setRight(right);
-		ancestors.put(node.getRight().getValue(), node);
-		return i + right.length();
-	}
-	
-	private static String getValue(int start, String s)
-	{
-		int leftStart = s.indexOf('(', start);
-		int rightStart = s.indexOf(')', start);
-		int end = leftStart > 0 ? Math.min(leftStart, rightStart) : rightStart;
-		return s.substring(start, end > 0 ? end : 1);
 	}
 	
 	private void setLeft(String left)

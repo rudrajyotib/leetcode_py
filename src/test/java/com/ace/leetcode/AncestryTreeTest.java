@@ -14,7 +14,7 @@ public class AncestryTreeTest
 	@Before
 	public void setup()
 	{
-		ancestry = AncestryTree.create("QEII(George VI(George V(Edward VII(Prince Albert)(Queen Victoria))(Alexandra of Denmark(Christian IX of Denmark)"
+		ancestry = AncestryTree.build("QEII(George VI(George V(Edward VII(Prince Albert)(Queen Victoria))(Alexandra of Denmark(Christian IX of Denmark)"
 											   + "(Louise of Hesse-Kassel)))(Mary of Teck(Francis, Duke of Teck(Duke Alexander of Württemberg)"
 											   + "(Countess Claudine Rhédey von Kis-Rhéde))(Princess Mary Adelaide of Cambridge(Prince Adolphus, Duke of Cambridge)"
 											   + "(Princess Augusta of Hesse-Kassel))))(Elizabeth Bowes-Lyon(Claude Bowes-Lyon, 14th Earl of Strathmore and Kinghorne"

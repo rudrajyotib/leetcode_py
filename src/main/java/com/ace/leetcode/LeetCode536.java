@@ -6,6 +6,6 @@ public class LeetCode536
 {
 	public static BinaryTree create(String s)
 	{
-		return BinaryTree.create(s);
+		return BinaryTree.build(s);
 	}
 }
