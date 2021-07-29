@@ -45,7 +45,24 @@ public class AncestryTree extends Node<String, AncestryTree>
 	
 	public AncestryTree getAncestors(String descendant)
 	{
-		//TODO
+		Stack<AncestryTree> nodes = new Stack<>();
+		nodes.push(this);
+		while (!nodes.empty())
+		{
+			AncestryTree node = nodes.pop();
+			if (node.value.equals(descendant))
+			{
+				return node;
+			}
+			if (node.left != null)
+			{
+				nodes.push(node.left);
+			}
+			if (node.right != null)
+			{
+				nodes.push(node.right);
+			}
+		}
 		return null;
 	}
 	
