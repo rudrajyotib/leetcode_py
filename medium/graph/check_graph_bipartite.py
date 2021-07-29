@@ -2,6 +2,7 @@ from typing import List, Dict
 
 
 class Solution:
+    # noinspection PyMethodMayBeStatic
     def isBipartite(self, graph: List[List[int]]) -> bool:
 
         adjacency_list: Dict[int, List[int]] = {}
@@ -14,12 +15,12 @@ class Solution:
         if len(adjacency_list) < 1:
             return True
 
-        while len(adjacency_list) > 0:
+        def check_bipartite_graph(root_node: int) -> bool:
             next_level: List[int] = []
             present_level: List[int] = []
             next_level_present: bool = True
             level_span: int = 1
-            root_node = list(adjacency_list.keys())[0]
+            # root_node = list(adjacency_list.keys())[0]
             present_level.append(root_node)
             visited_nodes[root_node] = True
             while next_level_present:
@@ -37,9 +38,12 @@ class Solution:
                     present_level = next_level
                     next_level = []
                     level_span = len(present_level)
-            for node in enumerate(visited_nodes):
-                if node[1]:
-                    if node[0] in adjacency_list:
-                        adjacency_list.pop(node[0])
+            return True
+
+        for vertex in range(0, len(graph), 1):
+            if not visited_nodes[vertex]:
+                is_bipartite = check_bipartite_graph(root_node=vertex)
+                if not is_bipartite:
+                    return False
 
         return True
