@@ -2,80 +2,54 @@ package com.ace.leetcode.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
-public class BinaryTree
+public class BinaryTree extends Node<Integer, BinaryTree>
 {
-	private final int value;
-	private BinaryTree left;
-	private BinaryTree right;
+	public BinaryTree(String value)
+	{
+		this(Integer.parseInt(value));
+	}
+	
+	public BinaryTree(int value)
+	{
+		super(value);
+	}
 	
 	public BinaryTree(int value, BinaryTree left, BinaryTree right)
 	{
-		this.value = value;
+		this(value);
 		this.left = left;
 		this.right = right;
 	}
 	
-	public BinaryTree(char value)
+	@Override
+	protected BinaryTree create(String value)
 	{
-		this.value = Integer.parseInt("" + value);
+		return new BinaryTree(value);
 	}
 	
-	public static BinaryTree create(String s)
+	public static BinaryTree build(String s)
 	{
-		if (s == null)
+		if (s == null || s.equals(""))
 		{
 			return null;
 		}
-		//	"4(2(3)(1))(6(5))"
-		BinaryTree root = new BinaryTree(s.charAt(0));
-		build(root, root, 1, s, s.length() - 2);
+		Stack<Node<Integer, BinaryTree>> descendants = new Stack<>();
+		String value = getValue(0, s);
+		BinaryTree root = new BinaryTree(value);
+		root.add(root, value.length(), s, s.length() - 2, descendants);
 		return root;
 	}
 	
-	private static void build(BinaryTree parent, BinaryTree currentNode, int i, String s, int lastIndex)
+	private void setLeft(String left)
 	{
-		if (i > lastIndex)
-		{
-			return;
-		}
-		
-		if (s.charAt(i) == '(') // found left node
-		{
-			currentNode.left = new BinaryTree(s.charAt(i + 1));
-			if (s.charAt(i + 2) == ')' && lastIndex > i + 3) // found right so go back up a level by returning parent
-			{
-				currentNode.right = new BinaryTree(s.charAt(i + 4));
-				build(parent, parent, i + 5, s, lastIndex);
-			}
-			else // find next child
-			{
-				build(currentNode, currentNode.left, i + 2, s, lastIndex);
-			}
-		}
-		else
-		{
-			if (s.charAt(i) == ')' && s.charAt(i + 1) == ')' && lastIndex > i + 2) // found right node for parent
-			{
-				parent.right = new BinaryTree(s.charAt(i + 3));
-				build(parent, parent.right, i + 4, s, lastIndex); // add to right node
-			}
-			else
-			{
-				build(parent, parent, i + 1, s, lastIndex);
-			}
-		}
+		this.left = new BinaryTree(left);
 	}
 	
-	
-	public void setLeft(BinaryTree left)
+	private void setRight(String right)
 	{
-		this.left = left;
-	}
-	
-	public void setRight(BinaryTree right)
-	{
-		this.right = right;
+		this.right = new BinaryTree(right);
 	}
 	
 	public int getValue()
