@@ -3,6 +3,7 @@ from typing import List
 
 
 class Solution:
+    # noinspection PyMethodMayBeStatic,PyShadowingNames
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
 
         rooms_count = len(rooms)
