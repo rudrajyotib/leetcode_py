@@ -38,8 +38,9 @@ class Solution:
                     node_neighbors = adjacency_list[node[0]]
                     if len(node_neighbors) > 0:
                         for node_neighbor in node_neighbors:
-                            adjacency_list[node_neighbor].remove(node[0])
-                            bfs_queue.append((node_neighbor, node[1] + 1))
+                            #adjacency_list[node_neighbor].remove(node[0])
+                            if bfs_matrix[node_neighbor] == -1:
+                                bfs_queue.append((node_neighbor, node[1] + 1))
                     adjacency_list[node[0]] = []
                 else:
                     if bfs_matrix[node[0]] == node[1] - 1:
