@@ -1,4 +1,5 @@
-from typing import List, Dict
+import collections
+from typing import List, Dict, Deque
 
 
 class Solution:
@@ -6,7 +7,8 @@ class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
 
         adjacency_list: Dict[int, List[int]] = {}
-        visited_nodes: List[bool] = [False] * n
+        bfs_matrix = [-1] * n
+        # visited_nodes: List[bool] = [False] * n
         for vertex in dislikes:
             if (vertex[0] - 1) in adjacency_list:
                 adjacency_list[(vertex[0] - 1)].append((vertex[1] - 1))
@@ -20,36 +22,37 @@ class Solution:
             return True
 
         def check_bipartite_graph(root_node: int) -> bool:
-            next_level: List[int] = []
-            present_level: List[int] = []
-            next_level_present: bool = True
-            level_span: int = 1
-            # root_node = list(adjacency_list.keys())[0]
-            present_level.append(root_node)
-            visited_nodes[root_node] = True
-            while next_level_present:
-                for i in range(0, level_span, 1):
-                    node = present_level[i]
-                    visited_nodes[node] = True
-                    if node not in adjacency_list:
-                        continue
-                    for adjacent_node in adjacency_list[node]:
-                        if adjacent_node in present_level:
-                            return False
-                        if not visited_nodes[adjacent_node] and adjacent_node not in next_level:
-                            next_level.append(adjacent_node)
-                if len(next_level) == 0:
-                    next_level_present = False
+            bfs_queue: Deque = collections.deque()
+            neighbors = adjacency_list[root_node]
+            bfs_matrix[root_node] = 0
+            # visited_nodes[root_node] = True
+            for neighbor in neighbors:
+                adjacency_list[neighbor].remove(root_node)
+                bfs_queue.append((neighbor, 0))
+            adjacency_list[root_node] = []
+            while len(bfs_queue) > 0:
+                node = bfs_queue.popleft()
+                if bfs_matrix[node[0]] == -1:
+                    # visited_nodes[node[0]] = True
+                    bfs_matrix[node[0]] = node[1]
+                    node_neighbors = adjacency_list[node[0]]
+                    if len(node_neighbors) > 0:
+                        for node_neighbor in node_neighbors:
+                            adjacency_list[node_neighbor].remove(node[0])
+                            bfs_queue.append((node_neighbor, node[1] + 1))
+                    adjacency_list[node[0]] = []
                 else:
-                    present_level = next_level
-                    next_level = []
-                    level_span = len(present_level)
+                    if bfs_matrix[node[0]] == node[1] - 1:
+                        return False
+                    bfs_matrix[node[0]] = node[1]
             return True
 
         for vertex in range(0, n, 1):
-            if not visited_nodes[vertex]:
-                is_bipartite = check_bipartite_graph(root_node=vertex)
-                if not is_bipartite:
-                    return False
-
+            if bfs_matrix[vertex] == -1:
+                if vertex not in adjacency_list:
+                    bfs_matrix[vertex] = 0
+                else:
+                    is_bipartite = check_bipartite_graph(root_node=vertex)
+                    if not is_bipartite:
+                        return False
         return True
