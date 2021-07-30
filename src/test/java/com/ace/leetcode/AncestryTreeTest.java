@@ -84,6 +84,6 @@ public class AncestryTreeTest
 	@Test
 	public void shouldReturnDescendantsOfSpecifiedAncestor()
 	{
-		assertNull(ancestry.getDescendants("Edward VII"));
+		assertEquals(ancestry.getDescendants("Edward VII"), new String[]{"QEII", "George VI", "George V", "Edward VII"});
 	}
 }

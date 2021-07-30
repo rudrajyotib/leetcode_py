@@ -1,5 +1,7 @@
 package com.ace.leetcode.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class AncestryTree extends Node<String, AncestryTree>
@@ -84,9 +86,34 @@ public class AncestryTree extends Node<String, AncestryTree>
 		return null;
 	}
 	
-	public AncestryTree getDescendants(String ancestor)
+	public String[] getDescendants(String ancestor)
 	{
-		//TODO
-		return null;
+		Stack<AncestryTree> descendantsNodes = new Stack<>();
+		descendantsNodes.push(new AncestryTree(ancestor));
+		getDescendants(this, descendantsNodes);
+		
+		String[] descendants = new String[descendantsNodes.size()];
+		int i = 0;
+		while (!descendantsNodes.empty())
+		{
+			descendants[i] = descendantsNodes.pop().value;
+			i += 1;
+		}
+		
+		return descendants;
+	}
+	
+	public void getDescendants(AncestryTree node, Stack<AncestryTree> descendants)
+	{
+		if (node == null)
+		{
+			return;
+		}
+		getDescendants(node.left, descendants);
+		getDescendants(node.right, descendants);
+		if ((node.left != null && node.left.value.equals(descendants.peek().value)) || (node.right != null && node.right.value.equals(descendants.peek().value)))
+		{
+			descendants.push(node);
+		}
 	}
 }
