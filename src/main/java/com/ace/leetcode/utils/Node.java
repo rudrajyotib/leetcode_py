@@ -1,5 +1,7 @@
 package com.ace.leetcode.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public abstract class Node<V, E>
@@ -68,5 +70,70 @@ public abstract class Node<V, E>
 		int end = leftStart > 0 ? Math.min(leftStart, rightStart) : rightStart;
 		return s.substring(start, end > 0 ? end : 1);
 	}
+	
+	protected List<V> toInorderList()
+	{
+		List<V> values = new ArrayList<>();
+		toInorderList(this, values);
+		return values;
+	}
+	
+	protected List<V> toPostorderList()
+	{
+		List<V> values = new ArrayList<>();
+		toPostorderList(this, values);
+		return values;
+	}
+	
+	protected List<V> toPreorderList()
+	{
+		List<V> values = new ArrayList<>();
+		toPreorderList(this, values);
+		return values;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void toPreorderList(Node<V, E> node, List<V> values)
+	{
+		if (node == null)
+		{
+			return;
+		}
+		
+		values.add(node.value);
+		toPreorderList((Node<V, E>) node.left, values);
+		toPreorderList((Node<V, E>) node.right, values);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void toPostorderList(Node<V, E> node, List<V> values)
+	{
+		if (node == null)
+		{
+			return;
+		}
+		toPostorderList((Node<V, E>) node.left, values);
+		toPostorderList((Node<V, E>) node.right, values);
+		values.add(node.value);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void toInorderList(Node<V, E> node, List<V> values)
+	{
+		if (node == null)
+		{
+			return;
+		}
+		toInorderList((Node<V, E>) node.left, values);
+		values.add(node.value);
+		toInorderList((Node<V, E>) node.right, values);
+	}
+	
 	protected abstract E create(String value);
+	
+	public abstract V[] toInorder();
+	
+	public abstract V[] toPreorder();
+	
+	public abstract V[] toPostorder();
 }

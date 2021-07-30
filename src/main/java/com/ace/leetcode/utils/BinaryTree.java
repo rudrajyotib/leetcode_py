@@ -1,7 +1,5 @@
 package com.ace.leetcode.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class BinaryTree extends Node<Integer, BinaryTree>
@@ -42,16 +40,6 @@ public class BinaryTree extends Node<Integer, BinaryTree>
 		return root;
 	}
 	
-	private void setLeft(String left)
-	{
-		this.left = new BinaryTree(left);
-	}
-	
-	private void setRight(String right)
-	{
-		this.right = new BinaryTree(right);
-	}
-	
 	public int getValue()
 	{
 		return value;
@@ -67,58 +55,21 @@ public class BinaryTree extends Node<Integer, BinaryTree>
 		return right;
 	}
 	
-	public static Integer[] toInorder(BinaryTree root)
+	@Override
+	public Integer[] toInorder()
 	{
-		List<Integer> values = new ArrayList<>();
-		toInorderList(root, values);
-		return values.toArray(new Integer[0]);
+		return toInorderList().toArray(new Integer[0]);
 	}
 	
-	public static Integer[] toPostorder(BinaryTree root)
+	@Override
+	public Integer[] toPostorder()
 	{
-		List<Integer> values = new ArrayList<>();
-		toPostorderList(root, values);
-		return values.toArray(new Integer[0]);
+		return toPostorderList().toArray(new Integer[0]);
 	}
 	
-	public static Integer[] toPreorder(BinaryTree root)
+	@Override
+	public Integer[] toPreorder()
 	{
-		List<Integer> values = new ArrayList<>();
-		toPreorderList(root, values);
-		return values.toArray(new Integer[0]);
-	}
-	
-	private static void toPreorderList(BinaryTree node, List<Integer> values)
-	{
-		if (node == null)
-		{
-			return;
-		}
-		
-		values.add(node.value);
-		toPreorderList(node.left, values);
-		toPreorderList(node.right, values);
-	}
-	
-	private static void toInorderList(BinaryTree node, List<Integer> values)
-	{
-		if (node == null)
-		{
-			return;
-		}
-		toInorderList(node.left, values);
-		values.add(node.value);
-		toInorderList(node.right, values);
-	}
-	
-	private static void toPostorderList(BinaryTree node, List<Integer> values)
-	{
-		if (node == null)
-		{
-			return;
-		}
-		toPostorderList(node.left, values);
-		toPostorderList(node.right, values);
-		values.add(node.value);
+		return toPreorderList().toArray(new Integer[0]);
 	}
 }
