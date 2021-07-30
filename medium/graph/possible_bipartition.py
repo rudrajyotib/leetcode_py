@@ -7,17 +7,17 @@ class Solution:
     def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
 
         adjacency_list: Dict[int, List[int]] = {}
-        bfs_matrix = [-1] * n
+        bfs_matrix = [-1] * (n + 1)
         # visited_nodes: List[bool] = [False] * n
         for vertex in dislikes:
-            if (vertex[0] - 1) in adjacency_list:
-                adjacency_list[(vertex[0] - 1)].append((vertex[1] - 1))
+            if (vertex[0]) in adjacency_list:
+                adjacency_list[(vertex[0])].append((vertex[1]))
             else:
-                adjacency_list[(vertex[0] - 1)] = [(vertex[1] - 1)]
-            if (vertex[1] - 1) in adjacency_list:
-                adjacency_list[(vertex[1] - 1)].append((vertex[0] - 1))
+                adjacency_list[(vertex[0])] = [(vertex[1])]
+            if (vertex[1]) in adjacency_list:
+                adjacency_list[(vertex[1])].append((vertex[0]))
             else:
-                adjacency_list[(vertex[1] - 1)] = [(vertex[0] - 1)]
+                adjacency_list[(vertex[1])] = [(vertex[0])]
         if len(adjacency_list) < 1:
             return True
 
@@ -47,7 +47,7 @@ class Solution:
                     bfs_matrix[node[0]] = node[1]
             return True
 
-        for vertex in range(0, n, 1):
+        for vertex in range(1, n+1, 1):
             if bfs_matrix[vertex] == -1:
                 if vertex not in adjacency_list:
                     bfs_matrix[vertex] = 0
