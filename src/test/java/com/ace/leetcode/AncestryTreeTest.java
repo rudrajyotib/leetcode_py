@@ -25,6 +25,24 @@ public class AncestryTreeTest
 	}
 	
 	@Test
+	public void shouldReturnInorderList()
+	{
+		assertEquals(ancestry.toInorder(), new String[]{"Prince Albert", "Edward VII", "Queen Victoria", "George V", "Christian IX of Denmark", "Alexandra of Denmark", "Louise of Hesse-Kassel", "George VI", "Duke Alexander of Württemberg", "Francis, Duke of Teck", "Countess Claudine Rhédey von Kis-Rhéde", "Mary of Teck", "Prince Adolphus, Duke of Cambridge", "Princess Mary Adelaide of Cambridge", "Princess Augusta of Hesse-Kassel", "QEII", "Thomas Lyon-Bowes, Lord Glamis", "Claude Bowes-Lyon, 13th Earl of Strathmore and Kinghorne", "Charlotte Lyon-Bowes, Lady Glamis", "Claude Bowes-Lyon, 14th Earl of Strathmore and Kinghorne", "Oswald Smith", "Frances Dora Smith", "Henrietta Mildred Hodgson", "Elizabeth Bowes-Lyon", "Lord Charles Cavendish-Bentinck", "Charles Cavendish-Bentinck", "Anne Wellesley", "Cecilia Cavendish-Bentinck", "Edwyn Burnaby, of Baggrave Hall", "Caroline Louisa Burnaby", "Anne Caroline Salisbury"});
+	}
+	
+	@Test
+	public void shouldReturnPreorderList()
+	{
+		assertEquals(ancestry.toPreorder(), new String[]{"QEII", "George VI", "George V", "Edward VII", "Prince Albert", "Queen Victoria", "Alexandra of Denmark", "Christian IX of Denmark", "Louise of Hesse-Kassel", "Mary of Teck", "Francis, Duke of Teck", "Duke Alexander of Württemberg", "Countess Claudine Rhédey von Kis-Rhéde", "Princess Mary Adelaide of Cambridge", "Prince Adolphus, Duke of Cambridge", "Princess Augusta of Hesse-Kassel", "Elizabeth Bowes-Lyon", "Claude Bowes-Lyon, 14th Earl of Strathmore and Kinghorne", "Claude Bowes-Lyon, 13th Earl of Strathmore and Kinghorne", "Thomas Lyon-Bowes, Lord Glamis", "Charlotte Lyon-Bowes, Lady Glamis", "Frances Dora Smith", "Oswald Smith", "Henrietta Mildred Hodgson", "Cecilia Cavendish-Bentinck", "Charles Cavendish-Bentinck", "Lord Charles Cavendish-Bentinck", "Anne Wellesley", "Caroline Louisa Burnaby", "Edwyn Burnaby, of Baggrave Hall", "Anne Caroline Salisbury"});
+	}
+	
+	@Test
+	public void shouldReturnPostorderList()
+	{
+		assertEquals(ancestry.toPostorder(), new String[]{"Prince Albert", "Queen Victoria", "Edward VII", "Christian IX of Denmark", "Louise of Hesse-Kassel", "Alexandra of Denmark", "George V", "Duke Alexander of Württemberg", "Countess Claudine Rhédey von Kis-Rhéde", "Francis, Duke of Teck", "Prince Adolphus, Duke of Cambridge", "Princess Augusta of Hesse-Kassel", "Princess Mary Adelaide of Cambridge", "Mary of Teck", "George VI", "Thomas Lyon-Bowes, Lord Glamis", "Charlotte Lyon-Bowes, Lady Glamis", "Claude Bowes-Lyon, 13th Earl of Strathmore and Kinghorne", "Oswald Smith", "Henrietta Mildred Hodgson", "Frances Dora Smith", "Claude Bowes-Lyon, 14th Earl of Strathmore and Kinghorne", "Lord Charles Cavendish-Bentinck", "Anne Wellesley", "Charles Cavendish-Bentinck", "Edwyn Burnaby, of Baggrave Hall", "Anne Caroline Salisbury", "Caroline Louisa Burnaby", "Cecilia Cavendish-Bentinck", "Elizabeth Bowes-Lyon", "QEII"});
+	}
+	
+	@Test
 	public void shouldCreateAncestryTreeFromString()
 	{
 		assertEquals(ancestry.getName(), "QEII");

@@ -15,6 +15,24 @@ public class AncestryTree extends Node<String, AncestryTree>
 		return new AncestryTree(value);
 	}
 	
+	@Override
+	public String[] toInorder()
+	{
+		return toInorderList().toArray(new String[0]);
+	}
+	
+	@Override
+	public String[] toPreorder()
+	{
+		return toPreorderList().toArray(new String[0]);
+	}
+	
+	@Override
+	public String[] toPostorder()
+	{
+		return toPostorderList().toArray(new String[0]);
+	}
+	
 	public String getName()
 	{
 		return value;
