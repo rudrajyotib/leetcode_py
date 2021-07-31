@@ -47,6 +47,38 @@ public abstract class Node<V, E>
 		return nodes.peek();
 	}
 	
+	public int getMaxDepth()
+	{
+		return getMaxDepth(this, 0);
+	}
+	
+	public int getMinDepth()
+	{
+		return getMinDepth(this, 0);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private int getMaxDepth(Node<V, E> node, int currentHeight)
+	{
+		if (node != null && (node.left != null || node.right != null))
+		{
+			currentHeight += 1;
+			return Math.max(getMaxDepth((Node<V, E>) node.left, currentHeight), getMaxDepth((Node<V, E>) node.right, currentHeight));
+		}
+		return currentHeight;
+	}
+	
+	@SuppressWarnings("all")
+	private int getMinDepth(Node<V, E> node, int currentHeight)
+	{
+		if (node != null && (node.left != null || node.right != null))
+		{
+			currentHeight += 1;
+			return Math.min(getMaxDepth((Node<V, E>) node.left, currentHeight), getMaxDepth((Node<V, E>) node.right, currentHeight));
+		}
+		return currentHeight;
+	}
+	
 	protected static String getValue(int start, String s)
 	{
 		int leftStart = s.indexOf('(', start);
