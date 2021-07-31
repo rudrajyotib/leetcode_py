@@ -1,7 +1,5 @@
 package com.ace.leetcode.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class AncestryTree extends Node<String, AncestryTree>
@@ -56,10 +54,9 @@ public class AncestryTree extends Node<String, AncestryTree>
 		{
 			return null;
 		}
-		Stack<Node<String, AncestryTree>> descendants = new Stack<>();
 		String value = getValue(0, s);
 		AncestryTree root = new AncestryTree(value);
-		root.add(root, value.length(), s, s.length() - 2, descendants);
+		root.add(root, s, value.length());
 		return root;
 	}
 	

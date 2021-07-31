@@ -44,4 +44,22 @@ public class BinaryTreeTest
 	{
 		assertEquals(testNode.toPostorder(), new Integer[]{3, 1, 2, 5, 6, 4});
 	}
+	
+	@Test
+	public void shouldReturnHeightOfTree()
+	{
+		assertEquals(2, testNode.getMaxDepth());
+		
+		BinaryTree node1 = BinaryTree.build("1(2(7))(3(4(5)(6(8)");
+		assertEquals(4, node1.getMaxDepth());
+		assertEquals(2, node1.getMinDepth());
+		
+		BinaryTree node2 = BinaryTree.build("1(2)(3)");
+		assertEquals(1, node2.getMaxDepth());
+		assertEquals(1, node2.getMinDepth());
+		
+		BinaryTree node3 = BinaryTree.build("1(2)(3(4(5)))");
+		assertEquals(3, node3.getMaxDepth());
+		assertEquals(1, node3.getMinDepth());
+	}
 }

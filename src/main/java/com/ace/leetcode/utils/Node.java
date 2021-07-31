@@ -16,51 +16,67 @@ public abstract class Node<V, E>
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected void add(Node<V, E> currentNode, int i, String s, int lastIndex, Stack<Node<V, E>> descendants)
+	public Node<V, E> add(Node<V, E> root, String s, int index)
 	{
-		if (i > lastIndex)
+		Stack<Node<V, E>> nodes = new Stack<>();
+		nodes.push(root);
+		for (int i = index; i < s.length(); i++)
 		{
-			return;
-		}
-		
-		int start = i + 1;
-		if (s.charAt(i) == '(') // found left node
-		{
-			int end = i + 3;
-			String left = getValue(start, s);
-			currentNode.left = create(left);
-			descendants.push(currentNode);
-			
-			if (s.charAt(i + left.length()) == ')' && lastIndex > i + 3) // found mother so go back up a level by returning self
+			if (s.charAt(i) == '(') // found left node
 			{
-				int motherEnd = setChildOfRight(end + left.length(), s, currentNode);
-				add(currentNode, motherEnd, s, lastIndex, descendants);
-			}
-			else // find next ancestor
-			{
-				add((Node<V, E>) currentNode.left, start + left.length(), s, lastIndex, descendants);
-			}
-		}
-		else
-		{
-			if (s.charAt(i) == ')' && s.charAt(i + 1) == '(') // found mother for self
-			{
-				Node<V, E> descendant = descendants.peek();
-				int motherEnd = setChildOfRight(i + 2, s, descendant);
-				add((Node<V, E>) descendant.right, motherEnd, s, lastIndex, descendants); // add to mother node
+				int start = i + 1;
+				String left = getValue(start, s);
+				E node = create(left);
+				Node<V, E> currentNode = nodes.peek();
+				if (currentNode.left == null)
+				{
+					currentNode.left = node;
+				}
+				else
+				{
+					currentNode.right = node;
+				}
+				nodes.push((Node<V, E>) node);
+				i = i + left.length();
 			}
 			else
 			{
-				add(descendants.pop(), start, s, lastIndex, descendants);
+				nodes.pop();
 			}
 		}
+		return nodes.peek();
 	}
 	
-	private int setChildOfRight(int i, String s, Node<V, E> node)
+	public int getMaxDepth()
 	{
-		String value = getValue(i, s);
-		node.right = create(value);
-		return i + value.length();
+		return getMaxDepth(this, 0);
+	}
+	
+	public int getMinDepth()
+	{
+		return getMinDepth(this, 0);
+	}
+	
+	@SuppressWarnings("unchecked")
+	private int getMaxDepth(Node<V, E> node, int currentHeight)
+	{
+		if (node != null && (node.left != null || node.right != null))
+		{
+			currentHeight += 1;
+			return Math.max(getMaxDepth((Node<V, E>) node.left, currentHeight), getMaxDepth((Node<V, E>) node.right, currentHeight));
+		}
+		return currentHeight;
+	}
+	
+	@SuppressWarnings("all")
+	private int getMinDepth(Node<V, E> node, int currentHeight)
+	{
+		if (node != null && (node.left != null || node.right != null))
+		{
+			currentHeight += 1;
+			return Math.min(getMaxDepth((Node<V, E>) node.left, currentHeight), getMaxDepth((Node<V, E>) node.right, currentHeight));
+		}
+		return currentHeight;
 	}
 	
 	protected static String getValue(int start, String s)
