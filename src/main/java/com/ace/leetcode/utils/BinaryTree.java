@@ -1,7 +1,5 @@
 package com.ace.leetcode.utils;
 
-import java.util.Stack;
-
 public class BinaryTree extends Node<Integer, BinaryTree>
 {
 	public BinaryTree(String value)
@@ -33,10 +31,9 @@ public class BinaryTree extends Node<Integer, BinaryTree>
 		{
 			return null;
 		}
-		Stack<Node<Integer, BinaryTree>> descendants = new Stack<>();
 		String value = getValue(0, s);
 		BinaryTree root = new BinaryTree(value);
-		root.add(root, value.length(), s, s.length() - 2, descendants);
+		root.add(root, s, value.length());
 		return root;
 	}
 	
