@@ -1,3 +1,11 @@
+"""
+Solution is similar to djkstra's algo.
+Here 2 numbers cannot be added, and will be multiplied to get a weight.
+Key is probability cannot ever be more than 1, so, numbers as they move from node to node, can only decrease.
+If a node is visited, no need to compare weight, it has to be always less than earlier visits.
+In Py, priority queue to return reverse result could not be found, so -1 is multiplied.
+"""
+
 import collections
 import heapq
 from typing import List, Dict, Tuple
