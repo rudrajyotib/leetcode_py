@@ -36,32 +36,18 @@ class Solution:
         (3, 3): "MMM",
     }
 
+    # noinspection PyMethodMayBeStatic
     def intToRoman(self, num: int) -> str:
 
         if num == 0:
             return ""
         result = ""
-        remainder = num % 10
-        num = num // 10
-        result = Solution.roman_dictionary[(0, remainder)] + result
-        if num > 0:
-            remainder = num % 10
-            num = num // 10
-            if remainder>0:
-                result = Solution.roman_dictionary[(1, remainder)] + result
-        if num > 0:
+        index = 0
+        while num > 0:
             remainder = num % 10
             num = num // 10
             if remainder > 0:
-                result = Solution.roman_dictionary[(2, remainder)] + result
-
-        if num > 0:
-            remainder = num % 10
-            num = num // 10
-            if remainder > 0:
-                result = Solution.roman_dictionary[(3, remainder)] + result
-
-
-
+                result = Solution.roman_dictionary[(index, remainder)] + result
+            index += 1
 
         return result
