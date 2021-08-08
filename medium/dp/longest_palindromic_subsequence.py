@@ -2,6 +2,7 @@ from typing import Tuple, Dict
 
 
 class Solution:
+    # noinspection PyMethodMayBeStatic
     def longestPalindromeSubseq(self, s: str) -> int:
 
         if len(s) == 1:
@@ -22,16 +23,13 @@ class Solution:
                     return 2
                 memory[(start, end)] = 1
                 return 1
-            max_palindrome_length = 1
-            for outer_index in range(start, end+1, 1):
-                for inner_index in range(outer_index + 1, end+1, 1):
-                    if s[outer_index] == s[inner_index]:
-                        palindrome_length = 2 + check_sub_sequence_recursive(start=outer_index+1,
-                                                                         end=inner_index-1)
-                        if palindrome_length > max_palindrome_length:
-                            max_palindrome_length = palindrome_length
+            if s[start] == s[end]:
+                max_palindrome_length = 2 + check_sub_sequence_recursive(start=start + 1, end=end - 1)
+            else:
+                max_palindrome_length = max(check_sub_sequence_recursive(start=start + 1, end=end),
+                                            check_sub_sequence_recursive(start=start, end=end - 1))
 
             memory[(start, end)] = max_palindrome_length
             return max_palindrome_length
 
-        return check_sub_sequence_recursive(start=0, end=len(s)-1)
+        return check_sub_sequence_recursive(start=0, end=len(s) - 1)
