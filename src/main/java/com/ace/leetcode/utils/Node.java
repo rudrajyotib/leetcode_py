@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public abstract class Node<V, E>
 {
-	protected final V value;
+	protected V value;
 	protected E left;
 	protected E right;
 	

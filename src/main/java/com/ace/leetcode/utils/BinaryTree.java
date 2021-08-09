@@ -47,6 +47,16 @@ public class BinaryTree extends Node<Integer, BinaryTree>
 		return left;
 	}
 	
+	public void setLeft(BinaryTree left)
+	{
+		this.left = left;
+	}
+	
+	public void setRight(BinaryTree right)
+	{
+		this.right = right;
+	}
+	
 	public BinaryTree getRight()
 	{
 		return right;
@@ -68,5 +78,10 @@ public class BinaryTree extends Node<Integer, BinaryTree>
 	public Integer[] toPreorder()
 	{
 		return toPreorderList().toArray(new Integer[0]);
+	}
+	
+	public void setValue(int value)
+	{
+		this.value = value;
 	}
 }
