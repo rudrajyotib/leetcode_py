@@ -1,19 +1,19 @@
 package com.ace.leetcode.utils;
 
-import java.util.Collections;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Heapify
 {
 	public static BinaryTree toMaxHeap(int[] values)
 	{
-		Stack<BinaryTree> nodes = new Stack<>();
+		LinkedList<BinaryTree> nodes = new LinkedList<>();
 		BinaryTree root = toBinaryTree(values, 0, nodes);
-		Collections.reverse(nodes);
 		
 		while (!nodes.isEmpty())
 		{
-			toMaxHeap(nodes.pop());
+			BinaryTree node = nodes.pop();
+			toMaxHeap(node);
 		}
 		
 		return root;
@@ -25,10 +25,22 @@ public class Heapify
 		{
 			return;
 		}
-		swap(node, node.left);
-		swap(node, node.right);
-		toMaxHeap(node.left);
-		toMaxHeap(node.right);
+		BinaryTree max = getMaxNode(node.left, node.right);
+		swap(node, max);
+		toMaxHeap(max);
+	}
+	
+	private static BinaryTree getMaxNode(BinaryTree left, BinaryTree right)
+	{
+		if (left == null)
+		{
+			return right;
+		}
+		if (right == null)
+		{
+			return left;
+		}
+		return left.getValue() > right.getValue() ? left : right;
 	}
 	
 	private static void swap(BinaryTree parent, BinaryTree child)
@@ -41,7 +53,7 @@ public class Heapify
 		}
 	}
 	
-	private static BinaryTree toBinaryTree(int[] values, int i, Stack<BinaryTree> nodes)
+	private static BinaryTree toBinaryTree(int[] values, int i, List<BinaryTree> nodes)
 	{
 		if (i > values.length - 1)
 		{
