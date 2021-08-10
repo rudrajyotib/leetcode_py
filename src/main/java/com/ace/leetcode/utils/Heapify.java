@@ -7,9 +7,8 @@ public class Heapify
 {
 	public static BinaryTree toMaxHeap(int[] values)
 	{
-		BinaryTree root = toBinaryTree(values, 0);
 		Stack<BinaryTree> nodes = new Stack<>();
-		toPostOrderStack(root, nodes);
+		BinaryTree root = toBinaryTree(values, 0, nodes);
 		Collections.reverse(nodes);
 		
 		while (!nodes.isEmpty())
@@ -20,18 +19,7 @@ public class Heapify
 		return root;
 	}
 	
-	public static void toPostOrderStack(BinaryTree node, Stack<BinaryTree> nodes)
-	{
-		if (node == null)
-		{
-			return;
-		}
-		toPostOrderStack(node.left, nodes);
-		toPostOrderStack(node.right, nodes);
-		nodes.add(node);
-	}
-	
-	public static void toMaxHeap(BinaryTree node)
+	private static void toMaxHeap(BinaryTree node)
 	{
 		if (node == null)
 		{
@@ -53,7 +41,7 @@ public class Heapify
 		}
 	}
 	
-	private static BinaryTree toBinaryTree(int[] values, int i)
+	private static BinaryTree toBinaryTree(int[] values, int i, Stack<BinaryTree> nodes)
 	{
 		if (i > values.length - 1)
 		{
@@ -61,9 +49,11 @@ public class Heapify
 		}
 		int value = values[i];
 		
-		BinaryTree left = toBinaryTree(values, (i * 2) + 1);
-		BinaryTree right = toBinaryTree(values, (i * 2) + 2);
+		BinaryTree left = toBinaryTree(values, (i * 2) + 1, nodes);
+		BinaryTree right = toBinaryTree(values, (i * 2) + 2, nodes);
 		
-		return new BinaryTree(value, left, right);
+		BinaryTree node = new BinaryTree(value, left, right);
+		nodes.add(node);
+		return node;
 	}
 }
