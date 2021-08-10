@@ -20,6 +20,7 @@ public class BinaryTreeTest
 	public void shouldConvertTreeToString()
 	{
 		assertEquals("4(2(3)(1))(6(5))", testNode.toString());
+		assertEquals("-14(2(3)(1))(6(5))", build("-14(2(3)(1))(6(5))").toString());
 		assertEquals("18(15(40(30)(60))(50))(20)", build("18(15(40(30)(60))(50))(20)").toString());
 		
 	}
