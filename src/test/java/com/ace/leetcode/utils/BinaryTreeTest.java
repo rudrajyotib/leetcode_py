@@ -17,6 +17,14 @@ public class BinaryTreeTest
 	}
 	
 	@Test
+	public void shouldConvertTreeToString()
+	{
+		assertEquals("4(2(3)(1))(6(5))", testNode.toString());
+		assertEquals("18(15(40(30)(60))(50))(20)", build("18(15(40(30)(60))(50))(20)").toString());
+		
+	}
+	
+	@Test
 	public void shouldCreateTreeFromString()
 	{
 		assertEquals(build("-4(2(3)(1))(6(5))").toPreorder(), new Integer[]{-4, 2, 3, 1, 6, 5});

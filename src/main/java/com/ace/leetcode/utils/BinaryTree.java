@@ -20,6 +20,31 @@ public class BinaryTree extends Node<Integer, BinaryTree>
 	}
 	
 	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		toString(this, sb);
+		return sb.toString();
+	}
+	
+	private void toString(BinaryTree node, StringBuilder sb)
+	{
+		sb.append(node.getValue());
+		if (node.left != null)
+		{
+			sb.append("(");
+			toString(node.left, sb);
+			sb.append(")");
+		}
+		if (node.right != null)
+		{
+			sb.append("(");
+			toString(node.right, sb);
+			sb.append(")");
+		}
+	}
+	
+	@Override
 	protected BinaryTree create(String value)
 	{
 		return new BinaryTree(value);
