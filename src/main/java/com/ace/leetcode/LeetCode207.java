@@ -1,23 +1,53 @@
 package com.ace.leetcode;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-
-import static java.lang.String.format;
 
 public class LeetCode207
 {
-	public static boolean solution(int[][] courses)
+	public static boolean solution(int[][] prerequisites)
 	{
-		Set<String> uniqueCourses = new HashSet<>();
-		for (int[] course : courses)
+		Map<Integer, Set<Integer>> courses = new HashMap<>();
+		for (int[] course : prerequisites)
 		{
-			if (uniqueCourses.contains(format("%s,%s", course[1], course[0])))
+			Set<Integer> dependency = new HashSet<>();
+			dependency.add(course[1]);
+			
+			if (dfs(courses, course[0], dependency))
+			{
+				if (courses.get(course[0]) != null)
+				{
+					Set<Integer> dependencies = courses.get(course[0]);
+					dependencies.add(course[1]);
+				}
+				else
+				{
+					courses.put(course[0], dependency);
+				}
+			}
+			else
 			{
 				return false;
 			}
-			uniqueCourses.add(format("%s,%s", course[0], course[1]));
-			
+		}
+		return true;
+	}
+	
+	private static boolean dfs(Map<Integer, Set<Integer>> courses, int source, Set<Integer> dependencies)
+	{
+		if (dependencies == null)
+		{
+			return true;
+		}
+		if (dependencies.contains(source))
+		{
+			return false;
+		}
+		for (Integer dependent : dependencies)
+		{
+			return dfs(courses, source, courses.get(dependent));
 		}
 		return true;
 	}
