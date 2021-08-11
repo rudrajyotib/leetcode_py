@@ -19,16 +19,10 @@ def serialise_recursive(root_node: TreeNode, level: int) -> str:
 
 def find_start_and_end_of_sub_tree(sub_tree: str, level: int) -> TreeNode:
     if sub_tree == "":
+        # noinspection PyTypeChecker
         return None
-    element = ""
-    first_child_index = 0
-    for index in range(0, len(sub_tree), 1):
-        if sub_tree[index] != "(":
-            element += sub_tree[index]
-        else:
-            first_child_index = index
-            break
-    root_node = TreeNode(int(element))
+    first_child_index = sub_tree.index("(")
+    root_node = TreeNode(int(sub_tree[0:first_child_index]))
     index_of_separator = sub_tree[first_child_index:].split("[{}]".format(level + 1))
     root_node.left = find_start_and_end_of_sub_tree(index_of_separator[0][1:len(index_of_separator[0]) - 1],
                                                     level=level + 1)
