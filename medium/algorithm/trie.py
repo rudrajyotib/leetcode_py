@@ -3,6 +3,7 @@ https://leetcode.com/problems/implement-trie-prefix-tree/
 Leetcode#208
 """
 
+
 class TrieNode:
     def __init__(self):
         self._end_of_word = False
@@ -28,6 +29,7 @@ class TrieNode:
     def create_node(self, character: str):
         if not self.is_set_character(character=character):
             node = TrieNode()
+            # noinspection PyTypeChecker
             self._children[ord(character) - 97] = node
         return self.character(character=character)
 
@@ -43,12 +45,13 @@ class Trie:
     def is_set_node(self, character: str) -> bool:
         return self._nodes[ord(character) - 97] is not None
 
-    def get_node(self, character: str) -> TrieNode:
+    def get_node(self, character: str):
         return self._nodes[ord(character) - 97]
 
-    def create_node(self, character: str) -> TrieNode:
+    def create_node(self, character: str) -> None:
         if not self.is_set_node(character):
             node = TrieNode()
+            # noinspection PyTypeChecker
             self._nodes[ord(character) - 97] = node
         return self.get_node(character)
 
@@ -59,7 +62,8 @@ class Trie:
         if len(word) == 0:
             return None
         word_len = len(word)
-        node: TrieNode = self.create_node(character=word[0])
+        # noinspection PyNoneFunctionAssignment
+        node = self.create_node(character=word[0])
         for index in range(1, word_len, 1):
             node = node.create_node(character=word[index])
         node.mark_end_of_word()
@@ -72,6 +76,7 @@ class Trie:
             return False
         if not self.is_set_node(character=word[0]):
             return False
+        # noinspection PyNoneFunctionAssignment
         node = self.get_node(character=word[0])
         for index in range(1, len(word), 1):
             node = node.character(character=word[index])
@@ -87,6 +92,7 @@ class Trie:
             return False
         if not self.is_set_node(character=prefix[0]):
             return False
+        # noinspection PyNoneFunctionAssignment
         node = self.get_node(character=prefix[0])
         for index in range(1, len(prefix), 1):
             node = node.character(character=prefix[index])
