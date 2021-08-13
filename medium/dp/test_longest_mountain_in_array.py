@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from medium.graph.longest_mountain_in_array import Solution
+from medium.dp.longest_mountain_in_array import Solution
 
 
 class TestSolution(TestCase):
