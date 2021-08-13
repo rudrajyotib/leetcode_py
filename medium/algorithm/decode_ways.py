@@ -5,6 +5,7 @@ Leetcode#91
 
 
 class Solution:
+    # noinspection PyMethodMayBeStatic
     def numDecodings(self, s: str) -> int:
 
         if s[0] == '0':
@@ -19,16 +20,13 @@ class Solution:
             if result[index - 1] == 0:
                 return 0
             if s[index] == '0':
-                if s[index - 1] == '1' or s[index - 1] == '2':
+                if 49 <= ord(s[index - 1]) <= 50:
                     result[index + 1] = result[index - 1]
+                    continue
                 else:
                     return 0
-            elif 49 <= ord(s[index]) <= 54:
-                if s[index - 1] == '1' or s[index - 1] == '2':
-                    result[index + 1] = result[index] + result[index - 1]
-                else:
-                    result[index + 1] = result[index]
-            elif 55 <= ord(s[index]) <= 57 and s[index - 1] == '1':
+            code = int(s[index - 1:index + 1])
+            if 11 <= code <= 26:
                 result[index + 1] = result[index] + result[index - 1]
             else:
                 result[index + 1] = result[index]
