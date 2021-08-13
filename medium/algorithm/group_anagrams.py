@@ -18,11 +18,13 @@ class Solution:
         core_chars_map: Dict[str, List[str]] = collections.defaultdict(list)
         for single_input in strs:
 
-            char_list = [0] * 26
-            for char in single_input:
-                char_list[ord(char) - 97] += 1
+            char_list = collections.defaultdict(int)
+            sorted_single_input = sorted(single_input)
+            for char in sorted_single_input:
+                char_list[char] += 1
             core_chars_map[
-                ''.join([chr(97 + index) * count for index, count in enumerate(char_list) if count > 0])].append(
+                ''.join([element * char_list[element] for element in (char_list.keys()) if char_list[element] > 0])].append(
                 single_input)
 
+        # noinspection PyTypeChecker
         return core_chars_map.values()
