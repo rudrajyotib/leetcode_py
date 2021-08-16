@@ -52,13 +52,16 @@ public class LeetCode743
 		}
 		
 		Integer highest = null;
-		for (Integer value : a1.get(s).values())
+		if (a1.containsKey(s))
 		{
-			if (value == null)
+			for (Integer value : a1.get(s).values())
 			{
-				return -1;
+				if (value == null)
+				{
+					return -1;
+				}
+				highest = highest != null ? Math.max(highest, value) : value;
 			}
-			highest = highest != null ? Math.max(highest, value) : value;
 		}
 		return highest != null ? highest : -1;
 	}
@@ -70,31 +73,41 @@ public class LeetCode743
 		{
 			int start = edge[0];
 			int end = edge[1];
-			if (s != end) // ignore route to self because we only want routes away from self
+			if (s != end) // ignore route to self
 			{
+				int value = edge[2];
 				if (a0.containsKey(start))
 				{
-					Map<Integer, Integer> neighbour = a0.get(start);
-					neighbour.put(end, edge[2]);
+					Map<Integer, Integer> neighbours = a0.get(start);
+					neighbours.put(end, value);
+					addVertical(a0, start, end, value);
 				}
 				else
 				{
-					Map<Integer, Integer> neighbour = new HashMap<>();
-					neighbour.put(start, 0);
-					neighbour.put(end, edge[2]);
-					a0.put(start, neighbour);
+					Map<Integer, Integer> neighbours = new HashMap<>();
+					neighbours.put(start, 0);
+					neighbours.put(end, value);
+					a0.put(start, neighbours);
+					addVertical(a0, start, end, value);
 				}
 			}
 		}
-		int count = 1;
-		Map<Integer, Integer> row1 = a0.get(1);
-		for (Map<Integer, Integer> values : a0.values())
-		{
-			values.put(1, row1.getOrDefault(count, null));
-			count += 1;
-		}
-		
 		return a0;
+	}
+	
+	private static void addVertical(Map<Integer, Map<Integer, Integer>> a0, int start, int end, int value)
+	{
+		if (a0.containsKey(end))
+		{
+			a0.get(end).put(start, value);
+		}
+		else
+		{
+			Map<Integer, Integer> neighbours = new HashMap<>();
+			neighbours.put(end, 0);
+			neighbours.put(start, value);
+			a0.put(end, neighbours);
+		}
 	}
 	
 	public static int networkDelayTimeViaDijkstra(int[][] edges, int n, int k)
@@ -102,7 +115,7 @@ public class LeetCode743
 		Map<Integer, Vertex> graph = new HashMap<>();
 		for (int i = 1; i < n; i++)
 		{
-			normalise(edges, graph, k);
+			shorten(edges, graph, k);
 		}
 		
 		if (graph.size() == n - 1)
@@ -115,7 +128,7 @@ public class LeetCode743
 		}
 	}
 	
-	private static void normalise(int[][] edges, Map<Integer, Vertex> graph, int root)
+	private static void shorten(int[][] edges, Map<Integer, Vertex> graph, int root)
 	{
 		int start = graph.size() > 0 ? getLowestUnselectedNode(graph) : root; // Select the lowest vertex
 		for (int[] edge : edges)
