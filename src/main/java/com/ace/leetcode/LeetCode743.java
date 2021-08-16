@@ -5,6 +5,98 @@ import java.util.Map;
 
 public class LeetCode743
 {
+	public static int networkDelayTimeViaFloydWarshall(int[][] edges, int n, int s)
+	{
+		Map<Integer, Map<Integer, Integer>> a0 = loadSquaredMatrix(edges, s);
+		Map<Integer, Map<Integer, Integer>> a1 = new HashMap<>();
+		
+		for (int k = 1; k < n + 1; k++)
+		{
+			for (int i = 1; i < n + 1; i++)
+			{
+				for (int j = 1; j < n + 1; j++)
+				{
+					Integer ij = a0.containsKey(i) && a0.get(i).containsKey(j) ? a0.get(i).get(j) : null;
+					Integer ik = a0.containsKey(i) && a0.get(i).containsKey(k) ? a0.get(i).get(k) : null;
+					Integer kj = a0.containsKey(k) && a0.get(k).containsKey(j) ? a0.get(k).get(j) : null;
+					
+					Integer x = null;
+					
+					if (ij != null && ik != null && kj != null)
+					{
+						x = Math.min(ij, ik + kj);
+					}
+					
+					if (ij == null && ik != null && kj != null)
+					{
+						x = ik + kj;
+					}
+					
+					if (x != null)
+					{
+						if (a1.containsKey(i))
+						{
+							Map<Integer, Integer> a1Values = a1.get(i);
+							a1Values.put(j, x);
+						}
+						else
+						{
+							Map<Integer, Integer> a1Values = new HashMap<>();
+							a1Values.put(j, x);
+							a1.put(i, a1Values);
+						}
+					}
+				}
+			}
+			a0 = a1;
+		}
+		
+		Integer highest = null;
+		for (Integer value : a1.get(s).values())
+		{
+			if (value == null)
+			{
+				return -1;
+			}
+			highest = highest != null ? Math.max(highest, value) : value;
+		}
+		return highest != null ? highest : -1;
+	}
+	
+	private static Map<Integer, Map<Integer, Integer>> loadSquaredMatrix(int[][] edges, int s)
+	{
+		Map<Integer, Map<Integer, Integer>> a0 = new HashMap<>();
+		for (int[] edge : edges)
+		{
+			int start = edge[0];
+			int end = edge[1];
+			if (s != end) // ignore route to self because we only want routes away from self
+			{
+				if (a0.containsKey(start))
+				{
+					Map<Integer, Integer> neighbour = a0.get(start);
+					neighbour.put(end, edge[2]);
+				}
+				else
+				{
+					Map<Integer, Integer> neighbour = new HashMap<>();
+					neighbour.put(start, 0);
+					neighbour.put(end, edge[2]);
+					a0.put(start, neighbour);
+				}
+			}
+		}
+		int count = 1;
+		Map<Integer, Integer> row1 = a0.get(1);
+		for (Map<Integer, Integer> values : a0.values())
+		{
+			values.put(1, row1.getOrDefault(count, null));
+			count += 1;
+		}
+		
+		return a0;
+	}
+	
 	public static int networkDelayTimeViaDijkstra(int[][] edges, int n, int k)
 	{
 		Map<Integer, Vertex> graph = new HashMap<>();
@@ -78,19 +170,12 @@ public class LeetCode743
 	
 	private static int calculateMaxTime(Map<Integer, Vertex> connectionsWithTime)
 	{
-		int time = 0;
+		int max = 0;
 		for (Vertex connection : connectionsWithTime.values())
 		{
-			if (time == 0)
-			{
-				time = connection.value;
-			}
-			else
-			{
-				time = Math.max(time, connection.value);
-			}
+			max = max > 0 ? Math.max(connection.value, max) : connection.value;
 		}
-		return time;
+		return max;
 	}
 	
 	private static class Vertex
