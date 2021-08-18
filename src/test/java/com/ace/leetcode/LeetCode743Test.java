@@ -30,7 +30,7 @@ public class LeetCode743Test
 		assertEquals(2, LeetCode743.networkDelayTimeViaDijkstra(new int[][]{{1, 2, 1}, {2, 3, 2}, {1, 3, 2}}, 3, 1));
 		assertEquals(-1, LeetCode743.networkDelayTimeViaDijkstra(new int[][]{{1, 2, 1}}, 2, 2));
 		assertEquals(6, LeetCode743.networkDelayTimeViaDijkstra(new int[][]{{1, 2, 1}, {2, 3, 7}, {1, 3, 4}, {2, 1, 2}}, 3, 2));
-		assertEquals(2, LeetCode743.networkDelayTimeViaDijkstra(new int[][]{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2));
 		assertEquals(3, LeetCode743.networkDelayTimeViaDijkstra(new int[][]{{1, 2, 1}, {2, 3, 2}, {1, 3, 4}}, 3, 1));
+		assertEquals(2, LeetCode743.networkDelayTimeViaDijkstra(new int[][]{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2));
 	}
 }

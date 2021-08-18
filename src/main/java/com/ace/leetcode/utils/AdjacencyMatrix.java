@@ -2,14 +2,7 @@ package com.ace.leetcode.utils;
 
 public class AdjacencyMatrix
 {
-	public static int[][] countPaths(int[][] matrix)
-	{
-		int[][] result = multiply(multiply(matrix));
-		print(result);
-		return result;
-	}
-	
-	private static int[][] multiply(int[][] matrix)
+	public static int[][] multiply(int[][] matrix)
 	{
 		int[][] result = new int[matrix.length][matrix[0].length];
 		
@@ -27,7 +20,7 @@ public class AdjacencyMatrix
 		return result;
 	}
 	
-	private static void print(int[][] matrix)
+	public static void print(int[][] matrix)
 	{
 		for (int[] ints : matrix)
 		{

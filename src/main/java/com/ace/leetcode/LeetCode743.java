@@ -1,7 +1,9 @@
 package com.ace.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class LeetCode743
 {
@@ -112,15 +114,18 @@ public class LeetCode743
 	
 	public static int networkDelayTimeViaDijkstra(int[][] edges, int n, int k)
 	{
-		Map<Integer, Vertex> graph = new HashMap<>();
+		PriorityQueue<NodeValue> nodeValues = new PriorityQueue<>();
+		Map<Integer, NodeValue> graph = new HashMap<>();
 		for (int i = 1; i < n; i++)
 		{
-			shorten(edges, graph, k);
+			shorten(edges, graph, nodeValues, k);
 		}
 		
 		if (graph.size() == n - 1)
 		{
-			return calculateMaxTime(graph);
+			NodeValue[] values = graph.values().toArray(new NodeValue[0]);
+			Arrays.sort(values);
+			return values[values.length - 1].value;
 		}
 		else
 		{
@@ -128,88 +133,55 @@ public class LeetCode743
 		}
 	}
 	
-	private static void shorten(int[][] edges, Map<Integer, Vertex> graph, int root)
+	private static void shorten(int[][] edges, Map<Integer, NodeValue> graph, PriorityQueue<NodeValue> nodeValues, int root)
 	{
-		int start = graph.size() > 0 ? getLowestUnselectedNode(graph) : root; // Select the lowest vertex
+		int start = nodeValues.size() > 0 ? nodeValues.poll().node : root;
+		int distanceFromRoot = graph.containsKey(start) ? graph.get(start).value : 0;
+		
 		for (int[] edge : edges)
 		{
 			int neighbour = edge[1];
-			if (start == edge[0] && neighbour != root) // For all connections from selected vertex but ignore opposite connections
+			if (start == edge[0] && neighbour != root) // For all connections from selected node but ignore opposite connections
 			{
-				int distanceToNeighbour = edge[2];
-				int currentTime = graph.containsKey(start) ? distanceToNeighbour + graph.get(start).value : distanceToNeighbour; // Distance from current value
-				
+				int distanceToRootViaCurrentNode = distanceFromRoot + edge[2];
 				if (graph.containsKey(neighbour)) // recalculate distance by setting the lowest
 				{
-					Vertex time = graph.get(neighbour);
-					time.setValue(Math.min(time.value, currentTime));
-					graph.put(neighbour, time);
+					NodeValue nodeValue = graph.get(neighbour);
+					int newValue = Math.min(nodeValue.value, distanceToRootViaCurrentNode);
+					nodeValue.setValue(newValue);
+					graph.put(neighbour, nodeValue);
 				}
 				else
 				{
-					graph.put(neighbour, new Vertex(false, currentTime));
+					NodeValue nodeValue = new NodeValue(neighbour, distanceToRootViaCurrentNode);
+					graph.put(neighbour, nodeValue);
+					nodeValues.add(nodeValue);
 				}
 			}
 		}
 	}
 	
-	private static int getLowestUnselectedNode(Map<Integer, Vertex> grid)
+	private static class NodeValue implements Comparable<NodeValue>
 	{
-		// Select the lowest unselected node
-		int currentMinNode = 0;
-		Integer currentMinTime = null;
-		for (int node : grid.keySet())
-		{
-			Vertex vertex = grid.get(node);
-			if (!vertex.visited)
-			{
-				if (currentMinTime == null)
-				{
-					currentMinTime = vertex.value;
-					currentMinNode = node;
-				}
-				
-				if ((vertex.value < currentMinTime || vertex.value == currentMinTime))
-				{
-					currentMinTime = vertex.value;
-					currentMinNode = node;
-				}
-			}
-		}
-		Vertex time = grid.get(currentMinNode);
-		time.setVisited(true);
-		return currentMinNode;
-	}
-	
-	private static int calculateMaxTime(Map<Integer, Vertex> connectionsWithTime)
-	{
-		int max = 0;
-		for (Vertex connection : connectionsWithTime.values())
-		{
-			max = max > 0 ? Math.max(connection.value, max) : connection.value;
-		}
-		return max;
-	}
-	
-	private static class Vertex
-	{
+		private final int node;
 		private int value;
-		private boolean visited;
 		
-		public Vertex(boolean visited, int time)
+		private NodeValue(int node, int value)
 		{
-			this.visited = visited;
-			this.value = time;
+			this.node = node;
+			this.value = value;
 		}
 		
-		public void setVisited(boolean visited)
-		{
-			this.visited = visited;
-		}
-		
-		public void setValue(int value)
+		private void setValue(int value)
 		{
 			this.value = value;
+		}
+		
+		@Override
+		public int compareTo(NodeValue o)
+		{
+			int thatValue = o.value;
+			return Integer.compare(this.value, thatValue);
 		}
 	}
 }
