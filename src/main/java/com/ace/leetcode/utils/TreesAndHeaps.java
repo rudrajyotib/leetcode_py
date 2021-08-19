@@ -33,32 +33,6 @@ public class TreesAndHeaps
 		return values;
 	}
 	
-	private static void convertTreeToArray(BinaryTree node, int i, Integer[] values)
-	{
-		if (node == null)
-		{
-			values[i] = null;
-			return;
-		}
-		values[i] = node.value;
-		convertTreeToArray(node.left, i * 2 + 1, values);
-		convertTreeToArray(node.right, i * 2 + 2, values);
-	}
-	
-	
-	private static BinaryTree createFromArray(Integer[] args, int parent, int left, int right, int lastIndex)
-	{
-		if (parent > lastIndex || args[parent] == null)
-		{
-			return null;
-		}
-		
-		BinaryTree leftChild = createFromArray(args, left, left * 2 + 1, left * 2 + 2, lastIndex);
-		BinaryTree rightChild = createFromArray(args, right, right * 2 + 1, right * 2 + 2, lastIndex);
-		
-		return new BinaryTree(args[parent], leftChild, rightChild);
-	}
-	
 	public static void heapify(int[] args)
 	{
 		for (int i = args.length - 1; i > 0; i--)
@@ -83,6 +57,33 @@ public class TreesAndHeaps
 		return values;
 	}
 	
+	public static void delete(Integer[] values)
+	{
+		int l = values.length;
+		values[0] = values[l - 1];
+		values[l - 1] = null;
+		
+		for (int i = 0; i < l; i++)
+		{
+			int rootVal = values[i];
+			int lc = values[(i * 2) + 1];
+			if (rootVal < lc)
+			{
+				values[(i * 2) + 1] = rootVal;
+				values[i] = lc;
+				return;
+			}
+			int rc = values[(i * 2) + 2];
+			if (rootVal < rc)
+			{
+				values[(i * 2) + 2] = rootVal;
+				values[i] = rc;
+				return;
+			}
+		}
+		
+	}
+	
 	private static void insertAndSort(int[] values, int currentIndex)
 	{
 		if (currentIndex < 0)
@@ -98,5 +99,30 @@ public class TreesAndHeaps
 			values[currentIndex] = lower;
 			insertAndSort(values, pi);
 		}
+	}
+	
+	private static BinaryTree createFromArray(Integer[] args, int parent, int left, int right, int lastIndex)
+	{
+		if (parent > lastIndex || args[parent] == null)
+		{
+			return null;
+		}
+		
+		BinaryTree leftChild = createFromArray(args, left, left * 2 + 1, left * 2 + 2, lastIndex);
+		BinaryTree rightChild = createFromArray(args, right, right * 2 + 1, right * 2 + 2, lastIndex);
+		
+		return new BinaryTree(args[parent], leftChild, rightChild);
+	}
+	
+	private static void convertTreeToArray(BinaryTree node, int i, Integer[] values)
+	{
+		if (node == null)
+		{
+			values[i] = null;
+			return;
+		}
+		values[i] = node.value;
+		convertTreeToArray(node.left, i * 2 + 1, values);
+		convertTreeToArray(node.right, i * 2 + 2, values);
 	}
 }

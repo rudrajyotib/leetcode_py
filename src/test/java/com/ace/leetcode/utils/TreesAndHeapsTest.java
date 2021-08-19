@@ -49,4 +49,18 @@ public class TreesAndHeapsTest
 		assertEquals(16, actual[6]);
 		assertEquals(15, actual[7]);
 	}
+	
+	@Test
+	public void shouldDeleteToHeap()
+	{
+		Integer[] args = new Integer[]{50, 30, 20, 15, 10, 8, 16};
+		TreesAndHeaps.delete(args);
+		assertEquals(30, args[0].intValue());
+		assertEquals(16, args[1].intValue());
+		assertEquals(20, args[2].intValue());
+		assertEquals(15, args[3].intValue());
+		assertEquals(10, args[4].intValue());
+		assertEquals(8, args[5].intValue());
+		assertNull(args[6]);
+	}
 }
