@@ -5,9 +5,6 @@ Leetcode#141
  */
 
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class LinkedListCycle {
 
 
@@ -27,17 +24,30 @@ public class LinkedListCycle {
         return solution.hasCycle(node);
     }
 
+    @SuppressWarnings("InnerClassMayBeStatic")
     class Solution {
         public boolean hasCycle(ListNode head) {
+            if (head == null) {
+                return false;
+            }
+            if (head.next == null) {
+                return false;
+            }
+            if (head.next.next == null) {
+                return false;
+            }
+            ListNode jumpOneStep = head.next;
+            ListNode jumpTwoStep = head.next.next;
 
-            Set<ListNode> visited = new HashSet<>();
-
-            while (head != null) {
-                if (visited.contains(head)) {
+            while ((jumpTwoStep != null) && (jumpOneStep != null)) {
+                if (jumpOneStep == jumpTwoStep) {
                     return true;
                 }
-                visited.add(head);
-                head = head.next;
+                jumpOneStep = jumpOneStep.next;
+                jumpTwoStep = jumpTwoStep.next;
+                if (jumpTwoStep != null) {
+                    jumpTwoStep = jumpTwoStep.next;
+                }
             }
             return false;
         }
