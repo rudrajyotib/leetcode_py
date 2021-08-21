@@ -12,7 +12,7 @@ public class SameTree {
           int val;
           TreeNode left;
           TreeNode right;
-          TreeNode() {}
+
           TreeNode(int val) { this.val = val; }
           TreeNode(int val, TreeNode left, TreeNode right) {
               this.val = val;
@@ -27,6 +27,7 @@ public class SameTree {
         return solution.isSameTree(p, q);
       }
 
+    @SuppressWarnings("InnerClassMayBeStatic")
     class Solution {
         public boolean isSameTree(TreeNode p, TreeNode q) {
             return checkRecursive(p, q);
