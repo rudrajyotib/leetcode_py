@@ -12,6 +12,7 @@ public class BestTimeToBuyAndSellStock {
         return solution.maxProfit(prices);
     }
 
+    @SuppressWarnings("InnerClassMayBeStatic")
     class Solution {
         public int maxProfit(int[] prices) {
             if (prices.length == 0) {
