@@ -17,6 +17,7 @@ public class TopKFrquentElements {
         return solution.topKFrequent(nums, k);
     }
 
+    @SuppressWarnings("InnerClassMayBeStatic")
     class Solution {
         public int[] topKFrequent(int[] nums, int k) {
 
@@ -33,12 +34,9 @@ public class TopKFrquentElements {
 
             return map.entrySet()
                     .stream()
-                    .sorted(Comparator.comparingInt(Map.Entry::getValue))
-                    .collect(Collectors.toList())
-                    .stream().skip(map.size() - k)
-                    .map(Map.Entry::getKey)
-                    .collect(Collectors.toList())
-                    .stream().mapToInt(integer -> integer)
+                    .sorted((integerIntegerEntry, t1) -> Integer.compare(t1.getValue(), integerIntegerEntry.getValue()))
+                    .limit(k)
+                    .mapToInt(Map.Entry::getKey)
                     .toArray();
 
         }
