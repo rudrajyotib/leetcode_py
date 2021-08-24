@@ -6,9 +6,6 @@ Leetcode#338
  */
 
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class CountingBits {
 
 
@@ -21,24 +18,20 @@ public class CountingBits {
     class Solution {
         public int[] countBits(int n) {
 
-            double powerOf2 = 0;
-            int power = -1;
-            Set<Integer> powerOf2s = new HashSet<>();
-            while (powerOf2 <= n) {
-                powerOf2s.add((int) powerOf2);
-                ++power;
-                powerOf2 = Math.pow(2, power);
+            if (n == 0) {
+                return new int[]{0};
             }
-
             int[] result = new int[n + 1];
 
             result[0] = 0;
             int lastKnownPowerOf2 = 1;
+            int nextPowerOf2 = 2;
 
             for (int i = 1; i < n + 1; i++) {
-                if (powerOf2s.contains(i)) {
+                if (i == nextPowerOf2) {
                     result[i] = 1;
-                    lastKnownPowerOf2 = i;
+                    lastKnownPowerOf2 = nextPowerOf2;
+                    nextPowerOf2 *= 2;
                 } else {
                     result[i] = result[i - lastKnownPowerOf2] + 1;
                 }
