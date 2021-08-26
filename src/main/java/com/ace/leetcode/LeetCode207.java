@@ -4,72 +4,115 @@ import java.util.*;
 
 public class LeetCode207
 {
-	public static int[] findOrder(int[][] prerequisites)
+	public static int[] findOrder(int numCourses, int[][] prerequisites)
 	{
-		List<Integer> schedule = new ArrayList<>();
-		for (int[] course : prerequisites)
+		if (numCourses < 2 || prerequisites.length == 0)
 		{
-			if (course.length > 0)
+			int[] c = new int[numCourses];
+			for (int i = 0; i < numCourses; i++)
 			{
-				if (!schedule.contains(course[1]))
-				{
-					schedule.add(course[1]);
-				}
-				if (!schedule.contains(course[0]))
-				{
-					schedule.add(course[0]);
-				}
+				c[i] = i;
+			}
+			return c;
+		}
+		
+		Map<Integer, Set<Integer>> coursesWithPrerequisites = createGraph(prerequisites);
+		List<Integer> courseOrder = new ArrayList<>();
+		int[] visited = new int[numCourses];
+		for (int course : coursesWithPrerequisites.keySet())
+		{
+			if (hasCircularDependency(visited, course, coursesWithPrerequisites, courseOrder))
+			{
+				return new int[0];
 			}
 		}
-		if (schedule.size() == 0)
+		
+		int[] courseOrderA = new int[numCourses];
+		int count = 0;
+		for (int i = 0; i < numCourses; i++)
 		{
-			return new int[]{};
+			if (!courseOrder.contains(i))
+			{
+				courseOrderA[count] = i;
+				count++;
+			}
 		}
-		return schedule.stream().mapToInt(Number::intValue).toArray();
+		
+		for (int course : courseOrder)
+		{
+			courseOrderA[count] = course;
+			count++;
+		}
+		return courseOrderA;
 	}
 	
-	public static boolean solution(int[][] prerequisites)
+	public static boolean solution(int numCourses, int[][] prerequisites)
 	{
-		Map<Integer, Set<Integer>> courses = new HashMap<>();
-		for (int[] course : prerequisites)
+		Map<Integer, Set<Integer>> coursesWithPrerequisites = createGraph(prerequisites);
+		int[] visited = new int[numCourses];
+		for (int course : coursesWithPrerequisites.keySet())
 		{
-			Set<Integer> dependency = new HashSet<>();
-			dependency.add(course[1]);
-			
-			if (dfs(courses, course[0], dependency))
-			{
-				if (courses.get(course[0]) != null)
-				{
-					Set<Integer> dependencies = courses.get(course[0]);
-					dependencies.add(course[1]);
-				}
-				else
-				{
-					courses.put(course[0], dependency);
-				}
-			}
-			else
+			if (hasCircularDependency(visited, course, coursesWithPrerequisites, null))
 			{
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
-	private static boolean dfs(Map<Integer, Set<Integer>> courses, int source, Set<Integer> dependencies)
+	private static boolean hasCircularDependency(int[] visited, int course, Map<Integer, Set<Integer>> coursesWithPrerequisites, List<Integer> courseOrder)
 	{
-		if (dependencies == null)
+		if (visited[course] == -1) // circular
 		{
 			return true;
 		}
-		if (dependencies.contains(source))
+		
+		if (visited[course] == 1) // already completed loop
 		{
 			return false;
 		}
-		for (Integer dependent : dependencies)
+		
+		visited[course] = -1; // visited
+		
+		if (coursesWithPrerequisites.containsKey(course))
 		{
-			return dfs(courses, source, courses.get(dependent));
+			for (int prerequisite : coursesWithPrerequisites.get(course))
+			{
+				if (hasCircularDependency(visited, prerequisite, coursesWithPrerequisites, courseOrder))
+				{
+					return true;
+				}
+			}
 		}
-		return true;
+		visited[course] = 1; // completed loop
+		if (courseOrder != null)
+		{
+			courseOrder.add(course);
+		}
+		return false;
+	}
+	
+	private static Map<Integer, Set<Integer>> createGraph(int[][] prerequisites)
+	{
+		Map<Integer, Set<Integer>> coursesWithPrerequisites = new HashMap<>();
+		
+		for (int[] courses : prerequisites)
+		{
+			int course = courses[0];
+			int prerequisite = courses[1];
+			if (coursesWithPrerequisites.containsKey(course))
+			{
+				Set<Integer> dependencies = coursesWithPrerequisites.get(course);
+				dependencies.add(prerequisite);
+			}
+			else
+			{
+				Set<Integer> dependency = new HashSet<>();
+				dependency.add(prerequisite);
+				coursesWithPrerequisites.put(course, dependency);
+			}
+		}
+		return coursesWithPrerequisites;
 	}
 }
