@@ -1,28 +1,52 @@
 package com.ace.leetcode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public class LeetCode207
+public class LeetCode210
 {
-	public static boolean solution(int numCourses, int[][] prerequisites)
+	public static int[] findOrder(int numCourses, int[][] prerequisites)
 	{
+		if (numCourses < 2 || prerequisites.length == 0)
+		{
+			int[] c = new int[numCourses];
+			for (int i = 0; i < numCourses; i++)
+			{
+				c[i] = i;
+			}
+			return c;
+		}
+		
 		Map<Integer, Set<Integer>> coursesWithPrerequisites = createGraph(prerequisites);
+		List<Integer> courseOrder = new ArrayList<>();
 		int[] visited = new int[numCourses];
 		for (int course : coursesWithPrerequisites.keySet())
 		{
-			if (hasCircularDependency(visited, course, coursesWithPrerequisites))
+			if (hasCircularDependency(visited, course, coursesWithPrerequisites, courseOrder))
 			{
-				return false;
+				return new int[0];
 			}
 		}
 		
-		return true;
+		int[] courseOrderA = new int[numCourses];
+		int count = 0;
+		for (int i = 0; i < numCourses; i++)
+		{
+			if (!courseOrder.contains(i))
+			{
+				courseOrderA[count] = i;
+				count++;
+			}
+		}
+		
+		for (int course : courseOrder)
+		{
+			courseOrderA[count] = course;
+			count++;
+		}
+		return courseOrderA;
 	}
 	
-	private static boolean hasCircularDependency(int[] visited, int course, Map<Integer, Set<Integer>> coursesWithPrerequisites)
+	private static boolean hasCircularDependency(int[] visited, int course, Map<Integer, Set<Integer>> coursesWithPrerequisites, List<Integer> courseOrder)
 	{
 		if (visited[course] == -1) // circular
 		{
@@ -40,13 +64,17 @@ public class LeetCode207
 		{
 			for (int prerequisite : coursesWithPrerequisites.get(course))
 			{
-				if (hasCircularDependency(visited, prerequisite, coursesWithPrerequisites))
+				if (hasCircularDependency(visited, prerequisite, coursesWithPrerequisites, courseOrder))
 				{
 					return true;
 				}
 			}
 		}
 		visited[course] = 1; // completed loop
+		if (courseOrder != null)
+		{
+			courseOrder.add(course);
+		}
 		return false;
 	}
 	

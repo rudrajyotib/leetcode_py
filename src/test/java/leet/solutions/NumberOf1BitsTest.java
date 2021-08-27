@@ -17,7 +17,7 @@ public class NumberOf1BitsTest {
         assertEquals(1, numberOf1Bits.solve(4));
         assertEquals(0, numberOf1Bits.solve(0));
         assertEquals(5, numberOf1Bits.solve(31));
-        assertEquals(5, numberOf1Bits.solve(111111111));
+        assertEquals(18, numberOf1Bits.solve(111111111));
     }
 
 
