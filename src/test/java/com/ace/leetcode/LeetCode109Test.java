@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
 public class LeetCode109Test
 {
 	@Test
-	public void shouldCreateBinaryTreeSortedList()
+	public void shouldCreateBinaryTreeFromSortedList()
 	{
 		BinaryTree root = LeetCode109.create(new int[]{-10, -3, 0, 5, 9});
 		assertThat(root.getValue(), is(0));
