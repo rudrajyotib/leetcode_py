@@ -1,4 +1,4 @@
-package com.ace.leetcode;
+package com.ace.leetcode.utils;
 
 import com.ace.leetcode.utils.AncestryTree;
 import org.junit.Before;
