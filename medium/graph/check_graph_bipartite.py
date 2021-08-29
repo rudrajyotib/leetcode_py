@@ -23,8 +23,6 @@ class Solution:
             next_level: Set[int] = set()
             present_level: Set[int] = set()
             next_level_present: bool = True
-            # level_span: int = 1
-            # root_node = list(adjacency_list.keys())[0]
             present_level.add(root_node)
             visited_nodes[root_node] = True
             while next_level_present:
@@ -39,9 +37,10 @@ class Solution:
                 if len(next_level) == 0:
                     next_level_present = False
                 else:
+                    temp = present_level
                     present_level = next_level
-                    next_level = set()
-                    # level_span = len(present_level)
+                    next_level = temp
+                    next_level.clear()
             return True
 
         for vertex in range(0, len(graph), 1):
