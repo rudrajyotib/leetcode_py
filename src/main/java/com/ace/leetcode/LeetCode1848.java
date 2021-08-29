@@ -11,6 +11,10 @@ public class LeetCode1848
 			if (nums[i] == target)
 			{
 				int diff = Math.abs(i - start);
+				if (diff == 0)
+				{
+					return diff;
+				}
 				if (minIndex != null)
 				{
 					if (min > diff)

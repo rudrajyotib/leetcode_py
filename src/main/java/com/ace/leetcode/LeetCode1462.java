@@ -17,10 +17,10 @@ public class LeetCode1462
 			return result;
 		}
 		
-		Boolean[][] graph = createGraph(numCourses);
+		Boolean[][] graph = createGraph(numCourses); // self <> self true
 		for (int[] prerequisite : prerequisites)
 		{
-			graph[prerequisite[0]][prerequisite[1]] = true;
+			graph[prerequisite[0]][prerequisite[1]] = true; // specified to true
 		}
 		
 		for (int k = 0; k < numCourses; k++)
