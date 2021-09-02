@@ -7,6 +7,39 @@ import static org.junit.Assert.assertEquals;
 public class AssortedQuestionsTest
 {
 	@Test
+	public void maxCandies()
+	{
+		assertEquals(14, AssortedQuestions.maxCandies(new int[]{2, 1, 7, 4, 2}, 3));
+		assertEquals(228, AssortedQuestions.maxCandies(new int[]{19, 78, 76, 72, 48, 8, 24, 74, 29}, 3));
+		
+	}
+	@Test
+	public void findMaxProduct()
+	{
+		int[] result1 = AssortedQuestions.findMaxProduct(new int[]{1, 2, 3, 4, 5});
+		assertEquals(-1, result1[0]);
+		assertEquals(-1, result1[1]);
+		assertEquals(6, result1[2]);
+		assertEquals(24, result1[3]);
+		assertEquals(60, result1[4]);
+		
+		int[] result2 = AssortedQuestions.findMaxProduct(new int[]{2, 1, 2, 1, 2});
+		assertEquals(-1, result2[0]);
+		assertEquals(-1, result2[1]);
+		assertEquals(4, result2[2]);
+		assertEquals(4, result2[3]);
+		assertEquals(8, result2[4]);
+		
+		int[] result3 = AssortedQuestions.findMaxProduct(new int[]{2, 4, 7, 1, 5, 3});
+		assertEquals(-1, result3[0]);
+		assertEquals(-1, result3[1]);
+		assertEquals(56, result3[2]);
+		assertEquals(56, result3[3]);
+		assertEquals(140, result3[4]);
+		assertEquals(140, result3[5]);
+	}
+	
+	@Test
 	public void findSignatureCounts()
 	{
 		int[] result2 = AssortedQuestions.findSignatureCounts(new int[]{2, 1});

@@ -1,8 +1,6 @@
 package com.ace.assorted;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class AssortedQuestions
 {
@@ -127,5 +125,77 @@ public class AssortedQuestions
 			}
 		}
 		return result;
+	}
+	
+	public static int[] findMaxProduct(int[] arr)
+	{
+		int length = arr.length;
+		PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.reverseOrder());
+		int[] result = new int[length];
+		for (int i = 0; i < length; i++)
+		{
+			queue.add(arr[i]);
+			result[i] = product(queue);
+		}
+		return result;
+	}
+	
+	private static int product(PriorityQueue<Integer> queue)
+	{
+		if (queue.size() < 3)
+		{
+			return -1;
+		}
+		List<Integer> products = new ArrayList<>();
+		int count = 0;
+		while (!queue.isEmpty() && count < 3)
+		{
+			products.add(queue.poll());
+			count++;
+		}
+		int product = products.get(0);
+		products.remove(0);
+		queue.add(product);
+		for (int i : products)
+		{
+			queue.add(i);
+			product = product * i;
+		}
+		return product;
+	}
+	
+	public static int maxCandies(int[] arr, int k)
+	{
+		int length = arr.length;
+		int result = 0;
+		for (int i = 0; i < k; i++)
+		{
+			sortMaxHeap(arr);
+			int numCandy = arr[0];
+			result = result + numCandy;
+			deleteFromHeap(arr);
+			arr[length - 1] = (int) Math.floor(numCandy / 2);
+		}
+		return result;
+	}
+	
+	private static void deleteFromHeap(int[] arr)
+	{
+		arr[0] = arr[arr.length - 1];
+		arr[arr.length - 1] = 0;
+	}
+	
+	private static void sortMaxHeap(int[] arr)
+	{
+		for (int i = arr.length - 1; i > 0; i--)
+		{
+			int pi = i / 2;
+			if (arr[i] > arr[pi])
+			{
+				int higher = arr[i];
+				arr[i] = arr[pi];
+				arr[pi] = higher;
+			}
+		}
 	}
 }
