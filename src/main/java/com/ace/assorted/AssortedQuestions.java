@@ -6,6 +6,99 @@ public class AssortedQuestions
 {
 	private static final String az = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	
+	public static boolean isBalanced(String s) {
+		
+		// Write your code here
+		if (s.length() <2)
+		{
+			return false;
+		}
+		
+		Map<Character, Character> brackets = new HashMap<>()
+		{
+			{
+				put('}', '{');
+				put(')', '(');
+				put(']', '[');
+			}
+		};
+		
+		List<Character> closingBlackets = new ArrayList<>()
+		{
+			{
+				add(')');
+				add('}');
+				add(']');
+			}
+		};
+		
+		Stack<Character> stack = new Stack<>();
+		stack.push(s.charAt(0));
+		for (int i=1;i<s.length();i++)
+		{
+			Character next = s.charAt(i);
+			if (closingBlackets.contains(next))
+			{
+				if (!stack.peek().equals(brackets.get(next)))
+				{
+					return false;
+				}
+				stack.pop();
+			}
+			else
+			{
+				stack.push(next);
+			}
+		}
+		
+		return stack.isEmpty();
+		
+	}
+	
+	
+	public static int[] findPositions(int[] arr, int x)
+	{
+		int[] result = new int[x];
+		Queue<Index> queue = new LinkedList<>();
+		
+		for (int i = 0; i < arr.length; i++)
+		{
+			int num = arr[i];
+			queue.add(new Index(i + 1, num));
+		}
+		
+		List<Index> popped = new ArrayList<>();
+		for (int i = 0; i < x; i++)
+		{
+			Index largest = queue.peek();
+			for (int j = 0; j < x && !queue.isEmpty(); j++)
+			{
+				Index p = queue.poll();
+				popped.add(p);
+				
+				if (p.val > largest.val)
+				{
+					largest = p;
+				}
+			}
+			
+			result[i] = largest.index;
+			
+			for (Index p : popped)
+			{
+				if (p.index != largest.index)
+				{
+					Index next = new Index(p.index, (p.val == 0) ? p.val : p.val - 1);
+					queue.add(next);
+				}
+			}
+			popped.clear();
+		}
+		
+		return result;
+	}
+	
+	
 	public static int pairSums(int[] arr, int k)
 	{
 		Map<Integer, Integer> numbers = new HashMap<>();
@@ -198,4 +291,78 @@ public class AssortedQuestions
 			}
 		}
 	}
+	
+	public static int[] findMedian(int[] arr)
+	{
+		int length = arr.length;
+		int[] result = new int[length];
+		List<Integer> numbers = new ArrayList<>();
+		for (int i = 0; i < length; i++)
+		{
+			numbers.add(arr[i]);
+			Collections.sort(numbers);
+			int currentSize = numbers.size();
+			int mid = currentSize / 2;
+			if (currentSize % 2 == 0)
+			{
+				result[i] = (int) Math.floor((numbers.get(mid - 1) + numbers.get(mid)) / 2);
+			}
+			else
+			{
+				result[i] = (numbers.get(mid));
+			}
+		}
+		
+		return result;
+	}
+	
+	boolean balancedSplitExists(int[] arr)
+	{
+		// Write your code here
+		Map<Integer, Integer> counts = new HashMap<>();
+		int total = 0;
+		for (int n : arr)
+		{
+			total = total + n;
+			if (counts.containsKey(n))
+			{
+				counts.put(n, counts.get(n) + 1);
+			}
+			else
+			{
+				counts.put(n, 1);
+			}
+		}
+		
+		if (total % 2 == 0)
+		{
+			int half = total / 2;
+			int max = 0;
+			for (int n : counts.keySet())
+			{
+				if (half == 0 && max < n)
+				{
+					return true;
+				}
+				max = Math.max(n, max);
+				half = half - (counts.get(n) * n);
+			}
+		}
+		return false;
+		
+		
+	}
+	
+	private static class Index
+	{
+		int index;
+		int val;
+		
+		Index(int index, int val)
+		{
+			this.index = index;
+			this.val = val;
+		}
+	}
+	
 }
