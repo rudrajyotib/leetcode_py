@@ -7,6 +7,29 @@ import static org.junit.Assert.*;
 public class AssortedQuestionsTest
 {
 	@Test
+	public void findMinArray()
+	{
+		int[] actual1 = AssortedQuestions.findMinArray(new int[]{5, 3, 1}, 2);
+		assertEquals(1, actual1[0]);
+		assertEquals(5, actual1[1]);
+		assertEquals(3, actual1[2]);
+		
+		int[] actual2 = AssortedQuestions.findMinArray(new int[]{8, 9, 11, 2, 1}, 3);
+		assertEquals(2, actual2[0]);
+		assertEquals(8, actual2[1]);
+		assertEquals(9, actual2[2]);
+		assertEquals(11, actual2[3]);
+		assertEquals(1, actual2[4]);
+	}
+	
+	@Test
+	public void getTotalTime()
+	{
+		assertEquals(26, AssortedQuestions.getTotalTime(new int[]{4, 2, 1, 3}));
+		assertEquals(88, AssortedQuestions.getTotalTime(new int[]{2, 3, 9, 8, 4}));
+	}
+	
+	@Test
 	public void getMilestoneDays()
 	{
 		int[] actual1 = AssortedQuestions.getMilestoneDays(new int[]{100, 200, 300, 400, 500}, new int[]{300, 800, 1000, 1400});

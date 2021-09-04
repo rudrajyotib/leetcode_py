@@ -6,6 +6,65 @@ public class AssortedQuestions
 {
 	private static final String az = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	
+	public static int[] findMinArray(int[] arr, int k)
+	{
+		int lastIndex = arr.length - 1;
+		int pointer = arr.length / 2;
+		int swaps = 0;
+		while (swaps != k)
+		{
+			if (pointer < lastIndex && arr[pointer] > arr[pointer + 1])
+			{
+				int high = arr[pointer];
+				arr[pointer] = arr[pointer + 1];
+				arr[pointer + 1] = high;
+				swaps++;
+				pointer--;
+			}
+			
+			if (pointer > 0 && arr[pointer] < arr[pointer - 1])
+			{
+				int low = arr[pointer];
+				arr[pointer] = arr[pointer - 1];
+				arr[pointer - 1] = low;
+				swaps++;
+				pointer--;
+			}
+			
+			if (pointer == 0)
+			{
+				pointer = 1;
+			}
+			if (pointer == lastIndex)
+			{
+				pointer = lastIndex - 1;
+			}
+		}
+		return arr;
+	}
+	
+	public static int getTotalTime(int[] arr)
+	{
+		Queue<Integer> numbers = new PriorityQueue<>(Comparator.reverseOrder());
+		for (int num : arr)
+		{
+			numbers.add(num);
+		}
+		
+		int result = 0;
+		while (numbers.size() > 1)
+		{
+			int n1 = numbers.poll();
+			int n2 = numbers.poll();
+			int current = n1 + n2;
+			numbers.add(current);
+			result += current;
+		}
+		
+		return result;
+	}
+	
+	
 	public static int[] getMilestoneDays(int[] revenues, int[] milestones)
 	{
 		Map<Integer, Integer> cumulatives = new HashMap<>();
