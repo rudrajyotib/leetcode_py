@@ -6,6 +6,51 @@ public class AssortedQuestions
 {
 	private static final String az = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	
+	public static int[] answerAQuery(int[][] queries, int n)
+	{
+		List<Integer> result = new ArrayList<>();
+		boolean[] states = new boolean[n];
+		for (int[] query : queries)
+		{
+			if (query[0] == 1)
+			{
+				states[query[1]] = true;
+			}
+			if (query[0] == 2)
+			{
+				int gi = query[1];
+				boolean found = false;
+				for (int j = gi; j < n; j++)
+				{
+					if (states[j])
+					{
+						result.add(j);
+						found = true;
+						break;
+					}
+				}
+				if (!found)
+				{
+					result.add(-1);
+				}
+			}
+		}
+		return result.stream().mapToInt(i -> i).toArray();
+	}
+	
+	
+	public static int minOverallAwkwardness(int[] arr)
+	{
+		Arrays.sort(arr);
+		int max = 0;
+		
+		for (int i = 0; i < arr.length - 2; i++) // TODO: with adjencency matrix
+		{
+			max = Math.max(max, arr[i + 2] - arr[i]);
+		}
+		return max;
+	}
+	
 	public static int[] findMinArray(int[] arr, int k)
 	{
 		int lastIndex = arr.length - 1;

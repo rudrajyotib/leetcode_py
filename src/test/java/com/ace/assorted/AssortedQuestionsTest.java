@@ -7,6 +7,22 @@ import static org.junit.Assert.*;
 public class AssortedQuestionsTest
 {
 	@Test
+	public void answerAQuery()
+	{
+		int[] actual = AssortedQuestions.answerAQuery(new int[][]{{2, 3}, {1, 2}, {2, 1}, {2, 3}, {2, 2}}, 5);
+		assertEquals(-1, actual[0]);
+		assertEquals(2, actual[1]);
+		assertEquals(-1, actual[2]);
+		assertEquals(2, actual[3]);
+	}
+	
+	@Test
+	public void minOverallAwkwardness()
+	{
+		assertEquals(4, AssortedQuestions.minOverallAwkwardness(new int[]{5, 10, 6, 8}));
+	}
+	
+	@Test
 	public void findMinArray()
 	{
 		int[] actual1 = AssortedQuestions.findMinArray(new int[]{5, 3, 1}, 2);
