@@ -7,6 +7,59 @@ import static org.junit.Assert.*;
 public class AssortedQuestionsTest
 {
 	@Test
+	public void getMilestoneDays()
+	{
+		int[] actual1 = AssortedQuestions.getMilestoneDays(new int[]{100, 200, 300, 400, 500}, new int[]{300, 800, 1000, 1400});
+		assertEquals(2, actual1[0]);
+		assertEquals(4, actual1[1]);
+		assertEquals(4, actual1[2]);
+		assertEquals(5, actual1[3]);
+		
+		int[] actual2 = AssortedQuestions.getMilestoneDays(new int[]{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}, new int[]{100, 200, 500});
+		assertEquals(4, actual2[0]);
+		assertEquals(6, actual2[1]);
+		assertEquals(10, actual2[2]);
+	}
+	
+	@Test
+	public void getBillionUsersDay()
+	{
+		assertEquals(52, AssortedQuestions.getBillionUsersDay(new float[]{1.5f}));
+		assertEquals(79, AssortedQuestions.getBillionUsersDay(new float[]{1.1f, 1.2f, 1.3f}));
+		assertEquals(1047, AssortedQuestions.getBillionUsersDay(new float[]{1.01f, 1.02f}));
+	}
+	
+	@Test
+	public void canGetExactChange()
+	{
+		assertTrue(AssortedQuestions.canGetExactChange(93, new int[]{3, 20, 10}));
+		assertFalse(AssortedQuestions.canGetExactChange(94, new int[]{5, 10, 25, 100, 200}));
+		assertTrue(AssortedQuestions.canGetExactChange(75, new int[]{4, 17, 29}));
+	}
+	
+	@Test
+	public void findEncryptedWord()
+	{
+		assertEquals("xbacbca", AssortedQuestions.findEncryptedWord("abcxcba"));
+		assertEquals("bac", AssortedQuestions.findEncryptedWord("abc"));
+		assertEquals("bacd", AssortedQuestions.findEncryptedWord("abcd"));
+		assertEquals("eafcobok", AssortedQuestions.findEncryptedWord("facebook"));
+	}
+	
+	@Test
+	public void minOperations()
+	{
+		assertEquals(2, AssortedQuestions.minOperations(new int[]{3, 1, 2}));
+		assertEquals(1, AssortedQuestions.minOperations(new int[]{1, 2, 5, 4, 3}));
+	}
+	
+	@Test
+	public void reverseLinkedList()
+	{
+		assertEquals(8, AssortedQuestions.reverseLinkedList(createLinkedList(new int[]{1, 2, 8, 9, 12, 16})).next.data);
+	}
+	
+	@Test
 	public void isBalanced()
 	{
 		assertFalse(AssortedQuestions.isBalanced("{[(])}"));
@@ -120,6 +173,26 @@ public class AssortedQuestionsTest
 		assertEquals(1, actual[2]);
 		assertEquals(5, actual[3]);
 		assertEquals(1, actual[4]);
+	}
+	
+	AssortedQuestions.Node createLinkedList(int[] arr)
+	{
+		AssortedQuestions.Node head = null;
+		AssortedQuestions.Node tempHead = head;
+		for (int v : arr)
+		{
+			if (head == null)
+			{
+				head = new AssortedQuestions.Node(v);
+				tempHead = head;
+			}
+			else
+			{
+				head.next = new AssortedQuestions.Node(v);
+				head = head.next;
+			}
+		}
+		return tempHead;
 	}
 
 //	private int getCount(Node node, Query q, String s){
