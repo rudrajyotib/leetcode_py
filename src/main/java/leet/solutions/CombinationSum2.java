@@ -16,6 +16,7 @@ public class CombinationSum2 {
     }
 
 
+    @SuppressWarnings("InnerClassMayBeStatic")
     class Solution {
 
         private List<List<Integer>> result;
