@@ -13,6 +13,7 @@ public class GasStation {
         return solution.canCompleteCircuit(gas, cost);
     }
 
+    @SuppressWarnings("InnerClassMayBeStatic")
     class Solution {
         public int canCompleteCircuit(int[] gas, int[] cost) {
 
