@@ -13,6 +13,8 @@ public class TrieTest {
         assertFalse(trie.search("apple"));
         trie.insert("apple");
         assertTrue(trie.startsWith("app"));
+        assertFalse(trie.startsWith("b"));
+        assertFalse(trie.startsWith("beed"));
         assertTrue(trie.search("apple"));
         assertFalse(trie.search("appl"));
         assertTrue(trie.startsWith("a"));
