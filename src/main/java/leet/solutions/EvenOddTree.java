@@ -14,6 +14,7 @@ public class EvenOddTree {
         TreeNode left;
         TreeNode right;
 
+        @SuppressWarnings("unused")
         TreeNode() {
         }
 
@@ -34,6 +35,7 @@ public class EvenOddTree {
     }
 
 
+    @SuppressWarnings("InnerClassMayBeStatic")
     class Solution {
         public boolean isEvenOddTree(TreeNode root) {
             if (root == null) {
