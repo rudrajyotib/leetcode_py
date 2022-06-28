@@ -21,6 +21,19 @@ public class SlidingWindowMaximumTest {
 
 
     @Test
+    public void shouldFindSlidingWindowMaximumSet3(){
+        assertArrayEquals(new int[]{20,19,21,21,21,15,14,13,12},
+                new SlidingWindowMaximum().solve(new int[]{20,19,18,17,21,15,14,13,12,11,10}, 3));
+    }
+
+    @Test
+    public void shouldFindSlidingWindowMaximumSet4(){
+        assertArrayEquals(new int[]{20,19,21,22,23,24,25,26},
+                new SlidingWindowMaximum().solve(new int[]{20,19,18,17,21,22,23,24,25,26}, 3));
+    }
+
+
+    @Test
     public void shouldFindSlidingWindowMaximumForSingleSpaceWindow(){
         assertArrayEquals(new int[]{20, 25, 30},
                 new SlidingWindowMaximum().solve(new int[]{20,25,30}, 1));
