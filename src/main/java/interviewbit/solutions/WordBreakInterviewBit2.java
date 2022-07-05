@@ -46,11 +46,13 @@ public class WordBreakInterviewBit2 {
                 TrieNode nextNode = trieNode.getCharacter(input.charAt(index));
                 if (nextNode != null) {
                     stringBuilder.append(input.charAt(index));
-                    recursiveLetterSearch(input, new StringBuilder(stringBuilder.toString()), nextNode, result, index + 1);
                     if (nextNode.isWord()) {
-                        stringBuilder.append(" ");
-                        recursiveLetterSearch(input, stringBuilder, dictionary, result, index + 1);
+                        StringBuilder forked = new StringBuilder(stringBuilder.toString());
+                        forked.append(" ");
+                        recursiveLetterSearch(input, forked, dictionary, result, index + 1);
                     }
+                    recursiveLetterSearch(input,stringBuilder, nextNode, result, index + 1);
+
                 }
             }
         }
