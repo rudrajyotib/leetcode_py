@@ -1,0 +1,40 @@
+package interviewbit.solutions;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class InorderTraversalWithoutRecursionTest {
+
+
+    @Test
+    public void shouldHandleNullTree(){
+        assertNull(new InorderTraversalWithoutRecursion().solve(null));
+    }
+
+    @Test
+    public void shouldHandleSimpleTree(){
+        assertArrayEquals(new Integer[]{1,2,3},
+                new InorderTraversalWithoutRecursion().solve(
+                        new InorderTraversalWithoutRecursion.TreeNode(2,
+                                new InorderTraversalWithoutRecursion.TreeNode(1),
+                                new InorderTraversalWithoutRecursion.TreeNode(3))
+                ).toArray(new Integer[1]));
+    }
+
+    @Test
+    public void shouldHandleWideTree(){
+        assertArrayEquals(new Integer[]{1,3,4,5,6,8,10},
+                new InorderTraversalWithoutRecursion().solve(
+                        new InorderTraversalWithoutRecursion.TreeNode(5,
+                                new InorderTraversalWithoutRecursion.TreeNode(3,
+                                        new InorderTraversalWithoutRecursion.TreeNode(1),
+                                        new InorderTraversalWithoutRecursion.TreeNode(4)),
+                                new InorderTraversalWithoutRecursion.TreeNode(8,
+                                        new InorderTraversalWithoutRecursion.TreeNode(6),
+                                        new InorderTraversalWithoutRecursion.TreeNode(10)))
+                ).toArray(new Integer[1]));
+    }
+
+
+}
