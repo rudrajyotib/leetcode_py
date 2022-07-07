@@ -13,26 +13,50 @@ public class WordLadder {
     class Solution {
         public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 
+            Set<String> dictionary = new HashSet<>(wordList);
             Map<String, List<String>> adjacencyMatrix = new HashMap<>();
-            for (int i = 0; i < wordList.size(); i++) {
-                adjacencyMatrix.put(wordList.get(i), new LinkedList<>());
-                for (int j = 0; j < wordList.size(); j++) {
-                    if (i != j) {
-                        if (isReplaceable(wordList.get(i), wordList.get(j))) {
-                            adjacencyMatrix.get(wordList.get(i)).add(wordList.get(j));
+            for (String s : wordList) {
+                adjacencyMatrix.put(s, new LinkedList<>());
+                char[] word = s.toCharArray();
+                for (int j = 0; j < word.length; j++) {
+                    char currentChar = word[j];
+                    for (int k = 0; k < 26; k++) {
+                        if (('a' + k) != currentChar) {
+                            word[j] = (char) ('a' + k);
+                            String mutatedString = new String(word);
+                            if (dictionary.contains(mutatedString)) {
+                                adjacencyMatrix.get(s).add(mutatedString);
+                            }
                         }
                     }
+                    word[j] = currentChar;
                 }
             }
 
             if (!adjacencyMatrix.containsKey(beginWord)) {
+                char[] word = beginWord.toCharArray();
                 List<String> adjacentWords = new LinkedList<>();
-                for (String word : wordList) {
-                    if (isReplaceable(beginWord, word)) {
-                        adjacentWords.add(word);
+                for (int j = 0; j < word.length; j++) {
+                    char currentChar = word[j];
+                    for (int k=0;k<26;k++){
+                        if (('a'+k)!= currentChar){
+                            word[j] = (char) ('a'+k);
+                            String mutatedString = new String(word);
+                            if (dictionary.contains(mutatedString)){
+                                adjacentWords.add(mutatedString);
+                            }
+                        }
                     }
+                    word[j] = currentChar;
                 }
                 adjacencyMatrix.put(beginWord, adjacentWords);
+            }
+
+            if (adjacencyMatrix.get(beginWord).size() == 0) {
+                return 0;
+            }
+            if (!adjacencyMatrix.containsKey(endWord)) {
+                return 0;
             }
 
             if (adjacencyMatrix.get(beginWord).size() == 0) {
@@ -57,6 +81,9 @@ public class WordLadder {
 
             while (!bfsQueue.isEmpty()) {
                 String word = bfsQueue.poll();
+                if (endWord.equals(word)){
+                    return depthMatrix.get(endWord);
+                }
                 if (!word.equals(beginWord)) {
                     int currentWordDepth = depthMatrix.get(word);
                     for (String nextWord : adjacencyMatrix.get(word)) {
@@ -69,17 +96,10 @@ public class WordLadder {
             }
 
             return depthMatrix.get(endWord);
+
         }
 
-        private boolean isReplaceable(String start, String end) {
-            int differenceOfLetters = 0;
-            for (int i = 0; i < start.length(); i++) {
-                if (start.charAt(i) != end.charAt(i)) {
-                    differenceOfLetters += 1;
-                }
-            }
-            return differenceOfLetters == 1;
-        }
+
     }
 
 }

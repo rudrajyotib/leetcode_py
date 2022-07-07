@@ -53,6 +53,13 @@ public class WordLadderTest {
     }
 
     @Test
+    public void shouldReportWhenPathDoesNotExistTillEndWord() {
+        assertEquals(0, new WordLadder().solve(
+                "bat", "dog", List.of("cat", "cot", "put", "pog", "cug", "dog")
+        ));
+    }
+
+    @Test
     public void shouldReportWhenNoPathsFromPossibleToEndWord() {
         assertEquals(0, new WordLadder().solve(
                 "bat", "log", List.of("cat", "cot", "cut", "put", "pog", "pot", "cot", "cog", "dog")
