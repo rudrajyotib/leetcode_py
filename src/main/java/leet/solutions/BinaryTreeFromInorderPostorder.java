@@ -6,7 +6,9 @@ Leetcode#106
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BinaryTreeFromInorderPostorder {
 
@@ -41,14 +43,14 @@ public class BinaryTreeFromInorderPostorder {
     class Solution {
 
         private int postOrderPointer = 0;
-        private final List<Integer> inOrder = new ArrayList<>();
+        private final Map<Integer, Integer> inOrder = new HashMap<>();
         private int[] postOrder;
         private int treeLength;
 
         public TreeNode buildTree(int[] inorder, int[] postorder) {
             this.postOrderPointer = postorder.length;
-            for (int i : inorder) {
-                inOrder.add(i);
+            for (int i=0; i<inorder.length; i++) {
+                inOrder.put(inorder[i], i);
             }
             this.postOrder = postorder;
             this.treeLength = postorder.length;
@@ -70,7 +72,7 @@ public class BinaryTreeFromInorderPostorder {
                 return null;
             }
             --this.postOrderPointer;
-            int indexOfRoot = this.inOrder.indexOf(this.postOrder[this.postOrderPointer]);
+            int indexOfRoot = this.inOrder.get(this.postOrder[this.postOrderPointer]);
             TreeNode root = new TreeNode(this.postOrder[this.postOrderPointer]);
             root.right = createTree(indexOfRoot+1, endPointer);
             root.left = createTree(startPointer, indexOfRoot-1);
