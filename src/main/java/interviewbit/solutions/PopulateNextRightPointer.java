@@ -34,27 +34,27 @@ public class PopulateNextRightPointer {
         public void connect(TreeLinkNode root) {
 //            connectRecursive(root);
 
-            Queue<TreeLinkNode> stack = new LinkedList<>();
-            stack.add(root);
-            while (!stack.isEmpty()) {
-                int stackDepth = stack.size();
-                TreeLinkNode previous = stack.poll();
+            Queue<TreeLinkNode> queue = new LinkedList<>();
+            queue.add(root);
+            while (!queue.isEmpty()) {
+                int stackDepth = queue.size();
+                TreeLinkNode previous = queue.poll();
                 if (previous.left != null) {
-                    stack.add(previous.left);
+                    queue.add(previous.left);
                 }
                 if (previous.right != null) {
-                    stack.add(previous.right);
+                    queue.add(previous.right);
                 }
                 for (int i = 1; i < stackDepth; i++) {
-                    TreeLinkNode nextNode = stack.poll();
+                    TreeLinkNode nextNode = queue.poll();
                     previous.next = nextNode;
                     previous = nextNode;
                     assert previous != null;
                     if (previous.left != null) {
-                        stack.add(previous.left);
+                        queue.add(previous.left);
                     }
                     if (previous.right != null) {
-                        stack.add(previous.right);
+                        queue.add(previous.right);
                     }
                 }
             }
