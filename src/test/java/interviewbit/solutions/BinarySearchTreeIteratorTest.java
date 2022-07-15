@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,18 +9,18 @@ public class BinarySearchTreeIteratorTest {
 
     @Test
     public void shouldIterateSet1(){
-        BinarySearchTreeIterator.Solution binarySearchTreeIterator = new BinarySearchTreeIterator.Solution(new BinarySearchTreeIterator.TreeNode(40,
-                new BinarySearchTreeIterator.TreeNode(20,
+        BinarySearchTreeIterator.Solution binarySearchTreeIterator = new BinarySearchTreeIterator.Solution(new TreeNode(40,
+                new TreeNode(20,
                         null,
-                        new BinarySearchTreeIterator.TreeNode(30,
-                                new BinarySearchTreeIterator.TreeNode(28),
-                                new BinarySearchTreeIterator.TreeNode(35,
+                        new TreeNode(30,
+                                new TreeNode(28),
+                                new TreeNode(35,
                                         null,
-                                        new BinarySearchTreeIterator.TreeNode(38)))),
-                new BinarySearchTreeIterator.TreeNode(60,
+                                        new TreeNode(38)))),
+                new TreeNode(60,
                         null,
-                        new BinarySearchTreeIterator.TreeNode(90,
-                                new BinarySearchTreeIterator.TreeNode(70),
+                        new TreeNode(90,
+                                new TreeNode(70),
                                 null))));
 
         assertTrue(binarySearchTreeIterator.hasNext());
@@ -41,7 +42,7 @@ public class BinarySearchTreeIteratorTest {
 
     @Test
     public void shouldIterateSet2(){
-        BinarySearchTreeIterator.Solution iterator = new BinarySearchTreeIterator.Solution(new BinarySearchTreeIterator.TreeNode(1));
+        BinarySearchTreeIterator.Solution iterator = new BinarySearchTreeIterator.Solution(new TreeNode(1));
         assertTrue(iterator.hasNext());
         assertTrue(iterator.hasNext());
         assertTrue(iterator.hasNext());

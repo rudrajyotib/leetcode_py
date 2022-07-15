@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,18 +11,18 @@ public class SerialiseAndDeserialiseBinaryTreeTest {
     public void shouldSerialiseAndDeserialiseCompleteBinaryTree()
     {
         SerialiseAndDeserialiseBinaryTree.Codec codec = new SerialiseAndDeserialiseBinaryTree.Codec();
-        SerialiseAndDeserialiseBinaryTree.TreeNode rootNode
-                = new SerialiseAndDeserialiseBinaryTree.TreeNode(1);
-        rootNode.left = new SerialiseAndDeserialiseBinaryTree.TreeNode(2);
-        rootNode.right = new SerialiseAndDeserialiseBinaryTree.TreeNode(3);
-        rootNode.left.left = new SerialiseAndDeserialiseBinaryTree.TreeNode(4);
-        rootNode.left.right = new SerialiseAndDeserialiseBinaryTree.TreeNode(5);
-        rootNode.right.left = new SerialiseAndDeserialiseBinaryTree.TreeNode(6);
-        rootNode.right.right = new SerialiseAndDeserialiseBinaryTree.TreeNode(7);
+        TreeNode rootNode
+                = new TreeNode(1);
+        rootNode.left = new TreeNode(2);
+        rootNode.right = new TreeNode(3);
+        rootNode.left.left = new TreeNode(4);
+        rootNode.left.right = new TreeNode(5);
+        rootNode.right.left = new TreeNode(6);
+        rootNode.right.right = new TreeNode(7);
         String serialisedStringExpectation = "1(2(4()[3]())[2](5()[3]()))[1](3(6()[3]())[2](7()[3]()))";
         String serializedString = codec.serialize(rootNode);
         assertEquals(serialisedStringExpectation, serializedString);
-        SerialiseAndDeserialiseBinaryTree.TreeNode deserializedRoot = codec.deserialize(serialisedStringExpectation);
+        TreeNode deserializedRoot = codec.deserialize(serialisedStringExpectation);
         assertEquals(1, deserializedRoot.val);
         assertEquals(2, deserializedRoot.left.val);
         assertEquals(3, deserializedRoot.right.val);
@@ -34,11 +35,11 @@ public class SerialiseAndDeserialiseBinaryTreeTest {
     @Test
     public void shouldSerialiseAndDeserializeSingleNodeTree()
     {
-        SerialiseAndDeserialiseBinaryTree.TreeNode root =
-                new SerialiseAndDeserialiseBinaryTree.TreeNode(1);
+        TreeNode root =
+                new TreeNode(1);
         SerialiseAndDeserialiseBinaryTree.Codec codec = new SerialiseAndDeserialiseBinaryTree.Codec();
         String serializedString = codec.serialize(root);
-        SerialiseAndDeserialiseBinaryTree.TreeNode deserializedRoot = codec.deserialize(serializedString);
+        TreeNode deserializedRoot = codec.deserialize(serializedString);
         assertEquals(1, deserializedRoot.val);
         assertNull(deserializedRoot.left);
         assertNull(deserializedRoot.right);
@@ -47,13 +48,13 @@ public class SerialiseAndDeserialiseBinaryTreeTest {
     @Test
     public void shouldSerializeAndDeserializeLeftOnlyTree()
     {
-        SerialiseAndDeserialiseBinaryTree.TreeNode treeNode =
-                new SerialiseAndDeserialiseBinaryTree.TreeNode(1);
-        treeNode.left = new SerialiseAndDeserialiseBinaryTree.TreeNode(2);
-        treeNode.left.left = new SerialiseAndDeserialiseBinaryTree.TreeNode(3);
+        TreeNode treeNode =
+                new TreeNode(1);
+        treeNode.left = new TreeNode(2);
+        treeNode.left.left = new TreeNode(3);
         SerialiseAndDeserialiseBinaryTree.Codec codec = new SerialiseAndDeserialiseBinaryTree.Codec();
         String serializedString = codec.serialize(treeNode);
-        SerialiseAndDeserialiseBinaryTree.TreeNode deserializedRoot = codec.deserialize(serializedString);
+        TreeNode deserializedRoot = codec.deserialize(serializedString);
         assertEquals(1, deserializedRoot.val);
         assertEquals(2, deserializedRoot.left.val);
         assertEquals(3, deserializedRoot.left.left.val);

@@ -4,6 +4,8 @@ package interviewbit.solutions;
 https://www.interviewbit.com/problems/sorted-array-to-balanced-bst/
  */
 
+import ds.util.TreeNode;
+
 public class ConvertSortedArrayToBalancedBinarySearchTree {
 
     public TreeNode solve(int[] sortedArray) {
@@ -11,17 +13,7 @@ public class ConvertSortedArrayToBalancedBinarySearchTree {
     }
 
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-            left = null;
-            right = null;
-        }
-    }
 
     @SuppressWarnings("InnerClassMayBeStatic")
     public class Solution {

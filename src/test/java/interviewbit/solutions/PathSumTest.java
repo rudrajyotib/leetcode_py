@@ -1,21 +1,22 @@
 package interviewbit.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class PathSumTest {
 
-    private PathSum.TreeNode createTree(){
-        return new PathSum.TreeNode(2,
-                new PathSum.TreeNode(4,
+    private TreeNode createTree(){
+        return new TreeNode(2,
+                new TreeNode(4,
                         null,
-                        new PathSum.TreeNode(3,
-                                new PathSum.TreeNode(5),
+                        new TreeNode(3,
+                                new TreeNode(5),
                                 null)),
-                new PathSum.TreeNode(6,
-                        new PathSum.TreeNode(8),
-                        new PathSum.TreeNode(7)));
+                new TreeNode(6,
+                        new TreeNode(8),
+                        new TreeNode(7)));
     }
 
 

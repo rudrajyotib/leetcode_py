@@ -4,6 +4,8 @@ package interviewbit.solutions;
 https://www.interviewbit.com/problems/path-sum/
  */
 
+import ds.util.TreeNode;
+
 import java.util.Stack;
 
 public class PathSum {
@@ -12,23 +14,7 @@ public class PathSum {
         return new Solution().hasPathSum(treeNode, sum);
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-            left = null;
-            right = null;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            this.val = x;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     @SuppressWarnings("InnerClassMayBeStatic")
     public class Solution {

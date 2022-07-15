@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,17 +10,17 @@ public class InvertBinaryTreeTest {
     @Test
     public void shouldInvertCompleteBinaryTree()
     {
-        InvertBinaryTree.TreeNode treeNode =
-                new InvertBinaryTree.TreeNode(1,
-                        new InvertBinaryTree.TreeNode(2,
-                                new InvertBinaryTree.TreeNode(4),
-                                new InvertBinaryTree.TreeNode(5)),
-                        new InvertBinaryTree.TreeNode(3,
-                                new InvertBinaryTree.TreeNode(6),
-                                new InvertBinaryTree.TreeNode(7)));
+        TreeNode treeNode =
+                new TreeNode(1,
+                        new TreeNode(2,
+                                new TreeNode(4),
+                                new TreeNode(5)),
+                        new TreeNode(3,
+                                new TreeNode(6),
+                                new TreeNode(7)));
 
         InvertBinaryTree invertBinaryTree = new InvertBinaryTree();
-        InvertBinaryTree.TreeNode invertedTree = invertBinaryTree.solve(treeNode);
+        TreeNode invertedTree = invertBinaryTree.solve(treeNode);
         assertEquals(1, invertedTree.val);
         assertEquals(2, invertedTree.right.val);
         assertEquals(3, invertedTree.left.val);
@@ -32,19 +33,19 @@ public class InvertBinaryTreeTest {
     @Test
     public void shouldInvertIncompleteBinaryTree()
     {
-        InvertBinaryTree.TreeNode treeNode =
-                new InvertBinaryTree.TreeNode(1,
-                        new InvertBinaryTree.TreeNode(2,
-                                new InvertBinaryTree.TreeNode(4),
-                                new InvertBinaryTree.TreeNode(5)),
-                        new InvertBinaryTree.TreeNode(3,
-                                new InvertBinaryTree.TreeNode(6),
-                                new InvertBinaryTree.TreeNode(7,
-                                        new InvertBinaryTree.TreeNode(8),
+        TreeNode treeNode =
+                new TreeNode(1,
+                        new TreeNode(2,
+                                new TreeNode(4),
+                                new TreeNode(5)),
+                        new TreeNode(3,
+                                new TreeNode(6),
+                                new TreeNode(7,
+                                        new TreeNode(8),
                                         null)));
 
         InvertBinaryTree invertBinaryTree = new InvertBinaryTree();
-        InvertBinaryTree.TreeNode invertedTree = invertBinaryTree.solve(treeNode);
+        TreeNode invertedTree = invertBinaryTree.solve(treeNode);
         assertEquals(1, invertedTree.val);
         assertEquals(2, invertedTree.right.val);
         assertEquals(3, invertedTree.left.val);
@@ -59,10 +60,10 @@ public class InvertBinaryTreeTest {
     @Test
     public void shouldInvertSingleNodeBinaryTree()
     {
-        InvertBinaryTree.TreeNode treeNode =
-                new InvertBinaryTree.TreeNode(1);
+        TreeNode treeNode =
+                new TreeNode(1);
         InvertBinaryTree invertBinaryTree = new InvertBinaryTree();
-        InvertBinaryTree.TreeNode invertedTree = invertBinaryTree.solve(treeNode);
+        TreeNode invertedTree = invertBinaryTree.solve(treeNode);
         assertEquals(1, invertedTree.val);
         assertNull(invertedTree.left);
         assertNull(invertedTree.right);

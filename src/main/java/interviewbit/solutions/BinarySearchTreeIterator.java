@@ -4,21 +4,13 @@ package interviewbit.solutions;
 https://www.interviewbit.com/problems/bst-iterator/
  */
 
+import ds.util.TreeNode;
+
 import java.util.Stack;
 
 public class BinarySearchTreeIterator {
 
-      static public class TreeNode {
-          int val;
-          TreeNode left;
-          TreeNode right;
-          TreeNode(int x) { val = x; }
-          TreeNode(int x, TreeNode left, TreeNode right){
-              this.val = x;
-              this.left = left;
-              this.right = right;
-          }
-      }
+
 
     public static class Solution {
 

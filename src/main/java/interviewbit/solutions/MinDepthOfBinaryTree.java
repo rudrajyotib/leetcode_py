@@ -5,6 +5,8 @@ https://www.interviewbit.com/problems/min-depth-of-binary-tree/
  */
 
 
+import ds.util.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -14,23 +16,7 @@ public class MinDepthOfBinaryTree {
         return new Solution().minDepth(root);
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-            left = null;
-            right = null;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            this.val = x;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
 
     @SuppressWarnings("InnerClassMayBeStatic")

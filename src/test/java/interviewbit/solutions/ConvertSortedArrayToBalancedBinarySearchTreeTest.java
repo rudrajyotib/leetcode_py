@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,7 +9,7 @@ public class ConvertSortedArrayToBalancedBinarySearchTreeTest {
 
     @Test
     public void shouldCreateBalancedBinarySearchTree(){
-        ConvertSortedArrayToBalancedBinarySearchTree.TreeNode treeNode = new ConvertSortedArrayToBalancedBinarySearchTree().solve(
+        TreeNode treeNode = new ConvertSortedArrayToBalancedBinarySearchTree().solve(
                 new int[]{1, 2, 3, 4, 5}
         );
         assertEquals(3, treeNode.val);
@@ -35,7 +36,7 @@ public class ConvertSortedArrayToBalancedBinarySearchTreeTest {
 
     @Test
     public void shouldHandleSingleSizeArray(){
-        ConvertSortedArrayToBalancedBinarySearchTree.TreeNode node = new ConvertSortedArrayToBalancedBinarySearchTree().solve(new int[]{1});
+        TreeNode node = new ConvertSortedArrayToBalancedBinarySearchTree().solve(new int[]{1});
         assertEquals(1, node.val);
         assertNull(node.right);
         assertNull(node.left);

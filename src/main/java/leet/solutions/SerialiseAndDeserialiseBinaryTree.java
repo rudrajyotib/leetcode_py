@@ -5,17 +5,11 @@ https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
 Leetcode#297
  */
 
+import ds.util.TreeNode;
+
 public class SerialiseAndDeserialiseBinaryTree {
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     static class Codec {
 

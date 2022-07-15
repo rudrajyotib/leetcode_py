@@ -5,29 +5,15 @@ https://www.interviewbit.com/problems/balanced-binary-tree/
  */
 
 
+import ds.util.TreeNode;
+
 public class BalanceBinaryTreeCheck {
 
     public int solve(TreeNode rootNode) {
         return new Solution().isBalanced(rootNode);
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-            left = null;
-            right = null;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right) {
-            this.val = x;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     @SuppressWarnings("InnerClassMayBeStatic")
     public class Solution {
