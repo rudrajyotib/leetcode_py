@@ -5,18 +5,11 @@ Leetcode#141
  */
 
 
+import ds.util.ListNode;
+
 public class LinkedListCycle {
 
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
 
 
     public boolean solve(ListNode node) {

@@ -5,16 +5,11 @@ https://leetcode.com/problems/partition-list/
 Leetcode#86
  */
 
+import ds.util.ListNode;
+
 public class PartitionList {
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-        @SuppressWarnings("unused")
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
+
 
 
     public ListNode solve(ListNode head, int x)

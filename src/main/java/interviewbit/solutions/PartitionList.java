@@ -1,5 +1,7 @@
 package interviewbit.solutions;
 
+import ds.util.ListNode;
+
 public class PartitionList {
 
     public ListNode solve(ListNode list, int mid){
@@ -7,15 +9,6 @@ public class PartitionList {
     }
 
 
-    static class ListNode {
-        public int val;
-        public ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
 
     public static class Solution {
         public ListNode partition(ListNode A, int B) {

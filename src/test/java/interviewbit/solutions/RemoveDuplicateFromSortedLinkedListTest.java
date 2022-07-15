@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.ListNode;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,10 +12,10 @@ public class RemoveDuplicateFromSortedLinkedListTest {
 
     @Test
     public void shouldHandleDuplicateInTwoNodeList(){
-        RemoveDuplicateFromSortedLinkedList.ListNode root = new RemoveDuplicateFromSortedLinkedList.ListNode(10);
-        root.next = new RemoveDuplicateFromSortedLinkedList.ListNode(10);
+        ListNode root = new ListNode(10);
+        root.next = new ListNode(10);
 
-        RemoveDuplicateFromSortedLinkedList.ListNode result =
+        ListNode result =
                 new RemoveDuplicateFromSortedLinkedList().solve(root);
 
         assertNotNull(result);
@@ -24,12 +25,12 @@ public class RemoveDuplicateFromSortedLinkedListTest {
 
     @Test
     public void shouldHandleDuplicateAtHead(){
-        RemoveDuplicateFromSortedLinkedList.ListNode root = new RemoveDuplicateFromSortedLinkedList.ListNode(10);
-        root.next = new RemoveDuplicateFromSortedLinkedList.ListNode(10);
-        root.next.next = new RemoveDuplicateFromSortedLinkedList.ListNode(20);
-        root.next.next.next = new RemoveDuplicateFromSortedLinkedList.ListNode(30);
+        ListNode root = new ListNode(10);
+        root.next = new ListNode(10);
+        root.next.next = new ListNode(20);
+        root.next.next.next = new ListNode(30);
 
-        RemoveDuplicateFromSortedLinkedList.ListNode result =
+        ListNode result =
                 new RemoveDuplicateFromSortedLinkedList().solve(root);
 
         assertNotNull(result);
@@ -47,14 +48,14 @@ public class RemoveDuplicateFromSortedLinkedListTest {
 
     @Test
     public void shouldHandleDuplicateAtTail(){
-        RemoveDuplicateFromSortedLinkedList.ListNode root = new RemoveDuplicateFromSortedLinkedList.ListNode(10);
-        root.next = new RemoveDuplicateFromSortedLinkedList.ListNode(15);
-        root.next.next = new RemoveDuplicateFromSortedLinkedList.ListNode(20);
-        root.next.next.next = new RemoveDuplicateFromSortedLinkedList.ListNode(30);
-        root.next.next.next.next = new RemoveDuplicateFromSortedLinkedList.ListNode(30);
-        root.next.next.next.next.next = new RemoveDuplicateFromSortedLinkedList.ListNode(30);
+        ListNode root = new ListNode(10);
+        root.next = new ListNode(15);
+        root.next.next = new ListNode(20);
+        root.next.next.next = new ListNode(30);
+        root.next.next.next.next = new ListNode(30);
+        root.next.next.next.next.next = new ListNode(30);
 
-        RemoveDuplicateFromSortedLinkedList.ListNode result =
+        ListNode result =
                 new RemoveDuplicateFromSortedLinkedList().solve(root);
 
         assertNotNull(result);

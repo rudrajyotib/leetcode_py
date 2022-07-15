@@ -5,6 +5,8 @@ https://www.interviewbit.com/problems/convert-sorted-list-to-binary-search-tree/
  */
 
 
+import ds.util.ListNode;
+
 public class ConvertSortedListToBinarySearchTree {
 
     public TreeNode solve(ListNode listNode){
@@ -71,20 +73,6 @@ public class ConvertSortedListToBinarySearchTree {
 
     }
 
-    static class ListNode {
-        public int val;
-        public ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-
-        ListNode(int x, ListNode next){
-            this.val = x;
-            this.next = next;
-        }
-    }
 
 
 }

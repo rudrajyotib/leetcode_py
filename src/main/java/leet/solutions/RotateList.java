@@ -6,25 +6,10 @@ Leetcode#61
  */
 
 
+import ds.util.ListNode;
+
 public class RotateList {
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        @SuppressWarnings("unused")
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     public ListNode solve(ListNode head, int k)
     {

@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.ListNode;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,17 +12,17 @@ public class PartitionListTest {
 
     @Test
     public void shouldCreatePartition(){
-        PartitionList.ListNode listNode = new PartitionList.ListNode(1);
-        listNode.next = new PartitionList.ListNode(2);
-        listNode.next.next = new PartitionList.ListNode(20);
-        listNode.next.next.next = new PartitionList.ListNode(50);
-        listNode.next.next.next.next = new PartitionList.ListNode(10);
+        ListNode listNode = new ListNode(1);
+        listNode.next = new ListNode(2);
+        listNode.next.next = new ListNode(20);
+        listNode.next.next.next = new ListNode(50);
+        listNode.next.next.next.next = new ListNode(10);
 
-        PartitionList.ListNode sortedList = new PartitionList().solve(listNode, 11);
+        ListNode sortedList = new PartitionList().solve(listNode, 11);
 
         assertSame(sortedList, listNode);
 
-        PartitionList.ListNode pointer = sortedList;
+        ListNode pointer = sortedList;
 
         List<Integer> list = new ArrayList<>();
 

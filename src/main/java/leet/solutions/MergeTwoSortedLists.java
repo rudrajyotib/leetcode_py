@@ -5,6 +5,8 @@ Leetcode#21
  */
 
 
+import ds.util.ListNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,24 +46,8 @@ public class MergeTwoSortedLists {
         return resultList.toArray(new Integer[1]);
     }
 
-    class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
-    class Solution {
+    static class Solution {
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
             ListNode result = new ListNode();
             ListNode tempResult = result;

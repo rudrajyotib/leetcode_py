@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.ListNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,11 +10,11 @@ public class ReorderListTest {
     @Test
     public void shouldReorderSet1()
     {
-        ReorderList.ListNode head = new ReorderList.ListNode(1,
-                new ReorderList.ListNode(2,
-                        new ReorderList.ListNode(3,
-                                new ReorderList.ListNode(4,
-                                        new ReorderList.ListNode(5)))));
+        ListNode head = new ListNode(1,
+                new ListNode(2,
+                        new ListNode(3,
+                                new ListNode(4,
+                                        new ListNode(5)))));
 
         ReorderList reorderList = new ReorderList();
         reorderList.solve(head);
@@ -30,8 +31,8 @@ public class ReorderListTest {
     @Test
     public void shouldReorderSet2()
     {
-        ReorderList.ListNode head = new ReorderList.ListNode(1,
-                new ReorderList.ListNode(2));
+        ListNode head = new ListNode(1,
+                new ListNode(2));
 
         ReorderList reorderList = new ReorderList();
         reorderList.solve(head);

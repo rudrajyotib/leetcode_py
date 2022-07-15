@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.ListNode;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,13 +12,13 @@ public class SortBinaryLinkedListTest {
 
     @Test
     public void shouldHandleAlreadySortedList(){
-        SortBinaryLinkedList.ListNode root = new SortBinaryLinkedList.ListNode(0);
-        root.next = new SortBinaryLinkedList.ListNode(0);
-        root.next.next = new SortBinaryLinkedList.ListNode(0);
-        root.next.next.next = new SortBinaryLinkedList.ListNode(1);
-        root.next.next.next.next = new SortBinaryLinkedList.ListNode(1);
+        ListNode root = new ListNode(0);
+        root.next = new ListNode(0);
+        root.next.next = new ListNode(0);
+        root.next.next.next = new ListNode(1);
+        root.next.next.next.next = new ListNode(1);
 
-        SortBinaryLinkedList.ListNode sortedRoot = new SortBinaryLinkedList().solve(root);
+        ListNode sortedRoot = new SortBinaryLinkedList().solve(root);
 
         assertSame(root, sortedRoot);
         assertSame(root.next, sortedRoot.next);
@@ -37,12 +38,12 @@ public class SortBinaryLinkedListTest {
 
     @Test
     public void shouldHandleZeroOnlyList(){
-        SortBinaryLinkedList.ListNode root = new SortBinaryLinkedList.ListNode(0);
-        root.next = new SortBinaryLinkedList.ListNode(0);
-        root.next.next = new SortBinaryLinkedList.ListNode(0);
-        root.next.next.next = new SortBinaryLinkedList.ListNode(0);
+        ListNode root = new ListNode(0);
+        root.next = new ListNode(0);
+        root.next.next = new ListNode(0);
+        root.next.next.next = new ListNode(0);
 
-        SortBinaryLinkedList.ListNode sortedRoot = new SortBinaryLinkedList().solve(root);
+        ListNode sortedRoot = new SortBinaryLinkedList().solve(root);
 
         assertSame(root, sortedRoot);
         assertSame(root.next, sortedRoot.next);
@@ -62,12 +63,12 @@ public class SortBinaryLinkedListTest {
 
     @Test
     public void shouldHandleOneOnlyList(){
-        SortBinaryLinkedList.ListNode root = new SortBinaryLinkedList.ListNode(1);
-        root.next = new SortBinaryLinkedList.ListNode(1);
-        root.next.next = new SortBinaryLinkedList.ListNode(1);
-        root.next.next.next = new SortBinaryLinkedList.ListNode(1);
+        ListNode root = new ListNode(1);
+        root.next = new ListNode(1);
+        root.next.next = new ListNode(1);
+        root.next.next.next = new ListNode(1);
 
-        SortBinaryLinkedList.ListNode sortedRoot = new SortBinaryLinkedList().solve(root);
+        ListNode sortedRoot = new SortBinaryLinkedList().solve(root);
 
         assertSame(root, sortedRoot);
         assertSame(root.next, sortedRoot.next);
@@ -87,13 +88,13 @@ public class SortBinaryLinkedListTest {
 
     @Test
     public void shouldHandleUnsortedList(){
-        SortBinaryLinkedList.ListNode root = new SortBinaryLinkedList.ListNode(1);
-        root.next = new SortBinaryLinkedList.ListNode(1);
-        root.next.next = new SortBinaryLinkedList.ListNode(0);
-        root.next.next.next = new SortBinaryLinkedList.ListNode(0);
-        root.next.next.next.next = new SortBinaryLinkedList.ListNode(1);
+        ListNode root = new ListNode(1);
+        root.next = new ListNode(1);
+        root.next.next = new ListNode(0);
+        root.next.next.next = new ListNode(0);
+        root.next.next.next.next = new ListNode(1);
 
-        SortBinaryLinkedList.ListNode sortedRoot = new SortBinaryLinkedList().solve(root);
+        ListNode sortedRoot = new SortBinaryLinkedList().solve(root);
 
         assertNotSame(root, sortedRoot);
         assertSame(root, sortedRoot.next.next);
