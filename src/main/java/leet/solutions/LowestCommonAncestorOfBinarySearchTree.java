@@ -6,17 +6,11 @@ Leetcode#235
  */
 
 
+import ds.util.TreeNode;
+
 public class LowestCommonAncestorOfBinarySearchTree {
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     public TreeNode solve(TreeNode root, TreeNode p, TreeNode q)
     {

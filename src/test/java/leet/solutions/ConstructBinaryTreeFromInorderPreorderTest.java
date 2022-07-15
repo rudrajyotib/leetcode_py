@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,7 +13,7 @@ public class ConstructBinaryTreeFromInorderPreorderTest {
     {
         ConstructBinaryTreeFromInorderPreorder constructBinaryTreeFromInorderPreorder
                 = new ConstructBinaryTreeFromInorderPreorder();
-        ConstructBinaryTreeFromInorderPreorder.TreeNode treeNode = constructBinaryTreeFromInorderPreorder.solve(new int[]{3, 9, 11, 12, 20, 15, 7},
+        TreeNode treeNode = constructBinaryTreeFromInorderPreorder.solve(new int[]{3, 9, 11, 12, 20, 15, 7},
                 new int[]{11, 9, 12, 3, 15, 20, 7});
         assertNotNull(treeNode);
         assertEquals(3, treeNode.val);

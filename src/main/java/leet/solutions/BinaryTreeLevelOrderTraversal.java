@@ -6,24 +6,14 @@ Leetcode#102
  */
 
 
+import ds.util.TreeNode;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class BinaryTreeLevelOrderTraversal {
-      static class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      @SuppressWarnings("unused")
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
-      TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-          this.left = left;
-          this.right = right;
-      }
-  }
+
 
     public List<List<Integer>> solve(TreeNode root)
     {

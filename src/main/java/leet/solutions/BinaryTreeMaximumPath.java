@@ -5,24 +5,11 @@ https://leetcode.com/problems/binary-tree-maximum-path-sum/
 Leetcode#124
  */
 
+import ds.util.TreeNode;
+
 public class BinaryTreeMaximumPath {
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
 
     public int solve(TreeNode node) {

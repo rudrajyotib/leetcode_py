@@ -5,21 +5,12 @@ https://leetcode.com/problems/same-tree/
 Leetcode#100
  */
 
+import ds.util.TreeNode;
+
 public class SameTree {
 
 
-      public static class TreeNode {
-          int val;
-          TreeNode left;
-          TreeNode right;
 
-          TreeNode(int val) { this.val = val; }
-          TreeNode(int val, TreeNode left, TreeNode right) {
-              this.val = val;
-              this.left = left;
-              this.right = right;
-          }
-      }
 
       public boolean solve(TreeNode p, TreeNode q)
       {

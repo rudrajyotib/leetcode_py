@@ -5,27 +5,11 @@ https://leetcode.com/problems/validate-binary-search-tree/
 Leetcode#98
  */
 
+import ds.util.TreeNode;
+
 public class ValidateBinarySearchTree {
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        @SuppressWarnings("unused")
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public boolean solve(TreeNode node)
     {

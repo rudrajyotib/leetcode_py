@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class BinaryTreeLevelOrderTraversalTest {
     public void shouldLevelOrderTraverseSingleNodeTree()
     {
         BinaryTreeLevelOrderTraversal binaryTreeLevelOrderTraversal = new BinaryTreeLevelOrderTraversal();
-        List<List<Integer>> result = binaryTreeLevelOrderTraversal.solve(new BinaryTreeLevelOrderTraversal.TreeNode(1));
+        List<List<Integer>> result = binaryTreeLevelOrderTraversal.solve(new TreeNode(1));
         assertEquals(1, result.size());
         assertEquals(1, result.get(0).size());
         assertEquals(1, result.get(0).get(0).intValue());
@@ -33,13 +34,13 @@ public class BinaryTreeLevelOrderTraversalTest {
     {
         BinaryTreeLevelOrderTraversal binaryTreeLevelOrderTraversal = new BinaryTreeLevelOrderTraversal();
         List<List<Integer>> result = binaryTreeLevelOrderTraversal.solve(
-                new BinaryTreeLevelOrderTraversal.TreeNode(1,
-                        new BinaryTreeLevelOrderTraversal.TreeNode(2,
-                                new BinaryTreeLevelOrderTraversal.TreeNode(4),
-                                new BinaryTreeLevelOrderTraversal.TreeNode(5)),
-                        new BinaryTreeLevelOrderTraversal.TreeNode(3,
-                                new BinaryTreeLevelOrderTraversal.TreeNode(6),
-                                new BinaryTreeLevelOrderTraversal.TreeNode(7))));
+                new  TreeNode(1,
+                        new  TreeNode(2,
+                                new  TreeNode(4),
+                                new  TreeNode(5)),
+                        new  TreeNode(3,
+                                new  TreeNode(6),
+                                new  TreeNode(7))));
         assertEquals(3, result.size());
         assertEquals(1, result.get(0).size());
         assertEquals(1, result.get(0).get(0).intValue());

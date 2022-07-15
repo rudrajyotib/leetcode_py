@@ -5,29 +5,13 @@ https://leetcode.com/problems/even-odd-tree/
 Leetcode#1609
  */
 
+import ds.util.TreeNode;
+
 import java.util.LinkedList;
 
 public class EvenOddTree {
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        @SuppressWarnings("unused")
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public boolean solve(TreeNode root) {
         Solution solution = new Solution();

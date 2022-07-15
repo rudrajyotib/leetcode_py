@@ -5,23 +5,14 @@ https://leetcode.com/problems/binary-tree-inorder-traversal/
 Leetcode#94
  */
 
+import ds.util.TreeNode;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class BinaryTreeInorderTraversal {
-    static class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
-      TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-          this.left = left;
-          this.right = right;
-      }
-    }
+
 
     public List<Integer> solve(TreeNode root)
     {
@@ -30,7 +21,7 @@ public class BinaryTreeInorderTraversal {
     }
 
 
-    class Solution {
+    static class Solution {
         public List<Integer> inorderTraversal(TreeNode root) {
 
             if (root ==null)

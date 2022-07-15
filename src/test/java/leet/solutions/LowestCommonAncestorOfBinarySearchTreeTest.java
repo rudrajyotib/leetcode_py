@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,24 +8,24 @@ import static org.junit.Assert.*;
 public class LowestCommonAncestorOfBinarySearchTreeTest {
 
 
-    private static LowestCommonAncestorOfBinarySearchTree.TreeNode treeNode;
+    private static final TreeNode treeNode;
 
     static {
         treeNode
-                = new LowestCommonAncestorOfBinarySearchTree.TreeNode(15);
-        treeNode.left = new LowestCommonAncestorOfBinarySearchTree.TreeNode(10);
-        treeNode.right = new LowestCommonAncestorOfBinarySearchTree.TreeNode(20);
-        treeNode.left.left = new LowestCommonAncestorOfBinarySearchTree.TreeNode(7);
-        treeNode.left.right = new LowestCommonAncestorOfBinarySearchTree.TreeNode(12);
-        treeNode.left.left.left = new LowestCommonAncestorOfBinarySearchTree.TreeNode(5);
-        treeNode.left.left.right = new LowestCommonAncestorOfBinarySearchTree.TreeNode(9);
-        treeNode.left.left.right.left = new LowestCommonAncestorOfBinarySearchTree.TreeNode(8);
-        treeNode.right.left = new LowestCommonAncestorOfBinarySearchTree.TreeNode(17);
-        treeNode.right.right = new LowestCommonAncestorOfBinarySearchTree.TreeNode(25);
-        treeNode.right.right.left = new LowestCommonAncestorOfBinarySearchTree.TreeNode(22);
-        treeNode.right.right.right = new LowestCommonAncestorOfBinarySearchTree.TreeNode(30);
-        treeNode.right.right.right.left = new LowestCommonAncestorOfBinarySearchTree.TreeNode(27);
-        treeNode.right.right.right.right = new LowestCommonAncestorOfBinarySearchTree.TreeNode(35);
+                = new  TreeNode(15);
+        treeNode.left = new  TreeNode(10);
+        treeNode.right = new  TreeNode(20);
+        treeNode.left.left = new  TreeNode(7);
+        treeNode.left.right = new  TreeNode(12);
+        treeNode.left.left.left = new  TreeNode(5);
+        treeNode.left.left.right = new  TreeNode(9);
+        treeNode.left.left.right.left = new  TreeNode(8);
+        treeNode.right.left = new  TreeNode(17);
+        treeNode.right.right = new  TreeNode(25);
+        treeNode.right.right.left = new  TreeNode(22);
+        treeNode.right.right.right = new  TreeNode(30);
+        treeNode.right.right.right.left = new  TreeNode(27);
+        treeNode.right.right.right.right = new  TreeNode(35);
     }
 
 

@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,9 +11,9 @@ public class MaxProductOfSplitBinaryTreeTest {
     public void shouldCalculateMaxProductOfSingleChildTree()
     {
         MaxProductOfSplitBinaryTree maxProductOfSplitBinaryTree = new MaxProductOfSplitBinaryTree();
-        MaxProductOfSplitBinaryTree.TreeNode root =
-                new MaxProductOfSplitBinaryTree.TreeNode(1,
-                        new MaxProductOfSplitBinaryTree.TreeNode(2), null);
+         TreeNode root =
+                new  TreeNode(1,
+                        new  TreeNode(2), null);
         assertEquals(2, maxProductOfSplitBinaryTree.solve(root));
     }
 
@@ -20,14 +21,14 @@ public class MaxProductOfSplitBinaryTreeTest {
     public void shouldCalculateMaxProductOfCompleteTree()
     {
         MaxProductOfSplitBinaryTree maxProductOfSplitBinaryTree = new MaxProductOfSplitBinaryTree();
-        MaxProductOfSplitBinaryTree.TreeNode root =
-                new MaxProductOfSplitBinaryTree.TreeNode(1,
-                        new MaxProductOfSplitBinaryTree.TreeNode(2,
-                                new MaxProductOfSplitBinaryTree.TreeNode(4),
-                                new MaxProductOfSplitBinaryTree.TreeNode(5)),
-                        new MaxProductOfSplitBinaryTree.TreeNode(3,
-                                new MaxProductOfSplitBinaryTree.TreeNode(6),
-                                new MaxProductOfSplitBinaryTree.TreeNode(7)));
+         TreeNode root =
+                new  TreeNode(1,
+                        new  TreeNode(2,
+                                new  TreeNode(4),
+                                new  TreeNode(5)),
+                        new  TreeNode(3,
+                                new  TreeNode(6),
+                                new  TreeNode(7)));
         assertEquals(192, maxProductOfSplitBinaryTree.solve(root));
     }
 
@@ -35,11 +36,11 @@ public class MaxProductOfSplitBinaryTreeTest {
     public void shouldCalculateMaxProductOfLeftAlignedTree()
     {
         MaxProductOfSplitBinaryTree maxProductOfSplitBinaryTree = new MaxProductOfSplitBinaryTree();
-        MaxProductOfSplitBinaryTree.TreeNode root
-                = new MaxProductOfSplitBinaryTree.TreeNode(1,
-                        new MaxProductOfSplitBinaryTree.TreeNode(2,
-                                new MaxProductOfSplitBinaryTree.TreeNode(3,
-                                        new MaxProductOfSplitBinaryTree.TreeNode(4), null), null), null);
+         TreeNode root
+                = new  TreeNode(1,
+                        new  TreeNode(2,
+                                new  TreeNode(3,
+                                        new  TreeNode(4), null), null), null);
         assertEquals(24, maxProductOfSplitBinaryTree.solve(root));
     }
 

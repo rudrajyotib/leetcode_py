@@ -1,24 +1,14 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
+
 /*
 https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/
 Leetcode#1339
  */
 public class MaxProductOfSplitBinaryTree {
     
-  static class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      @SuppressWarnings("unused")
-      TreeNode() {}
-      TreeNode(int val) { this.val = val; }
-      TreeNode(int val, TreeNode left, TreeNode right) {
-          this.val = val;
-          this.left = left;
-          this.right = right;
-      }
-  }
+
 
 
   public int solve(TreeNode root)

@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,23 +12,23 @@ public class BinaryTreeMaximumPathTest {
         BinaryTreeMaximumPath binaryTreeMaximumPath = new BinaryTreeMaximumPath();
 
         assertEquals(0, binaryTreeMaximumPath.solve(
-                new BinaryTreeMaximumPath.TreeNode(0,
-                        new BinaryTreeMaximumPath.TreeNode(-1,
+                new TreeNode(0,
+                        new  TreeNode(-1,
                                 null,
-                                new BinaryTreeMaximumPath.TreeNode(-3)),
-                        new BinaryTreeMaximumPath.TreeNode(-2,
+                                new  TreeNode(-3)),
+                        new  TreeNode(-2,
                                 null,
-                                new BinaryTreeMaximumPath.TreeNode(-4)))
+                                new  TreeNode(-4)))
         ));
 
         assertEquals(6, binaryTreeMaximumPath.solve(
-                new BinaryTreeMaximumPath.TreeNode(0,
-                        new BinaryTreeMaximumPath.TreeNode(-1,
+                new  TreeNode(0,
+                        new  TreeNode(-1,
                                 null,
-                                new BinaryTreeMaximumPath.TreeNode(-3)),
-                        new BinaryTreeMaximumPath.TreeNode(2,
+                                new  TreeNode(-3)),
+                        new  TreeNode(2,
                                 null,
-                                new BinaryTreeMaximumPath.TreeNode(4)))
+                                new  TreeNode(4)))
         ));
 
     }

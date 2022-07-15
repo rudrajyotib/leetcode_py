@@ -1,5 +1,7 @@
 package com.ace.leetcode;
 
+import ds.util.TreeNode;
+
 import java.util.Stack;
 
 public class LeetCode783
@@ -63,34 +65,5 @@ public class LeetCode783
 		return min != null ? min : 0;
 	}
 	
-	public static class TreeNode
-	{
-		public int val;
-		public TreeNode left;
-		public TreeNode right;
-		
-		TreeNode(int val, TreeNode left, TreeNode right)
-		{
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-		
-		public static TreeNode create(Integer[] nums)
-		{
-			return build(nums, 0, nums.length - 1);
-		}
-		
-		private static TreeNode build(Integer[] nums, int i, int size)
-		{
-			if (i > size || nums[i] == null)
-			{
-				return null;
-			}
-			//27,null,34,null,58,50,null,44
-			TreeNode leftNode = build(nums, i * 2 + 1, size);
-			TreeNode rightNode = build(nums, i * 2 + 2, size);
-			return new TreeNode(nums[i], leftNode, rightNode);
-		}
-	}
+
 }
