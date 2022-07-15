@@ -5,6 +5,8 @@ https://www.interviewbit.com/problems/postorder-traversal/
  */
 
 
+import ds.util.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -15,22 +17,7 @@ public class PostOrderTraversalWithoutRecursion {
         return new Solution().postorderTraversal(root);
     }
 
-      static class TreeNode {
-          int val;
-          TreeNode left;
-          TreeNode right;
-          TreeNode(int x) {
-           val = x;
-           left=null;
-           right=null;
-          }
 
-          TreeNode(int x, TreeNode left, TreeNode right){
-              this.val = x;
-              this.left = left;
-              this.right = right;
-          }
-      }
     @SuppressWarnings("InnerClassMayBeStatic")
     public class Solution {
         public ArrayList<Integer> postorderTraversal(TreeNode A) {

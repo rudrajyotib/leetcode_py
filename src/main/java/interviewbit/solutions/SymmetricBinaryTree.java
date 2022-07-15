@@ -4,28 +4,12 @@ package interviewbit.solutions;
 https://www.interviewbit.com/problems/symmetric-binary-tree
  */
 
+import ds.util.TreeNode;
+
 public class SymmetricBinaryTree {
 
     public int solve(TreeNode root){
         return new Solution().isSymmetric(root);
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-            left = null;
-            right = null;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right){
-            this.val = x;
-            this.left = left;
-            this.right = right;
-        }
     }
 
     @SuppressWarnings("InnerClassMayBeStatic")

@@ -5,6 +5,8 @@ https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-t
 Leetcode#106
  */
 
+import ds.util.TreeNode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,25 +14,7 @@ import java.util.Map;
 
 public class BinaryTreeFromInorderPostorder {
 
-    @SuppressWarnings({"InnerClassMayBeStatic", "unused"})
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
 
     public TreeNode solve(int[] inorder, int[] postorder)
@@ -40,7 +24,7 @@ public class BinaryTreeFromInorderPostorder {
     }
 
 
-    class Solution {
+    static class Solution {
 
         private int postOrderPointer = 0;
         private final Map<Integer, Integer> inOrder = new HashMap<>();

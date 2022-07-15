@@ -5,6 +5,8 @@ https://leetcode.com/problems/recover-binary-search-tree/
 Leetcode#99
  */
 
+import ds.util.TreeNode;
+
 public class RecoverBinarySearchTree {
 
 
@@ -14,28 +16,11 @@ public class RecoverBinarySearchTree {
         solution.recoverTree(rootNode);
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
 
 
-    class Solution {
+
+    static class Solution {
 
         private TreeNode firstAnomalyDetectionPoint = null;
         private TreeNode firstPointOfAnomaly = null;

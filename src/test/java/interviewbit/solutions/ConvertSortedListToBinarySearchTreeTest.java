@@ -1,6 +1,7 @@
 package interviewbit.solutions;
 
 import ds.util.ListNode;
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -35,7 +36,7 @@ public class ConvertSortedListToBinarySearchTreeTest {
 
     @Test
     public void shouldCreateBstFromOddSizeListSet3(){
-        ConvertSortedListToBinarySearchTree.TreeNode treeNode = new ConvertSortedListToBinarySearchTree().solve(
+        TreeNode treeNode = new ConvertSortedListToBinarySearchTree().solve(
                 new ListNode(1,
                         new ListNode(4,
                                 new ListNode(5,
@@ -63,7 +64,7 @@ public class ConvertSortedListToBinarySearchTreeTest {
 
     @Test
     public void shouldCreateSingleNodeTree(){
-        ConvertSortedListToBinarySearchTree.TreeNode treeNode = new ConvertSortedListToBinarySearchTree().solve(
+        TreeNode treeNode = new ConvertSortedListToBinarySearchTree().solve(
                 new ListNode(1));
         assertEquals(1, treeNode.val);
         assertNull(treeNode.left);

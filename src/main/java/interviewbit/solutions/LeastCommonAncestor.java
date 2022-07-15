@@ -5,6 +5,8 @@ https://www.interviewbit.com/problems/least-common-ancestor/
  */
 
 
+import ds.util.TreeNode;
+
 public class LeastCommonAncestor {
 
     public int solve(TreeNode root, int a, int b){
@@ -64,20 +66,5 @@ public class LeastCommonAncestor {
     }
 
 
-    static class TreeNode {
-        int val;
-        LeastCommonAncestor.TreeNode left;
-        LeastCommonAncestor.TreeNode right;
-        TreeNode(int x) {
-            val = x;
-            left=null;
-            right=null;
-        }
 
-        TreeNode(int x, TreeNode leftNode, TreeNode rightNode ){
-            val = x;
-            this.left = leftNode;
-            this.right = rightNode;
-        }
-    }
 }

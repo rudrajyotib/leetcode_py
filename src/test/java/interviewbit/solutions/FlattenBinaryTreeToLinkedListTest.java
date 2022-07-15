@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,7 +9,7 @@ public class FlattenBinaryTreeToLinkedListTest {
 
     @Test
     public void shouldHandleTreeWithSingleNode(){
-        FlattenBinaryTreeToLinkedList.TreeNode flatNode = new FlattenBinaryTreeToLinkedList().solve(new FlattenBinaryTreeToLinkedList.TreeNode(1));
+        TreeNode flatNode = new FlattenBinaryTreeToLinkedList().solve(new TreeNode(1));
         assertNotNull(flatNode);
         assertEquals(1, flatNode.val);
         assertNull(flatNode.left);
@@ -17,13 +18,13 @@ public class FlattenBinaryTreeToLinkedListTest {
 
     @Test
     public void shouldHandleLeftJustifiedTree(){
-        FlattenBinaryTreeToLinkedList.TreeNode originalRoot=
-               new FlattenBinaryTreeToLinkedList.TreeNode(1,
-                       new FlattenBinaryTreeToLinkedList.TreeNode(2,
-                               new FlattenBinaryTreeToLinkedList.TreeNode(3),
+        TreeNode originalRoot=
+               new TreeNode(1,
+                       new TreeNode(2,
+                               new TreeNode(3),
                                null),
                        null);
-        FlattenBinaryTreeToLinkedList.TreeNode flatNode = new FlattenBinaryTreeToLinkedList().solve(originalRoot);
+        TreeNode flatNode = new FlattenBinaryTreeToLinkedList().solve(originalRoot);
         assertSame(originalRoot, flatNode);
         assertEquals(1, flatNode.val);
         assertEquals(2, flatNode.right.val);
@@ -37,13 +38,13 @@ public class FlattenBinaryTreeToLinkedListTest {
 
     @Test
     public void shouldFlattenRightJustifiedTree(){
-        FlattenBinaryTreeToLinkedList.TreeNode treeNode =
-                new FlattenBinaryTreeToLinkedList.TreeNode(1,
+        TreeNode treeNode =
+                new TreeNode(1,
                         null,
-                        new FlattenBinaryTreeToLinkedList.TreeNode(2,
+                        new TreeNode(2,
                                 null,
-                                new FlattenBinaryTreeToLinkedList.TreeNode(3)));
-        FlattenBinaryTreeToLinkedList.TreeNode flatNode = new FlattenBinaryTreeToLinkedList().solve(treeNode);
+                                new TreeNode(3)));
+        TreeNode flatNode = new FlattenBinaryTreeToLinkedList().solve(treeNode);
         assertSame(flatNode, treeNode);
         assertEquals(1, flatNode.val);
         assertEquals(2, flatNode.right.val);
@@ -57,16 +58,16 @@ public class FlattenBinaryTreeToLinkedListTest {
     @Test
     public void shouldFlattenDistributedBinaryTree()
     {
-        FlattenBinaryTreeToLinkedList.TreeNode originalRoot =
-                new FlattenBinaryTreeToLinkedList.TreeNode(1,
-                        new FlattenBinaryTreeToLinkedList.TreeNode(2,
-                                new FlattenBinaryTreeToLinkedList.TreeNode(3),
-                                new FlattenBinaryTreeToLinkedList.TreeNode(4)),
-                        new FlattenBinaryTreeToLinkedList.TreeNode(5,
-                                new FlattenBinaryTreeToLinkedList.TreeNode(6),
-                                new FlattenBinaryTreeToLinkedList.TreeNode(7)));
+        TreeNode originalRoot =
+                new TreeNode(1,
+                        new TreeNode(2,
+                                new TreeNode(3),
+                                new TreeNode(4)),
+                        new TreeNode(5,
+                                new TreeNode(6),
+                                new TreeNode(7)));
 
-        FlattenBinaryTreeToLinkedList.TreeNode flatNode = new FlattenBinaryTreeToLinkedList().solve(originalRoot);
+        TreeNode flatNode = new FlattenBinaryTreeToLinkedList().solve(originalRoot);
         assertSame(flatNode, originalRoot);
         for (int i=1;i<=7;i++){
             assertEquals(i, flatNode.val);

@@ -5,6 +5,7 @@ https://www.interviewbit.com/problems/inorder-traversal-of-cartesian-tree
  */
 
 
+import ds.util.TreeNode;
 
 public class InorderTraversalOfCartesianTree {
 
@@ -12,21 +13,10 @@ public class InorderTraversalOfCartesianTree {
         return new Solution().buildTree(inOrderTraversal);
     }
 
-    @SuppressWarnings("InnerClassMayBeStatic")
-    class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-            left = null;
-            right = null;
-        }
-    }
 
 
-    public class Solution {
+
+    public static class Solution {
         public TreeNode buildTree(int[] inOrderTraversal) {
 
             MaxSegmentTree segmentTree = new MaxSegmentTree(inOrderTraversal);
@@ -47,7 +37,7 @@ public class InorderTraversalOfCartesianTree {
         }
 
 
-        class MaxSegmentTree {
+        static class MaxSegmentTree {
             private final int[] elements;
             private final int[] segments;
 

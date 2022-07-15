@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,14 +13,14 @@ public class ZigzagLevelOrderTraversalBinaryTreeTest {
     public void shouldTraverseZigzagSet1(){
         ArrayList<ArrayList<Integer>> result =
                 new ZigzagLevelOrderTraversalBinaryTree().solve(
-                        new ZigzagLevelOrderTraversalBinaryTree.TreeNode(1,
-                                new ZigzagLevelOrderTraversalBinaryTree.TreeNode(2,
-                                        new ZigzagLevelOrderTraversalBinaryTree.TreeNode(4),
+                        new TreeNode(1,
+                                new  TreeNode(2,
+                                        new  TreeNode(4),
                                         null),
-                                new ZigzagLevelOrderTraversalBinaryTree.TreeNode(3,
+                                new  TreeNode(3,
                                         null,
-                                        new ZigzagLevelOrderTraversalBinaryTree.TreeNode(6,
-                                                new ZigzagLevelOrderTraversalBinaryTree.TreeNode(7),
+                                        new  TreeNode(6,
+                                                new  TreeNode(7),
                                                 null)))
                 );
 

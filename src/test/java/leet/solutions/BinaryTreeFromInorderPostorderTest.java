@@ -1,5 +1,6 @@
 package leet.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,7 +12,7 @@ public class BinaryTreeFromInorderPostorderTest {
     {
         BinaryTreeFromInorderPostorder binaryTreeFromInorderPostorder
                 = new BinaryTreeFromInorderPostorder();
-        BinaryTreeFromInorderPostorder.TreeNode head = binaryTreeFromInorderPostorder.solve(new int[]{9, 3, 15, 20, 7}, new int[]{9, 15, 7, 20, 3});
+         TreeNode head = binaryTreeFromInorderPostorder.solve(new int[]{9, 3, 15, 20, 7}, new int[]{9, 15, 7, 20, 3});
         assertEquals(3, head.val);
         assertEquals(9, head.left.val);
         assertEquals(20, head.right.val);
@@ -31,7 +32,7 @@ public class BinaryTreeFromInorderPostorderTest {
     {
         BinaryTreeFromInorderPostorder binaryTreeFromInorderPostorder
                 = new BinaryTreeFromInorderPostorder();
-        BinaryTreeFromInorderPostorder.TreeNode head = binaryTreeFromInorderPostorder
+         TreeNode head = binaryTreeFromInorderPostorder
                 .solve(new int[]{4, 3, 2, 1},
                         new int[]{4, 3, 2, 1});
         assertEquals(1, head.val);

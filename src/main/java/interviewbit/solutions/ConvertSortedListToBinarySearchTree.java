@@ -6,6 +6,7 @@ https://www.interviewbit.com/problems/convert-sorted-list-to-binary-search-tree/
 
 
 import ds.util.ListNode;
+import ds.util.TreeNode;
 
 public class ConvertSortedListToBinarySearchTree {
 
@@ -50,28 +51,7 @@ public class ConvertSortedListToBinarySearchTree {
 
 
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-
-        String inOrder(){
-            return inOrderRecursive(this);
-        }
-
-        String inOrderRecursive(TreeNode treeNode){
-            if (treeNode == null){
-                return "";
-            }
-            return String.format("%s%s%s",inOrderRecursive(treeNode.left), treeNode.val , inOrderRecursive(treeNode.right));
-        }
-
-
-    }
 
 
 

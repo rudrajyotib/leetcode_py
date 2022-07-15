@@ -1,7 +1,6 @@
 package ds.util;
 
 
-
 public class TreeNode {
     public int val;
     public TreeNode left;
@@ -11,5 +10,15 @@ public class TreeNode {
         this.val = x;
         this.left = left;
         this.right = right;
+    }
+    public String inOrder(){
+        return inOrderRecursive(this);
+    }
+
+    private String inOrderRecursive(TreeNode treeNode){
+        if (treeNode == null){
+            return "";
+        }
+        return String.format("%s%s%s",inOrderRecursive(treeNode.left), treeNode.val , inOrderRecursive(treeNode.right));
     }
 }

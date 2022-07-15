@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -7,24 +8,24 @@ import static org.junit.Assert.*;
 public class LeastCommonAncestorTest {
 
 
-    private LeastCommonAncestor.TreeNode createTree() {
-        return new LeastCommonAncestor.TreeNode(10,
-                new LeastCommonAncestor.TreeNode(20,
-                        new LeastCommonAncestor.TreeNode(24,
+    private TreeNode createTree() {
+        return new  TreeNode(10,
+                new  TreeNode(20,
+                        new  TreeNode(24,
                                 null,
-                                new LeastCommonAncestor.TreeNode(26,
-                                        new LeastCommonAncestor.TreeNode(28),
-                                        new LeastCommonAncestor.TreeNode(29))),
+                                new  TreeNode(26,
+                                        new  TreeNode(28),
+                                        new  TreeNode(29))),
                         null),
-                new LeastCommonAncestor.TreeNode(30,
-                        new LeastCommonAncestor.TreeNode(15,
+                new  TreeNode(30,
+                        new  TreeNode(15,
                                 null,
-                                new LeastCommonAncestor.TreeNode(17)),
-                        new LeastCommonAncestor.TreeNode(16,
+                                new  TreeNode(17)),
+                        new  TreeNode(16,
                                 null,
-                                new LeastCommonAncestor.TreeNode(18,
+                                new  TreeNode(18,
                                         null,
-                                        new LeastCommonAncestor.TreeNode(19)))));
+                                        new  TreeNode(19)))));
     }
 
     @Test
@@ -35,7 +36,7 @@ public class LeastCommonAncestorTest {
 
     @Test
     public void shouldFindLowestCommonAncestorAsRootWhenSearchedForRootAsBothElements() {
-        LeastCommonAncestor.TreeNode root = createTree();
+         TreeNode root = createTree();
         assertEquals(10, new LeastCommonAncestor().solve(root,10,10));
     }
 

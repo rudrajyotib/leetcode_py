@@ -4,28 +4,15 @@ package interviewbit.solutions;
 https://www.interviewbit.com/problems/valid-binary-search-tree/
  */
 
+import ds.util.TreeNode;
+
 public class ValidBinarySearchTreeInterviewBit {
 
     public int solve(TreeNode root){
         return new Solution().isValidBST(root);
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-            left = null;
-            right = null;
-        }
-        TreeNode(int x, TreeNode left, TreeNode right){
-            this.val = x;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     @SuppressWarnings("InnerClassMayBeStatic")
     public class Solution {

@@ -4,6 +4,8 @@ package interviewbit.solutions;
 https://www.interviewbit.com/problems/inorder-traversal
  */
 
+import ds.util.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -14,22 +16,7 @@ public class InorderTraversalWithoutRecursion {
     }
 
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        public TreeNode(int x) {
-            val = x;
-            left = null;
-            right = null;
-        }
-        public TreeNode(int x, TreeNode left, TreeNode right) {
-            val = x;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     @SuppressWarnings("InnerClassMayBeStatic")
     public class Solution {

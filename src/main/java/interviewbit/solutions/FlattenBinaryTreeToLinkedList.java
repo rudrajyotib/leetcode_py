@@ -4,6 +4,8 @@ package interviewbit.solutions;
 https://www.interviewbit.com/problems/flatten-binary-tree-to-linked-list/
  */
 
+import ds.util.TreeNode;
+
 public class FlattenBinaryTreeToLinkedList {
 
 
@@ -11,21 +13,7 @@ public class FlattenBinaryTreeToLinkedList {
         return new Solution().flatten(a);
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-
-        TreeNode(int x, TreeNode left, TreeNode right){
-            this.val = x;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     @SuppressWarnings("InnerClassMayBeStatic")
     public class Solution {

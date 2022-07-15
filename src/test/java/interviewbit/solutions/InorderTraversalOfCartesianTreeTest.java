@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -8,7 +9,7 @@ public class InorderTraversalOfCartesianTreeTest {
 
     @Test
     public void shouldCreateDistributedCartesianTree(){
-        InorderTraversalOfCartesianTree.TreeNode root = new InorderTraversalOfCartesianTree().solve(new int[]{10, 30, 7, 15, 5, 40, 19, 21, 35, 26, 17});
+        TreeNode root = new InorderTraversalOfCartesianTree().solve(new int[]{10, 30, 7, 15, 5, 40, 19, 21, 35, 26, 17});
         assertNotNull(root);
         assertEquals(40, root.val);
         assertEquals(30, root.left.val);
@@ -32,7 +33,7 @@ public class InorderTraversalOfCartesianTreeTest {
 
     @Test
     public void shouldCreateLeftAlignedTree(){
-        InorderTraversalOfCartesianTree.TreeNode root = new InorderTraversalOfCartesianTree().solve(new int[]{1,2,3});
+         TreeNode root = new InorderTraversalOfCartesianTree().solve(new int[]{1,2,3});
         assertNotNull(root);
         assertEquals(3, root.val);
         assertEquals(2, root.left.val);
@@ -46,7 +47,7 @@ public class InorderTraversalOfCartesianTreeTest {
 
     @Test
     public void shouldCreateRightAlignedTree(){
-        InorderTraversalOfCartesianTree.TreeNode root = new InorderTraversalOfCartesianTree().solve(new int[]{3,2,1});
+         TreeNode root = new InorderTraversalOfCartesianTree().solve(new int[]{3,2,1});
         assertNotNull(root);
         assertEquals(3, root.val);
         assertEquals(2, root.right.val);
@@ -60,7 +61,7 @@ public class InorderTraversalOfCartesianTreeTest {
 
     @Test
     public void shouldCreateSingleNodeTree(){
-        InorderTraversalOfCartesianTree.TreeNode root = new InorderTraversalOfCartesianTree().solve(new int[]{3});
+         TreeNode root = new InorderTraversalOfCartesianTree().solve(new int[]{3});
         assertNotNull(root);
         assertEquals(3, root.val);
         assertNull(root.left);

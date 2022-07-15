@@ -1,5 +1,6 @@
 package interviewbit.solutions;
 
+import ds.util.TreeNode;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -16,9 +17,9 @@ public class InorderTraversalWithoutRecursionTest {
     public void shouldHandleSimpleTree(){
         assertArrayEquals(new Integer[]{1,2,3},
                 new InorderTraversalWithoutRecursion().solve(
-                        new InorderTraversalWithoutRecursion.TreeNode(2,
-                                new InorderTraversalWithoutRecursion.TreeNode(1),
-                                new InorderTraversalWithoutRecursion.TreeNode(3))
+                        new TreeNode(2,
+                                new  TreeNode(1),
+                                new  TreeNode(3))
                 ).toArray(new Integer[1]));
     }
 
@@ -26,13 +27,13 @@ public class InorderTraversalWithoutRecursionTest {
     public void shouldHandleWideTree(){
         assertArrayEquals(new Integer[]{1,3,4,5,6,8,10},
                 new InorderTraversalWithoutRecursion().solve(
-                        new InorderTraversalWithoutRecursion.TreeNode(5,
-                                new InorderTraversalWithoutRecursion.TreeNode(3,
-                                        new InorderTraversalWithoutRecursion.TreeNode(1),
-                                        new InorderTraversalWithoutRecursion.TreeNode(4)),
-                                new InorderTraversalWithoutRecursion.TreeNode(8,
-                                        new InorderTraversalWithoutRecursion.TreeNode(6),
-                                        new InorderTraversalWithoutRecursion.TreeNode(10)))
+                        new  TreeNode(5,
+                                new  TreeNode(3,
+                                        new  TreeNode(1),
+                                        new  TreeNode(4)),
+                                new  TreeNode(8,
+                                        new  TreeNode(6),
+                                        new  TreeNode(10)))
                 ).toArray(new Integer[1]));
     }
 

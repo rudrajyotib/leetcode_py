@@ -4,6 +4,8 @@ package interviewbit.solutions;
 https://www.interviewbit.com/problems/zigzag-level-order-traversal-bt/
  */
 
+import ds.util.TreeNode;
+
 import java.util.*;
 
 public class ZigzagLevelOrderTraversalBinaryTree {
@@ -12,22 +14,7 @@ public class ZigzagLevelOrderTraversalBinaryTree {
         return new Solution().zigzagLevelOrder(root);
     }
 
-      static class TreeNode {
-          int val;
-          TreeNode left;
-          TreeNode right;
-          TreeNode(int x) {
-           val = x;
-           left=null;
-           right=null;
-          }
 
-          TreeNode(int x, TreeNode left, TreeNode right){
-              this.val = x;
-              this.left = left;
-              this.right = right;
-          }
-      }
 
 
     @SuppressWarnings("InnerClassMayBeStatic")

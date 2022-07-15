@@ -5,6 +5,8 @@ https://www.interviewbit.com/problems/sum-root-to-leaf-numbers/
  */
 
 
+import ds.util.TreeNode;
+
 public class SumRootToLeafNumbers {
 
     public int solve(TreeNode treeNode){
@@ -32,16 +34,7 @@ public class SumRootToLeafNumbers {
     }
 
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) {
-            val = x;
-            left=null;
-            right=null;
-        }
-    }
+
 }
 
 
