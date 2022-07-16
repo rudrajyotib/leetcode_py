@@ -21,6 +21,7 @@ public class RotateListTest {
         assertEquals(4, updatedNode.val);
         assertEquals(3, updatedNode.next.next.next.next.next.val);
         assertNull( updatedNode.next.next.next.next.next.next);
+        assertArrayEquals(new Integer[]{4,5,0,1,2,3}, updatedNode.toList().toArray(new Integer[0]));
     }
 
     @Test
