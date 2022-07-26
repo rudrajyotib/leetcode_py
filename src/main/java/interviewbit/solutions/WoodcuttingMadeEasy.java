@@ -16,7 +16,6 @@ public class WoodcuttingMadeEasy {
     public static class Solution {
         public int solve(int[] A, int B) {
             Arrays.sort(A);
-            int[] heightsInFront = new int[A.length];
             int maxCut = 0;
             int minHeightCutIndex = -1;
             for (int i = A.length-2;i>=0;i--){
