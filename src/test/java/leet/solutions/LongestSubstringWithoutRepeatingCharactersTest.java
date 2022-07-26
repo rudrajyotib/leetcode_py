@@ -1,15 +1,15 @@
-package leet.solutions.longestSubstringWithoutRepeatChars;
+package leet.solutions;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class SolutionTest {
+public class LongestSubstringWithoutRepeatingCharactersTest {
 
     @Test
     public void shouldIdentifyLongestNonRepeatingChars()
     {
-        Solution solution  = new Solution();
+        LongestSubstringWithoutRepeatingCharacters.Solution solution  = new LongestSubstringWithoutRepeatingCharacters.Solution();
         assertEquals(3, solution.lengthOfLongestSubstring("abacc"));
         assertEquals(4, solution.lengthOfLongestSubstring("abcd"));
         assertEquals(1, solution.lengthOfLongestSubstring("bbbbbbbbbbb"));
