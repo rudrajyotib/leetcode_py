@@ -35,7 +35,7 @@ public class TwoTeams {
 
             for (Integer node : adjacencyList.keySet()){
                 if (!visitTracker[node]){
-                    if (canMakeTeam(node, 0, teams, adjacencyList, visitTracker)){
+                    if (!canMakeTeam(node, 0, teams, adjacencyList, visitTracker)){
                         return 0;
                     }
                 }
@@ -56,17 +56,17 @@ public class TwoTeams {
         private boolean canMakeTeam(int nodeId, int teamId, Set<Integer>[] teams, Map<Integer, List<Integer>> adjacencyList, boolean[] visitTracker){
 
             if (visitTracker[nodeId]){
-                return !teams[teamId].contains(nodeId);
+                return teams[teamId].contains(nodeId);
             }else{
                 visitTracker[nodeId] = true;
                 teams[teamId].add(nodeId);
                 for (Integer neighbor : adjacencyList.get(nodeId)){
-                    if (canMakeTeam(neighbor, (teamId + 1) % 2, teams, adjacencyList, visitTracker)){
-                        return true;
+                    if (!canMakeTeam(neighbor, (teamId + 1) % 2, teams, adjacencyList, visitTracker)){
+                        return false;
                     }
                 }
             }
-            return false;
+            return true;
         }
 
 //        private boolean isCycleInUndirectedGraph( int nodeId, boolean[] visitTracker, Map<Integer, List<Integer>> adjacencyList, int parent){
