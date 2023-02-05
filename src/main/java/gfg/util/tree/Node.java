@@ -9,4 +9,10 @@ public class Node {
         data = item;
         left = right = null;
     }
+
+    public Node(int item, Node left, Node right){
+        this.data = item;
+        this.left = left;
+        this.right = right;
+    }
 }
