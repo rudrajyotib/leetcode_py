@@ -1,5 +1,8 @@
 package gfg.util.tree;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Node {
     public int data;
     public Node left, right;
@@ -14,5 +17,20 @@ public class Node {
         this.data = item;
         this.left = left;
         this.right = right;
+    }
+
+    public List<Integer> inOrder(){
+        List<Integer> traversal = new LinkedList<>();
+        inOrderRecursive(this, traversal);
+        return traversal;
+    }
+
+    private void inOrderRecursive(Node node, List<Integer> traversal){
+        if (node == null){
+            return;
+        }
+        inOrderRecursive(node.left, traversal);
+        traversal.add(node.data);
+        inOrderRecursive(node.right, traversal);
     }
 }
