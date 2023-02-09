@@ -29,18 +29,18 @@ public class MaximumBipartiteMatching {
             Arrays.fill(match, -1);
             int max = 0;
             for(int i=0;i<applicants;i++){
-                if (recursiveBipartite(graph, applicants, jobs, new boolean[jobs], i)){
+                if (recursiveBipartite(graph, jobs, new boolean[jobs], i)){
                     ++max;
                 }
             }
             return max;
         }
 
-        private boolean recursiveBipartite(int[][] graph, int applicants, int jobs, boolean[] visited, int applicantIndex){
+        private boolean recursiveBipartite(int[][] graph, int jobs, boolean[] visited, int applicantIndex){
             for (int i=0;i<jobs;i++){
                 if (graph[applicantIndex][i] == 1 && !visited[i]){
                     visited[i] = true;
-                    if (match[i] == -1 || recursiveBipartite(graph, applicants, jobs, visited, match[i])){
+                    if (match[i] == -1 || recursiveBipartite(graph, jobs, visited, match[i])){
                         match[i] = applicantIndex;
                         return true;
                     }
