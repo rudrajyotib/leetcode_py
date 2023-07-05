@@ -31,30 +31,24 @@ public class BinaryTreeLevelOrderTraversal {
             LinkedList<TreeNode> nodesPipeLine = new LinkedList<>();
             LinkedList<List<Integer>> result = new LinkedList<>();
             nodesPipeLine.addLast(root);
-            int nodesInCurrentLevel = 1;
-            int nodesInNextLevel = 0;
             while (!nodesPipeLine.isEmpty())
             {
-                LinkedList<Integer> nodesInPresentLevel = new LinkedList<>();
-                for (int i=0;i<nodesInCurrentLevel;i++)
+                result.addLast(new LinkedList<>());
+                int levelNodeSize = nodesPipeLine.size();
+                for (int i=0;i<levelNodeSize;i++)
                 {
                     TreeNode treeNode = nodesPipeLine.pollFirst();
                     assert treeNode != null;
-                    nodesInPresentLevel.addLast(treeNode.val);
+                    result.getLast().add(treeNode.val);
                     if (treeNode.left != null)
                     {
-                        ++nodesInNextLevel;
                         nodesPipeLine.addLast(treeNode.left);
                     }
                     if (treeNode.right != null)
                     {
-                        ++nodesInNextLevel;
                         nodesPipeLine.addLast(treeNode.right);
                     }
                 }
-                result.addLast(nodesInPresentLevel);
-                nodesInCurrentLevel = nodesInNextLevel;
-                nodesInNextLevel = 0;
             }
 
             return result;
