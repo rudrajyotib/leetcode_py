@@ -1,3 +1,8 @@
 /venv/
 /js/node_modules
 /js/package-lock.json
+/js/.vscode
+/js/coverage
+/target
+/.idea
+.DS_Store
