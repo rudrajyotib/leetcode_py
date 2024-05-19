@@ -5,9 +5,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.function.Consumer;
 
-public class CandyTest extends TestCase {
+public class CandyTest  {
 
     public static final List<List<Integer[]>> testCases = List.of(
             List.of(new Integer[]{1, 0, 2}, new Integer[]{5}),
