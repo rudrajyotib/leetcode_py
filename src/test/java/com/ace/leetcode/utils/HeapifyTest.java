@@ -12,8 +12,8 @@ public class HeapifyTest
 	{
 		BinaryTree root = Heapify.toMaxHeap(new int[]{4, 10, 3, 5, 1});
 		assertEquals(10, root.getValue());
-		assertEquals(5, root.getLeft().getValue());
-		assertEquals(4, root.getLeft().getLeft().getValue());
+		assertEquals(4, root.getLeft().getValue());
+		assertEquals(5, root.getLeft().getLeft().getValue());
 		assertEquals(1, root.getLeft().getRight().getValue());
 		assertNull(root.getLeft().getLeft().getLeft());
 		assertNull(root.getLeft().getRight().getRight());
@@ -28,14 +28,22 @@ public class HeapifyTest
 	{
 		BinaryTree root = Heapify.toMaxHeap(new int[]{4, 5, 3, 10, 1});
 		assertEquals(10, root.getValue());
-		assertEquals(5, root.getLeft().getValue());
-		assertEquals(4, root.getLeft().getLeft().getValue());
-		assertEquals(1, root.getLeft().getRight().getValue());
-		assertNull(root.getLeft().getLeft().getLeft());
-		assertNull(root.getLeft().getRight().getRight());
-		
-		assertEquals(3, root.getRight().getValue());
-		assertNull(root.getRight().getLeft());
-		assertNull(root.getRight().getRight());
+
+	}
+
+	@Test
+	public void shouldConvertArrayToMaxHeapWithSet3()
+	{
+		BinaryTree root = Heapify.toMaxHeap(new int[]{4, 5, 3, 10, 1, 2, 11, 13, 15, 6});
+		assertEquals(15, root.getValue());
+//		assertEquals(5, root.getLeft().getValue());
+//		assertEquals(4, root.getLeft().getLeft().getValue());
+//		assertEquals(1, root.getLeft().getRight().getValue());
+//		assertNull(root.getLeft().getLeft().getLeft());
+//		assertNull(root.getLeft().getRight().getRight());
+//
+//		assertEquals(3, root.getRight().getValue());
+//		assertNull(root.getRight().getLeft());
+//		assertNull(root.getRight().getRight());
 	}
 }

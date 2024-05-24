@@ -10,11 +10,7 @@ public class Heapify
 		LinkedList<BinaryTree> nodes = new LinkedList<>();
 		BinaryTree root = toBinaryTree(values, 0, nodes);
 		
-		while (!nodes.isEmpty())
-		{
-			BinaryTree node = nodes.pop();
-			toMaxHeap(node);
-		}
+		toMaxHeap(root);
 		
 		return root;
 	}
@@ -25,9 +21,11 @@ public class Heapify
 		{
 			return;
 		}
+		toMaxHeap(node.left);
+		toMaxHeap(node.right);
 		BinaryTree max = getMaxNode(node.left, node.right);
 		swap(node, max);
-		toMaxHeap(max);
+
 	}
 	
 	private static BinaryTree getMaxNode(BinaryTree left, BinaryTree right)
