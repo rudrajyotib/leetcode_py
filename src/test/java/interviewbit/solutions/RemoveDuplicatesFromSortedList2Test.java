@@ -36,6 +36,28 @@ public class RemoveDuplicatesFromSortedList2Test {
                 ).toList().toArray(new Integer[0]));
     }
 
+    @Test
+    public void testCase1(){
+        assertArrayEquals(new Integer[]{3},
+                new RemoveDuplicatesFromSortedList2().solve(
+                        new ListNode(1,
+                                new ListNode(1,
+                                        new ListNode(3,
+                                                new ListNode(4,
+                                                        new ListNode(4)))))
+                ).toList().toArray(new Integer[0]));
+    }
+
+    @Test
+    public void testCase2(){
+        assertArrayEquals(new Integer[]{2},
+                new RemoveDuplicatesFromSortedList2().solve(
+                        new ListNode(1,
+                                new ListNode(1,
+                                        new ListNode(2)))
+                ).toList().toArray(new Integer[0]));
+    }
+
 
     @Test
     public void shouldDeleteDuplicateFromHead(){

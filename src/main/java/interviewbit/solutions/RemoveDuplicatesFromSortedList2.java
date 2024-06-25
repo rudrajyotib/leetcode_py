@@ -27,41 +27,39 @@ public class RemoveDuplicatesFromSortedList2 {
 
             ListNode resultHead = null;
             ListNode resultTail = null;
-            ListNode pointer = head;
-
-            boolean inDuplicateStreak = false;
+            ListNode pointer;
+            boolean potentialSingle = false;
+            if (head.val != head.next.val) {
+                potentialSingle = true;
+                resultHead = new ListNode(head.val);
+                resultTail = resultHead;
+            }
+            pointer = head.next;
 
             while (pointer.next != null) {
                 if (pointer.val == pointer.next.val) {
-                    inDuplicateStreak = true;
-                    pointer = pointer.next;
+                    potentialSingle = false;
                 } else {
-                    if (!inDuplicateStreak) {
+                    if (potentialSingle) {
                         if (resultHead == null) {
-                            resultHead = pointer;
+                            resultHead = new ListNode(pointer.val);
                             resultTail = resultHead;
                         } else {
-                            resultTail.next = pointer;
+                            resultTail.next = new ListNode(pointer.val);
                             resultTail = resultTail.next;
                         }
-                        pointer = pointer.next;
                     } else {
-                        inDuplicateStreak = false;
-                        pointer = pointer.next;
+                        potentialSingle = true;
                     }
                 }
+                pointer = pointer.next;
             }
-
-            if (!inDuplicateStreak) {
-                if (resultTail != null) {
-                    resultTail.next = pointer;
-                    resultTail = resultTail.next;
+            if (potentialSingle) {
+                if (resultHead == null) {
+                    resultHead = new ListNode(pointer.val);
                 } else {
-                    resultTail = pointer;
+                    resultTail.next = new ListNode(pointer.val);
                 }
-            }
-            if(resultTail != null){
-                resultTail.next = null;
             }
 
             return resultHead;
