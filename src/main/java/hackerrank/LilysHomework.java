@@ -32,25 +32,25 @@ public class LilysHomework {
             expectedIndices.put(targetList.get(i), i);
         }
 //        PriorityQueue<Integer[]> priorityQueue = new PriorityQueue<>((o1, o2) -> Integer.compare(o2[0], o1[0]));
-        Queue<Integer[]> priorityQueue = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < arr.size(); i++) {
             if (targetList.get(i).equals(arr.get(i))) {
                 continue;
             }
-            priorityQueue.offer(new Integer[]{Math.abs(arr.get(i) - targetList.get(i)), i});
+            queue.offer(i);
         }
         int swaps = 0;
-        while (!priorityQueue.isEmpty()) {
-            Integer[] mismatch = priorityQueue.poll();
-            if (arr.get(mismatch[1]).equals(targetList.get(mismatch[1]))) {
+        while (!queue.isEmpty()) {
+            Integer mismatch = queue.poll();
+            if (arr.get(mismatch).equals(targetList.get(mismatch))) {
                 continue;
             }
-            Integer expectedLocation = expectedIndices.get(arr.get(mismatch[1]));
+            Integer expectedLocation = expectedIndices.get(arr.get(mismatch));
             Integer elementAtExpectedLocation = arr.get(expectedLocation);
-            arr.set(expectedLocation, arr.get(mismatch[1]));
-            arr.set(mismatch[1], elementAtExpectedLocation);
-            if (!arr.get(mismatch[1]).equals(targetList.get(mismatch[1]))) {
-                priorityQueue.offer(new Integer[]{Math.abs(arr.get(mismatch[1]) - targetList.get(mismatch[1])), mismatch[1]});
+            arr.set(expectedLocation, arr.get(mismatch));
+            arr.set(mismatch, elementAtExpectedLocation);
+            if (!arr.get(mismatch).equals(targetList.get(mismatch))) {
+                queue.offer( mismatch);
             }
             ++swaps;
         }
