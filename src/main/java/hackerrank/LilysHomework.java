@@ -31,7 +31,8 @@ public class LilysHomework {
         for (int i = 0; i < targetList.size(); i++) {
             expectedIndices.put(targetList.get(i), i);
         }
-        PriorityQueue<Integer[]> priorityQueue = new PriorityQueue<>((o1, o2) -> Integer.compare(o2[0], o1[0]));
+//        PriorityQueue<Integer[]> priorityQueue = new PriorityQueue<>((o1, o2) -> Integer.compare(o2[0], o1[0]));
+        Queue<Integer[]> priorityQueue = new LinkedList<>();
         for (int i = 0; i < arr.size(); i++) {
             if (targetList.get(i).equals(arr.get(i))) {
                 continue;
