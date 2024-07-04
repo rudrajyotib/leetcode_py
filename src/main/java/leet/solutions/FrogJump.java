@@ -55,7 +55,6 @@ public class FrogJump {
                 queue.add(new Integer[]{jump[0], jump[1]+(jump[0])});
             }
 
-
             return false;
         }
     }
