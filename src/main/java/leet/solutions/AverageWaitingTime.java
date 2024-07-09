@@ -13,21 +13,20 @@ public class AverageWaitingTime {
     static class Solution {
         public double averageWaitingTime(int[][] customers) {
 
-            double totalWeightTime = 0d;
+            double totalWaitTime = 0d;
             int realEndTimePrev = customers[0][0] + customers[0][1];
-            totalWeightTime += customers[0][1];
+            totalWaitTime += customers[0][1];
             for (int i = 1; i < customers.length; i++) {
-                int startTime = customers[i][0];
-                if (startTime > realEndTimePrev) {
-                    realEndTimePrev = startTime + customers[i][1];
+                if (customers[i][0] > realEndTimePrev) {
+                    realEndTimePrev = customers[i][0] + customers[i][1];
                 } else {
                     realEndTimePrev = realEndTimePrev + customers[i][1];
                 }
-                totalWeightTime += (realEndTimePrev - startTime);
+                totalWaitTime += (realEndTimePrev - customers[i][0]);
             }
 
 
-            return totalWeightTime / customers.length;
+            return totalWaitTime / customers.length;
         }
     }
 }
