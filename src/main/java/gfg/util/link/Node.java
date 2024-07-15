@@ -1,5 +1,7 @@
 package gfg.util.link;
 
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Node {
@@ -28,5 +30,25 @@ public class Node {
             temp = temp.bottom;
         }
         return list;
+    }
+
+    public Integer[] toArray(){
+        Node head = this;
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        while (head != null){
+            arrayList.add(head.data);
+            head = head.next;
+        }
+        return arrayList.toArray(new Integer[0]);
+    }
+
+    public static Node createLinkedList(Integer[] nums){
+        Node head = new Node(nums[0]);
+        Node temp = head;
+        for (int i=1;i< nums.length; i++){
+            temp.next = new Node(nums[i]);
+            temp=temp.next;
+        }
+        return head;
     }
 }

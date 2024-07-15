@@ -35,5 +35,18 @@ public class CycleInDirectedGraphTest {
         ));
     }
 
+    @Test
+    public void shouldIdentifyCycleSet2() {
+        assertTrue(new CycleInDirectedGraph().solve(
+                5, new int[][]{
+                        new int[]{5, 5},
+                        new int[]{1, 2},
+                        new int[]{2, 3},
+                        new int[]{3, 4},
+                        new int[]{4, 4}
+                }
+        ));
+    }
+
 
 }
