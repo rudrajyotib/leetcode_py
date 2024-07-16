@@ -22,4 +22,14 @@ public class DistributeCoinsInBinaryTreeTest {
         ));
     }
 
+    @Test
+    public void testCase2(){
+        assertEquals(3,
+                new DistributeCoinsInBinaryTree().solve(
+                        new TreeNode(0,
+                                new TreeNode(3),
+                                new TreeNode(0))
+                ));
+    }
+
 }
