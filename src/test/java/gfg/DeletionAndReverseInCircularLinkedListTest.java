@@ -37,9 +37,10 @@ public class DeletionAndReverseInCircularLinkedListTest {
         new DeletionAndReverseInCircularLinkedList().deleteNode(nodes[0], 0);
         assertEquals(1, nodes[4].next.data);
         new DeletionAndReverseInCircularLinkedList().reverse(nodes[0]);
-        new DeletionAndReverseInCircularLinkedList().reverse(nodes[1]);
+        Node newHead = new DeletionAndReverseInCircularLinkedList().reverse(nodes[1]);
         assertNull(nodes[1].next);
         assertEquals(3, nodes[4].next.data);
+        assertEquals(4, newHead.data);
     }
 
 }

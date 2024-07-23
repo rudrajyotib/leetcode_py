@@ -24,21 +24,22 @@ public class DeletionAndReverseInCircularLinkedList {
             }
         }
         tempHead.next = null;
-        recursiveReverse(head);
-        return tempHead;
+        return recursiveReverse(head);
+//        return tempHead;
     }
 
-    private void recursiveReverse(Node node){
+    private Node recursiveReverse(Node node){
         if (node == null){
-            return;
+            return null;
         }
         if (node.next == null){
-            return;
+            return node;
         }
         Node temp = node.next;
         node.next = null;
-        recursiveReverse(temp);
+        Node reverseHead = recursiveReverse(temp);
         temp.next = node;
+        return reverseHead;
     }
 
     // Function to delete a node from the circular linked list
