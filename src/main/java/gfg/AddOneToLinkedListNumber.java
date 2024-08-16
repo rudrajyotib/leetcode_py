@@ -10,8 +10,7 @@ public class AddOneToLinkedListNumber {
 
     public Node addOne(Node head) {
         // code here.
-        Node origTail = getLast(head);
-        reverse(head);
+        Node origTail = reverse(head);
         Node nav = origTail;
         int carry = 1;
         while (nav != null) {
@@ -35,24 +34,19 @@ public class AddOneToLinkedListNumber {
         return returnHead;
     }
 
-    private Node getLast(Node node) {
-        if (node.next == null) {
-            return node;
-        }
-        return getLast(node.next);
-    }
-
-    private void reverse(Node node) {
-        reverseRecursive(node);
+    private Node reverse(Node node) {
+        return reverseRecursive(node);
     }
 
     private Node reverseRecursive(Node node) {
         if (node.next == null) {
             return node;
         }
-        Node endOfReversedRight = reverseRecursive(node.next);
-        endOfReversedRight.next = node;
+        Node right = node.next;
+        Node endOfReversedRight = reverseRecursive(right);
+
         node.next = null;
-        return endOfReversedRight.next;
+        right.next = node;
+        return endOfReversedRight;
     }
 }
