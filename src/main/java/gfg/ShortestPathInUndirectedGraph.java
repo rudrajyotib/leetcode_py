@@ -13,11 +13,11 @@ public class ShortestPathInUndirectedGraph {
         int[] distances = new int[n];
         Arrays.fill(distances, -1);
         Map<Integer, List<Integer>> adjList = new HashMap<>();
-        for (int i=0;i<n;i++){
+        for (int i = 0; i < n; i++) {
             adjList.put(i, new LinkedList<>());
         }
         for (int[] edge : edges) {
-            if (edge[0]<n && edge[1] < n){
+            if (edge[0] < n && edge[1] < n) {
                 adjList.get(edge[0]).add(edge[1]);
                 adjList.get(edge[1]).add(edge[0]);
             }
@@ -25,14 +25,14 @@ public class ShortestPathInUndirectedGraph {
         Queue<Integer> queue = new LinkedList<>();
         distances[src] = 0;
         queue.add(src);
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Integer node = queue.remove();
-            for (Integer connect: adjList.get(node)){
-                if (distances[connect] == -1){
+            for (Integer connect : adjList.get(node)) {
+                if (distances[connect] == -1) {
                     distances[connect] = distances[node] + 1;
                     queue.add(connect);
-                } else{
-                    if (distances[node] + 1 < distances[connect]){
+                } else {
+                    if (distances[node] + 1 < distances[connect]) {
                         distances[connect] = distances[node] + 1;
                         queue.add(connect);
                     }
