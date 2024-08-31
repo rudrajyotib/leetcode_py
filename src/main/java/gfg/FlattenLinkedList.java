@@ -26,19 +26,22 @@ public class FlattenLinkedList {
             Node resultIter = null;
             while (iter != null){
                 priorityQueue.add(iter);
-                iter = iter.next;
+                Node tmep = iter.next;
+                iter.next = null;
+                iter = tmep;
             }
             while ( !priorityQueue.isEmpty()){
                 Node node = priorityQueue.remove();
                 if (result == null){
-                    result = new Node(node.data);
+                    result = node;
                     resultIter = result;
                 }else{
-                    resultIter.bottom = new Node(node.data);
+                    resultIter.bottom = node;
                     resultIter = resultIter.bottom;
                 }
                 if (node.bottom != null){
                     priorityQueue.offer(node.bottom);
+                    node.bottom = null;
                 }
             }
             return result;
